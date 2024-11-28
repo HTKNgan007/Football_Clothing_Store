@@ -1,12 +1,20 @@
 package nganha.store.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import nganha.store.BLL.NhanVienBLL;
 import nganha.store.Model.NhanVien;
+import javafx.event.ActionEvent;
+import java.io.IOException;
 
 public class NhanVienController {
   @FXML
@@ -62,7 +70,7 @@ public class NhanVienController {
   }
 
   @FXML
-  private void handleLogin() {
+  private void handleDangNhap() {
     String username = txtUsername.getText();
     String password = txtPassword.getText();
 
@@ -78,6 +86,25 @@ public class NhanVienController {
     } catch (Exception e) {
       errorMessage.setText(e.getMessage());
       errorMessage.setVisible(true);
+    }
+  }
+
+  @FXML
+  private void handleDangKy(ActionEvent event) {
+    try {
+      // Tải file FXML mới
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/nganha/store/signup.fxml"));
+      Parent dangKyRoot = fxmlLoader.load();
+
+      // Lấy Stage hiện tại từ sự kiện
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      // Chuyển sang Scene mới
+      stage.setScene(new Scene(dangKyRoot));
+      stage.initStyle(StageStyle.UNDECORATED);
+      stage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 

@@ -5,6 +5,7 @@ module nganha.store {
   requires org.controlsfx.controls;
   requires org.kordamp.bootstrapfx.core;
   requires java.sql;
+  requires java.desktop;
 
   opens nganha.store to javafx.fxml;
   exports nganha.store;
