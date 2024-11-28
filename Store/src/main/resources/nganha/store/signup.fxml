@@ -9,41 +9,41 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="241.0" prefWidth="304.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.NhanVienController">
-    <GridPane>
+<AnchorPane prefHeight="283.0" prefWidth="431.0" style="-fx-background-color: #254336;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.NhanVienController">
+    <GridPane layoutY="1.0" prefHeight="282.0" prefWidth="433.0">
         <!-- Title -->
-        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Thông Tin Nhân Viên" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+        <Label alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="279.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Thông Tin Nhân Viên" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
 
         <!-- Labels and Input Fields -->
-        <Label text="Mã NV:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="txtMaNV" promptText="Nhập mã nhân viên" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="10.0" prefWidth="90.0" text="Mã NV:" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtMaNV" promptText="Nhập mã nhân viên" style="-fx-background-color: #B7B597; -fx-text-fill: white; -fx-prompt-text-fill: gray;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Label text="Tên NV:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <TextField fx:id="txtTenNV" promptText="Nhập tên nhân viên" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="90.0" text="Tên NV:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtTenNV" promptText="Nhập tên nhân viên" style="-fx-background-color: #B7B597; -fx-text-fill: white; -fx-prompt-text-fill: gray;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="SĐT:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TextField fx:id="txtSDT" promptText="Nhập số điện thoại" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="90.0" text="SĐT:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="txtSDT" promptText="Nhập số điện thoại" style="-fx-background-color: #B7B597; -fx-text-fill: white; -fx-prompt-text-fill: gray;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-        <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <TextField fx:id="txtUsername" promptText="Nhập username" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="90.0" text="Username:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="txtUsername" promptText="Nhập username" style="-fx-background-color: #B7B597; -fx-text-fill: white; -fx-prompt-text-fill: gray;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-        <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-        <PasswordField fx:id="txtPassword" promptText="Nhập mật khẩu" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Label alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="90.0" text="Password:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <PasswordField fx:id="txtPassword" promptText="Nhập mật khẩu" style="-fx-background-color: #B7B597; -fx-text-fill: white; -fx-prompt-text-fill: gray;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
         <!-- Buttons -->
-        <Button onAction="#handleSaveNhanVien" text="Lưu Nhân Viên" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+        <Button onAction="#handleSaveNhanVien" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: white; -fx-text-fill: #1b2b34; -fx-font-weight: bold;" text="Lưu Nhân Viên" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
+            <ColumnConstraints maxWidth="150.0" minWidth="63.5" prefWidth="120.0" />
+            <ColumnConstraints maxWidth="250.0" minWidth="106.5" prefWidth="200.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
+            <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="40.0" />
+            <RowConstraints maxHeight="52.0" minHeight="0.0" prefHeight="35.0" />
+            <RowConstraints maxHeight="43.0" minHeight="0.0" prefHeight="35.0" />
+            <RowConstraints maxHeight="39.0" minHeight="30.0" prefHeight="35.0" />
+            <RowConstraints maxHeight="39.0" minHeight="13.0" prefHeight="35.0" />
+            <RowConstraints maxHeight="52.0" minHeight="0.0" prefHeight="35.0" />
+            <RowConstraints maxHeight="52.0" minHeight="0.0" prefHeight="35.0" />
         </rowConstraints>
     </GridPane>
 </AnchorPane>
