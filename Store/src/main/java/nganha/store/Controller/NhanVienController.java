@@ -70,7 +70,7 @@ public class NhanVienController {
   }
 
   @FXML
-  private void handleDangNhap() {
+  private void handleDangNhap(ActionEvent event) {
     String username = txtUsername.getText();
     String password = txtPassword.getText();
 
@@ -78,6 +78,7 @@ public class NhanVienController {
       boolean isLoggedIn = nhanVienBLL.checkLogin(username, password);
       if (isLoggedIn) {
         // Chuyển hướng sang giao diện chính
+        loadFXML("/nganha/store/TrangChu.fxml", event);
         System.out.println("Đăng nhập thành công!");
       } else {
         errorMessage.setText("Tên đăng nhập hoặc mật khẩu không đúng!");
@@ -93,19 +94,25 @@ public class NhanVienController {
   private void handleDangKy(ActionEvent event) {
     try {
       // Tải file FXML mới
-      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/nganha/store/signup.fxml"));
-      Parent dangKyRoot = fxmlLoader.load();
-
-      // Lấy Stage hiện tại từ sự kiện
-      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-      // Chuyển sang Scene mới
-      stage.setScene(new Scene(dangKyRoot));
-      stage.initStyle(StageStyle.UNDECORATED);
-      stage.show();
+      loadFXML("/nganha/store/signup.fxml", event);
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private void loadFXML(String fxmlPath, ActionEvent event) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+    Parent root = fxmlLoader.load();
+
+    // Lấy Stage hiện tại từ sự kiện
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    // Chuyển sang Scene mới
+    stage.setScene(new Scene(root));
+//    stage.initStyle(StageStyle.DECORATED);
+    stage.setResizable(true);
+    stage.centerOnScreen();
+    stage.show();
   }
 
   private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -115,4 +122,5 @@ public class NhanVienController {
     alert.setContentText(message);
     alert.showAndWait();
   }
+
 }

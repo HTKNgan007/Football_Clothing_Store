@@ -12,10 +12,11 @@ public class MainApp extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("TrangChu.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
     Scene scene = new Scene(loader.load());
     primaryStage.initStyle(StageStyle.UNDECORATED);
     primaryStage.setScene(scene);
+    primaryStage.centerOnScreen();
     primaryStage.show();
   }
 
