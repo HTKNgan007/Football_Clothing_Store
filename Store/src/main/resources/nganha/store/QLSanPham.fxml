@@ -1,76 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" >
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23">
     <children>
         <!-- Main layout -->
-        <VBox spacing="10.0" alignment="TOP_CENTER" prefWidth="600" prefHeight="400">
+        <VBox alignment="TOP_CENTER" prefHeight="790.0" prefWidth="790.0" spacing="10.0">
             <!-- Title -->
-            <Label text="Quản Lý Sản Phẩm" style="-fx-font-size: 24; -fx-font-weight: bold;" />
-
-            <!-- Form Layout -->
-            <GridPane hgap="10" vgap="10">
-                <columnConstraints>
-                    <ColumnConstraints halignment="RIGHT" />
-                    <ColumnConstraints halignment="LEFT" prefWidth="200" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints minHeight="30" />
-                </rowConstraints>
-
-                <!-- Product Name -->
-                <Label text="Tên Sản Phẩm:" />
-                <TextField fx:id="txtProductName" />
-
-                <!-- Category -->
-                <Label text="Loại Sản Phẩm:" GridPane.rowIndex="1" />
-                <ComboBox fx:id="cbCategory" GridPane.rowIndex="1">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <!-- Example categories -->
-                            <String fx:value="Áo" />
-                            <String fx:value="Quần" />
-                            <String fx:value="Giày" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-
-                <!-- Price -->
-                <Label text="Giá:" GridPane.rowIndex="2" />
-                <TextField fx:id="txtPrice" GridPane.rowIndex="2" />
-
-                <!-- Quantity -->
-                <Label text="Số Lượng Tồn:" GridPane.rowIndex="3" />
-                <TextField fx:id="txtQuantity" GridPane.rowIndex="3" />
-
-                <!-- Description -->
-                <Label text="Mô Tả:" GridPane.rowIndex="4" />
-                <TextArea fx:id="txtDescription" GridPane.rowIndex="4" GridPane.columnSpan="2" />
-            </GridPane>
+            <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Quản Lý Sản Phẩm" />
+         <VBox alignment="CENTER" prefHeight="260.0" prefWidth="790.0">
+            <children>
+               <HBox prefHeight="50.0" prefWidth="790.0">
+                  <children>
+                     <HBox prefHeight="50.0" prefWidth="395.0">
+                        <children>
+                  
+                               <!-- Product Name -->
+                               <Label prefHeight="17.0" prefWidth="100.0" text="Tên Sản Phẩm:" />
+                               <TextField fx:id="txtProductName" />
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="50.0" prefWidth="395.0">
+                        <children>
+                  
+                               <!-- Category -->
+                               <Label prefHeight="17.0" prefWidth="100.0" text="Loại Sản Phẩm:" />
+                               <ComboBox fx:id="cbCategory">
+                                   <items>
+                                       <FXCollections fx:factory="observableArrayList">
+                                           <!-- Example categories -->
+                                           <String fx:value="Áo" />
+                                           <String fx:value="Quần" />
+                                           <String fx:value="Giày" />
+                                       </FXCollections>
+                                   </items>
+                               </ComboBox>
+                        </children>
+                     </HBox>
+                  </children>
+               </HBox>
+               <HBox prefHeight="50.0" prefWidth="790.0">
+                  <children>
+                     <HBox prefHeight="50.0" prefWidth="395.0">
+                        <children>
+                  
+                               <!-- Price -->
+                               <Label prefHeight="17.0" prefWidth="100.0" text="Giá:" />
+                               <TextField fx:id="txtPrice" />
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="50.0" prefWidth="395.0">
+                        <children>
+                  
+                               <!-- Quantity -->
+                               <Label prefWidth="100.0" text="Số Lượng Tồn:" />
+                               <TextField fx:id="txtQuantity" />
+                        </children>
+                     </HBox>
+                  </children>
+               </HBox>
+               <HBox prefHeight="100.0" prefWidth="200.0">
+                  <children>
+            
+                                  <!-- Description -->
+                         <Label prefHeight="33.0" prefWidth="73.0" text="Mô Tả:" />
+                         <TextArea fx:id="txtDescription" prefHeight="100.0" prefWidth="635.0" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
 
             <!-- Buttons -->
-            <HBox spacing="10" alignment="CENTER">
-                <Button text="Thêm" fx:id="btnAdd" />
-                <Button text="Sửa" fx:id="btnEdit" />
-                <Button text="Xóa" fx:id="btnDelete" />
-                <Button text="Làm Mới" fx:id="btnClear" />
+            <HBox alignment="CENTER" spacing="10">
+                <Button fx:id="btnAdd" text="Thêm" />
+                <Button fx:id="btnEdit" text="Sửa" />
+                <Button fx:id="btnDelete" text="Xóa" />
+                <Button fx:id="btnClear" text="Làm Mới" />
             </HBox>
 
             <!-- Table for Displaying Products -->
-            <TableView fx:id="tblProducts" prefHeight="200">
+            <TableView fx:id="tblProducts" prefHeight="382.0" prefWidth="790.0">
                 <columns>
-                    <TableColumn text="Mã Sản Phẩm" fx:id="colProductId" />
-                    <TableColumn text="Tên Sản Phẩm" fx:id="colProductName" />
-                    <TableColumn text="Loại Sản Phẩm" fx:id="colCategory" />
-                    <TableColumn text="Giá" fx:id="colPrice" />
-                    <TableColumn text="Số Lượng Tồn" fx:id="colQuantity" />
+                    <TableColumn fx:id="colProductId" text="Mã Sản Phẩm" />
+                    <TableColumn fx:id="colProductName" text="Tên Sản Phẩm" />
+                    <TableColumn fx:id="colCategory" text="Loại Sản Phẩm" />
+                    <TableColumn fx:id="colPrice" prefWidth="205.5414581298828" text="Giá" />
+                    <TableColumn fx:id="colQuantity" prefWidth="209.27716064453125" text="Số Lượng Tồn" />
                 </columns>
             </TableView>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
         </VBox>
     </children>
 </AnchorPane>
-

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="788.0" prefWidth="976.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="nganha.store.Controller.TrangChuController">
+<AnchorPane prefHeight="788.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.TrangChuController">
     <children>
         <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="790.0" prefWidth="978.0" spacing="10.0">
             <!-- Left Panel with Buttons -->
@@ -23,7 +23,7 @@
                </VBox.margin>
             </Text>
                 <Button fx:id="btnManageOrders" prefHeight="100.0" prefWidth="140" text="Trang Chủ" />
-                <Button fx:id="btnManageProducts" prefHeight="100.0" prefWidth="140" text="Quản Lý Sản Phẩm" onAction="#handleQLSanPham"/>
+                <Button fx:id="btnManageProducts" onAction="#handleQLSanPham" prefHeight="100.0" prefWidth="140" text="Quản Lý Sản Phẩm" />
                 <Button fx:id="btnManageCustomers" prefHeight="100.0" prefWidth="140" text="Quản Lý Khách Hàng" />
             <Button fx:id="btnManageOrders1" prefHeight="100.0" prefWidth="140" text="Quản Lý Đơn Hàng" />
                 <Button fx:id="btnExit" prefWidth="140" style="-fx-background-color: #ff4d4d; -fx-text-fill: white;" text="Đăng xuất">
@@ -33,7 +33,7 @@
             </VBox>
 
             <!-- Right Panel to Display Content -->
-            <StackPane fx:id="contentPane" prefHeight="790.0" prefWidth="793.0" style="-fx-background-color: #ffffff;" />
+            <StackPane fx:id="contentPane" prefHeight="790.0" prefWidth="790.0" style="-fx-background-color: #ffffff;" />
         </HBox>
     </children>
 </AnchorPane>

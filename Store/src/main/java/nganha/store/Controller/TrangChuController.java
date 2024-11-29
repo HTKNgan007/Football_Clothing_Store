@@ -32,10 +32,14 @@ public class TrangChuController {
 
   private void loadContent(String fxmlFile) {
     try {
-      Node content = FXMLLoader.load(getClass().getResource(fxmlFile));
+      // Đảm bảo đường dẫn tương đối chính xác
+      String fullPath = "/nganha/store/" + fxmlFile;
+
+      Node content = FXMLLoader.load(getClass().getResource(fullPath));
       contentPane.getChildren().clear();
       contentPane.getChildren().add(content);
     } catch (IOException e) {
+      System.err.println("Could not load FXML file: " + fxmlFile);
       e.printStackTrace();
     }
   }
