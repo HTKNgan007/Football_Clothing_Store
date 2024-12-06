@@ -19,13 +19,13 @@
                 <VBox spacing="10">
                     <HBox alignment="CENTER" spacing="5">
                         <ImageView fitHeight="24" fitWidth="24">
-                            <Image url="@user_icon.png" /> <!-- Biểu tượng người dùng -->
+                            <Image url="@images/user_icon.png" /> <!-- Biểu tượng người dùng -->
                         </ImageView>
                         <TextField fx:id="txtUsername" promptText="Username" style="-fx-background-color: #B7B597; -fx-text-fill: white; -fx-prompt-text-fill: gray;" />
                     </HBox>
                     <HBox alignment="CENTER" spacing="5">
                         <ImageView fitHeight="24" fitWidth="24">
-                            <Image url="@lock_icon.png" /> <!-- Biểu tượng khóa -->
+                            <Image url="@images/lock_icon.png" /> <!-- Biểu tượng khóa -->
                         </ImageView>
                         <PasswordField fx:id="txtPassword" promptText="Password" style="-fx-background-color: #B7B597; -fx-text-fill: white; -fx-prompt-text-fill: gray;" />
                     </HBox>
@@ -37,7 +37,7 @@
             </VBox>
             <ImageView fitHeight="300.0" fitWidth="245.0">
                 <image>
-                    <Image url="@logo_NHFootball.png" />
+                    <Image url="@images/logo_NHFootball.png" />
                 </image>
             </ImageView>
         </children>
