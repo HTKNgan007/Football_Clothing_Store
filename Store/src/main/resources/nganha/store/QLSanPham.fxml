@@ -1,108 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23">
+<AnchorPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.SanPhamController">
     <children>
         <!-- Main layout -->
         <VBox alignment="TOP_CENTER" prefHeight="790.0" prefWidth="790.0" spacing="10.0">
             <!-- Title -->
             <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Quản Lý Sản Phẩm" />
-         <VBox alignment="CENTER" prefHeight="260.0" prefWidth="790.0">
-            <children>
-               <HBox prefHeight="50.0" prefWidth="790.0">
-                  <children>
-                     <HBox prefHeight="50.0" prefWidth="395.0">
-                        <children>
-                  
-                               <!-- Product Name -->
-                               <Label prefHeight="17.0" prefWidth="100.0" text="Tên Sản Phẩm:" />
-                               <TextField fx:id="txtProductName" />
-                        </children>
-                     </HBox>
-                     <HBox prefHeight="50.0" prefWidth="395.0">
-                        <children>
-                  
-                               <!-- Category -->
-                               <Label prefHeight="17.0" prefWidth="100.0" text="Loại Sản Phẩm:" />
-                               <ComboBox fx:id="cbCategory">
-                                   <items>
-                                       <FXCollections fx:factory="observableArrayList">
-                                           <!-- Example categories -->
-                                           <String fx:value="Áo" />
-                                           <String fx:value="Quần" />
-                                           <String fx:value="Giày" />
-                                       </FXCollections>
-                                   </items>
-                               </ComboBox>
-                        </children>
-                     </HBox>
-                  </children>
-               </HBox>
-               <HBox prefHeight="50.0" prefWidth="790.0">
-                  <children>
-                     <HBox prefHeight="50.0" prefWidth="395.0">
-                        <children>
-                  
-                               <!-- Price -->
-                               <Label prefHeight="17.0" prefWidth="100.0" text="Giá:" />
-                               <TextField fx:id="txtPrice" />
-                        </children>
-                     </HBox>
-                     <HBox prefHeight="50.0" prefWidth="395.0">
-                        <children>
-                  
-                               <!-- Quantity -->
-                               <Label prefWidth="100.0" text="Số Lượng Tồn:" />
-                               <TextField fx:id="txtQuantity" />
-                        </children>
-                     </HBox>
-                  </children>
-               </HBox>
-               <HBox prefHeight="100.0" prefWidth="200.0">
-                  <children>
-            
-                                  <!-- Description -->
-                         <Label prefHeight="33.0" prefWidth="73.0" text="Mô Tả:" />
-                         <TextArea fx:id="txtDescription" prefHeight="100.0" prefWidth="635.0" />
-                  </children>
-               </HBox>
-            </children>
-         </VBox>
+
+            <!-- Search Box -->
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="790.0" spacing="10">
+                <children>
+                    <TextField fx:id="txtTimKiem" prefHeight="30.0" prefWidth="500.0" promptText="Nhập tên sản phẩm hoặc mã sản phẩm..." />
+                    <Button fx:id="timKiemSanPham" prefHeight="26.0" prefWidth="61.0" text="Tìm" />
+                </children>
+            </HBox>
 
             <!-- Buttons -->
             <HBox alignment="CENTER" spacing="10">
-                <Button fx:id="btnAdd" text="Thêm" />
-                <Button fx:id="btnEdit" text="Sửa" />
-                <Button fx:id="btnDelete" text="Xóa" />
-                <Button fx:id="btnClear" text="Làm Mới" />
+                <Button fx:id="themSanPham" text="Thêm" />
+                <Button fx:id="capNhatSanPham" text="Sửa" />
+                <Button text="Xóa" fx:id="xoaSanPham" />
+                <Button fx:id="btnLamMoi" text="Làm Mới" />
             </HBox>
 
             <!-- Table for Displaying Products -->
-            <TableView fx:id="tblProducts" prefHeight="382.0" prefWidth="790.0">
+            <TableView fx:id="tblSanPham" prefHeight="625.0" prefWidth="790.0">
                 <columns>
-                    <TableColumn fx:id="colProductId" text="Mã Sản Phẩm" />
-                    <TableColumn fx:id="colProductName" text="Tên Sản Phẩm" />
-                    <TableColumn fx:id="colCategory" text="Loại Sản Phẩm" />
-                    <TableColumn fx:id="colPrice" prefWidth="205.5414581298828" text="Giá" />
-                    <TableColumn fx:id="colQuantity" prefWidth="209.27716064453125" text="Số Lượng Tồn" />
+                    <TableColumn fx:id="colMaSP" text="Mã Sản Phẩm" />
+                    <TableColumn fx:id="colTenSP" text="Tên Sản Phẩm" />
+                    <TableColumn fx:id="colLoaiSP" text="Loại Sản Phẩm" />
+                    <TableColumn fx:id="colGiaBan" prefWidth="120.0" text="Giá" />
+                    <TableColumn fx:id="colSoLuong" prefWidth="120.0" text="Số Lượng Tồn" />
+                    <TableColumn fx:id="colSize" prefWidth="80.0" text="Size" />
+                    <TableColumn fx:id="colMauSac" prefWidth="100.0" text="Màu Sắc" />
+                    <TableColumn fx:id="colMoTa" prefWidth="150.0" text="Mô Tả" />
                 </columns>
             </TableView>
-         <padding>
-            <Insets top="30.0" />
-         </padding>
+            <padding>
+                <Insets top="30.0" />
+            </padding>
         </VBox>
     </children>
 </AnchorPane>
