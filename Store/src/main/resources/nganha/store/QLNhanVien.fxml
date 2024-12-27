@@ -1,104 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="790.0" prefWidth="790.0" spacing="10.0" style="-fx-padding: 10;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
-    <!-- Tiêu đề -->
-    <HBox alignment="CENTER">
-        <Label style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: black;" text="Quản Lý Nhân Viên" />
-    </HBox>
-
-    <!-- Khu vực Thêm/Chỉnh sửa nhân viên -->
-    <VBox spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
-        <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Thông Tin Nhân Viên" />
-      <HBox prefHeight="46.0" prefWidth="782.0">
+<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <TableView fx:id="tblEmployees" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
+           <columns>
+               <TableColumn prefWidth="100.0" text="Mã NV">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="employeeId" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn prefWidth="200.0" text="Tên Nhân Viên">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="employeeName" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn prefWidth="150.0" text="Chức Vụ">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="position" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn prefWidth="150.0" text="Số Điện Thoại">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="phone" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn prefWidth="200.0" text="Email">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="email" />
+                   </cellValueFactory>
+               </TableColumn>
+           </columns>
+       </TableView>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ NHÂN VIÊN" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="84.0" prefHeight="750.0" prefWidth="198.0" style="-fx-background-color: #990606;">
          <children>
-      
-              <!-- Mã NV -->
-              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="387.0" spacing="10.0">
-                  <Label prefHeight="17.0" prefWidth="63.0" text="Mã NV:" />
-                  <TextField fx:id="txtEmployeeId" prefHeight="26.0" prefWidth="200.0" />
-              </HBox>
-      
-                 <!-- Họ Tên -->
-              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="403.0" spacing="10.0">
-                  <Label prefHeight="17.0" prefWidth="62.0" text="Họ Tên:" />
-                  <TextField fx:id="txtEmployeeName" prefWidth="200" />
-              </HBox>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="32.0">
+                        <image>
+                            <Image url="@images/User_fill_add3.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="200.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xem chi tiết ">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutY="82.0" prefHeight="88.0" prefWidth="782.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField layoutX="-2.0" layoutY="25.0" prefHeight="37.0" prefWidth="513.0" promptText="              Tìm kiếm nhân viên theo tên..." style="-fx-border-radius: 100;" />
+                  <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="7.0" layoutY="29.0">
+                     <image>
+                        <Image url="@images/Search_alt3.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </AnchorPane>
+            <Button mnemonicParsing="false" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
          </children>
       </HBox>
-      <HBox prefHeight="56.0" prefWidth="750.0">
-         <children>
-      
-              <!-- Chức Vụ -->
-              <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="369.0" spacing="10.0">
-                  <Label prefHeight="17.0" prefWidth="62.0" text="Chức Vụ:" />
-                  <TextField fx:id="txtPosition" prefWidth="200" />
-              </HBox>
-      
-              <!-- Số Điện Thoại -->
-              <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="388.0" spacing="10.0">
-                  <Label prefHeight="17.0" prefWidth="62.0" text="Số ĐT:" />
-                  <TextField fx:id="txtPhone" prefWidth="200" />
-              </HBox>
-         </children>
-      </HBox>
-
-        <!-- Email -->
-        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="750.0" spacing="10.0">
-            <Label prefHeight="17.0" prefWidth="62.0" text="Email:" />
-            <TextField fx:id="txtEmail" prefWidth="200" />
-        </HBox>
-
-        <!-- Nút Thêm, Sửa, Xóa -->
-        <HBox alignment="CENTER" spacing="10.0">
-            <Button  text="Thêm" />
-            <Button  text="Sửa" />
-            <Button  text="Xóa" />
-        </HBox>
-    </VBox>
-
-    <!-- Khu vực Tìm kiếm -->
-    <HBox alignment="CENTER_LEFT" spacing="10.0">
-        <TextField fx:id="txtSearch" prefWidth="400" promptText="Tìm kiếm nhân viên theo tên..." />
-        <Button  text="Tìm kiếm" />
-    </HBox>
-
-    <!-- Danh sách nhân viên -->
-    <TableView fx:id="tblEmployees" prefHeight="421.0" prefWidth="770.0">
-        <columns>
-            <TableColumn prefWidth="100.0" text="Mã NV">
-                <cellValueFactory>
-                    <PropertyValueFactory property="employeeId" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="200.0" text="Tên Nhân Viên">
-                <cellValueFactory>
-                    <PropertyValueFactory property="employeeName" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="150.0" text="Chức Vụ">
-                <cellValueFactory>
-                    <PropertyValueFactory property="position" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="150.0" text="Số Điện Thoại">
-                <cellValueFactory>
-                    <PropertyValueFactory property="phone" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="200.0" text="Email">
-                <cellValueFactory>
-                    <PropertyValueFactory property="email" />
-                </cellValueFactory>
-            </TableColumn>
-        </columns>
-    </TableView>
-</VBox>
+   </children>
+</AnchorPane>

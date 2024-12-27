@@ -1,0 +1,12 @@
+.act-button{
+    -fx-border-radius: 20%;
+    -fx-background-color: #2D764F;
+    -fx-text-fill: white;
+    -fx-font-size: 17px;
+}
+.find-button{
+    -fx-border-radius: 20%;
+    -fx-background-color: #2D764F;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
