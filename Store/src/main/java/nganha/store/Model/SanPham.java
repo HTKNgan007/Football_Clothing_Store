@@ -3,121 +3,92 @@ package nganha.store.Model;
 import javafx.beans.property.*;
 
 public class SanPham {
-  private StringProperty maSP;
-  private StringProperty tenSP;
-  private StringProperty loaiSP;
-  private DoubleProperty giaBan;
-  private IntegerProperty soLuong;
-  private StringProperty size;
-  private StringProperty mauSac;
-  private StringProperty moTa;
+  private String maSP;
+  private String tenSP;
+  private String loaiSP;
+  private Double giaBan;
+  private Integer soLuong;
+  private String size;
+  private String mauSac;
+  private String moTa;
 
   // Constructor
-  public SanPham(String maSP, String tenSP, String loaiSP, double giaBan, int soLuong, String size, String mauSac, String moTa) {
-    this.maSP = new SimpleStringProperty(maSP);
-    this.tenSP = new SimpleStringProperty(tenSP);
-    this.loaiSP = new SimpleStringProperty(loaiSP);
-    this.giaBan = new SimpleDoubleProperty(giaBan);
-    this.soLuong = new SimpleIntegerProperty(soLuong);
-    this.size = new SimpleStringProperty(size);
-    this.mauSac = new SimpleStringProperty(mauSac);
-    this.moTa = new SimpleStringProperty(moTa);
+
+
+  public SanPham(String maSP, String tenSP, String loaiSP, Double giaBan, Integer soLuong, String size, String mauSac, String moTa) {
+    this.maSP = maSP;
+    this.tenSP = tenSP;
+    this.loaiSP = loaiSP;
+    this.giaBan = giaBan;
+    this.soLuong = soLuong;
+    this.size = size;
+    this.mauSac = mauSac;
+    this.moTa = moTa;
   }
 
   // Getters và Setters cho các Property
-  public StringProperty maSPProperty() {
+
+  public String getMaSP() {
     return maSP;
   }
 
-  public String getMaSP() {
-    return maSP.get();
-  }
-
   public void setMaSP(String maSP) {
-    this.maSP.set(maSP);
-  }
-
-  public StringProperty tenSPProperty() {
-    return tenSP;
+    this.maSP = maSP;
   }
 
   public String getTenSP() {
-    return tenSP.get();
+    return tenSP;
   }
 
   public void setTenSP(String tenSP) {
-    this.tenSP.set(tenSP);
-  }
-
-  public StringProperty loaiSPProperty() {
-    return loaiSP;
+    this.tenSP = tenSP;
   }
 
   public String getLoaiSP() {
-    return loaiSP.get();
+    return loaiSP;
   }
 
   public void setLoaiSP(String loaiSP) {
-    this.loaiSP.set(loaiSP);
+    this.loaiSP = loaiSP;
   }
 
-  public DoubleProperty giaBanProperty() {
+  public Double getGiaBan() {
     return giaBan;
   }
 
-  public double getGiaBan() {
-    return giaBan.get();
+  public void setGiaBan(Double giaBan) {
+    this.giaBan = giaBan;
   }
 
-  public void setGiaBan(double giaBan) {
-    this.giaBan.set(giaBan);
-  }
-
-  public IntegerProperty soLuongProperty() {
+  public Integer getSoLuong() {
     return soLuong;
   }
 
-  public int getSoLuong() {
-    return soLuong.get();
-  }
-
-  public void setSoLuong(int soLuong) {
-    this.soLuong.set(soLuong);
-  }
-
-  public StringProperty sizeProperty() {
-    return size;
+  public void setSoLuong(Integer soLuong) {
+    this.soLuong = soLuong;
   }
 
   public String getSize() {
-    return size.get();
+    return size;
   }
 
   public void setSize(String size) {
-    this.size.set(size);
-  }
-
-  public StringProperty mauSacProperty() {
-    return mauSac;
+    this.size = size;
   }
 
   public String getMauSac() {
-    return mauSac.get();
+    return mauSac;
   }
 
   public void setMauSac(String mauSac) {
-    this.mauSac.set(mauSac);
-  }
-
-  public StringProperty moTaProperty() {
-    return moTa;
+    this.mauSac = mauSac;
   }
 
   public String getMoTa() {
-    return moTa.get();
+    return moTa;
   }
 
   public void setMoTa(String moTa) {
-    this.moTa.set(moTa);
+    this.moTa = moTa;
   }
 }

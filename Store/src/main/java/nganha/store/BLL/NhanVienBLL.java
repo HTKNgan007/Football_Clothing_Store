@@ -4,6 +4,9 @@ import nganha.store.DAL.NhanVienDAL;
 import nganha.store.Model.NhanVien;
 import nganha.store.Utils.ComonUtils;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class NhanVienBLL {
   NhanVienDAL nhanVienDAL;
 
@@ -12,11 +15,9 @@ public class NhanVienBLL {
     this.nhanVienDAL = new NhanVienDAL(); // Khởi tạo DAL bên trong
   }
 
-//  public boolean ThemMoi(NhanVien nv){
-//    //cac xu ly o day
-//    boolean kq = nhanVienDAL.AddNew(nv);
-//    return kq;
-//  }
+  public List<NhanVien> getAllNhanVien() throws SQLException, ClassNotFoundException {
+    return nhanVienDAL.getAllNhanVien();
+  }
 
   // Thêm nhân viên với xử lý nghiệp vụ
   public void addNhanVien(NhanVien nhanVien) throws Exception {
@@ -24,8 +25,17 @@ public class NhanVienBLL {
     if (nhanVien.getTenNV() == null || nhanVien.getTenNV().isEmpty()) {
       throw new Exception("Tên nhân viên không được để trống.");
     }
+    if (nhanVien.getUsername() == null || nhanVien.getUsername().isEmpty()) {
+      throw new Exception("Tên tài khoản không được để trống.");
+    }
     if (nhanVien.getPassword() == null || nhanVien.getPassword().isEmpty()) {
       throw new Exception("Mật khẩu không được để trống.");
+    }
+    if (nhanVien.getEmail() == null || nhanVien.getEmail().isEmpty()) {
+      throw new Exception("Email không được để trống.");
+    }
+    if (nhanVien.getRole() == null) {
+      throw new Exception("Chức vụ không được để trống.");
     }
 
     // Băm mật khẩu trước khi gửi xuống DAL

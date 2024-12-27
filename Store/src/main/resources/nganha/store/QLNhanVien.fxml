@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,35 +13,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.NhanVienController">
    <children>
        <TableView fx:id="tblEmployees" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
            <columns>
-               <TableColumn prefWidth="100.0" text="Mã NV">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="employeeId" />
-                   </cellValueFactory>
-               </TableColumn>
-               <TableColumn prefWidth="200.0" text="Tên Nhân Viên">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="employeeName" />
-                   </cellValueFactory>
-               </TableColumn>
-               <TableColumn prefWidth="150.0" text="Chức Vụ">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="position" />
-                   </cellValueFactory>
-               </TableColumn>
-               <TableColumn prefWidth="150.0" text="Số Điện Thoại">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="phone" />
-                   </cellValueFactory>
-               </TableColumn>
-               <TableColumn prefWidth="200.0" text="Email">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="email" />
-                   </cellValueFactory>
-               </TableColumn>
+               <TableColumn fx:id="colMaNV" prefWidth="73" text="Mã NV" />
+               <TableColumn fx:id="colTenNV" prefWidth="204" text="Tên NV" />
+               <TableColumn fx:id="colRole" prefWidth="132" text="Chức vụ" />
+               <TableColumn fx:id="colPhone" prefWidth="131" text="Số điện thoại" />
+               <TableColumn fx:id="colEmail" prefWidth="218" text="Email" />
            </columns>
        </TableView>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ NHÂN VIÊN" textFill="WHITE">
@@ -50,9 +29,9 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="84.0" prefHeight="750.0" prefWidth="198.0" style="-fx-background-color: #990606;">
+      <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
          <children>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
+            <Button fx:id="ThemNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm" onAction="#handleAddNhanVien">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="32.0">
                         <image>
@@ -64,17 +43,17 @@
                   <Insets bottom="15.0" top="200.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+            <Button fx:id="SuaNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+            <Button fx:id="XoaNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xem chi tiết ">
+            <Button fx:id="ChiTietNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xem chi tiết ">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
@@ -85,8 +64,8 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField layoutX="-2.0" layoutY="25.0" prefHeight="37.0" prefWidth="513.0" promptText="              Tìm kiếm nhân viên theo tên..." style="-fx-border-radius: 100;" />
-                  <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="7.0" layoutY="29.0">
+                  <TextField layoutX="-2.0" layoutY="25.0" prefHeight="37.0" prefWidth="513.0" promptText="Tìm kiếm nhân viên theo tên..." style="-fx-border-radius: 100;" />
+                  <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="470.0" layoutY="29.0">
                      <image>
                         <Image url="@images/Search_alt3.png" />
                      </image>
@@ -96,7 +75,7 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </AnchorPane>
-            <Button mnemonicParsing="false" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
+            <Button fx:id="TimNV" mnemonicParsing="false" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
          </children>
       </HBox>
    </children>
