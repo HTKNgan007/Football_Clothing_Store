@@ -14,7 +14,7 @@ public class NhanVienDAL {
     Connection connection = DSUtils.DBConnect();
 
     // Câu lệnh SQL để lấy dữ liệu nhân viên, chỉ lấy các cột cần thiết
-    String query = "SELECT maNV, tenNV, SDT, role, email FROM nhanvien";  // Sửa tên bảng nếu cần
+    String query = "SELECT maNV, tenNV, SDT, username, role, email FROM nhanvien";  // Sửa tên bảng nếu cần
     PreparedStatement preparedStatement = connection.prepareStatement(query);
     ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -26,9 +26,10 @@ public class NhanVienDAL {
       String roleStr = resultSet.getString("role");
       NhanVien.Role role = NhanVien.Role.valueOf(roleStr.toUpperCase());  // Chuyển từ chuỗi sang enum
       String email = resultSet.getString("email");
+      String username = resultSet.getString("username");
 
       // Tạo đối tượng NhanVien và thêm vào danh sách
-      NhanVien nhanVien = new NhanVien(maNV, tenNV, SDT, "", "", role, email);
+      NhanVien nhanVien = new NhanVien(maNV, tenNV, SDT, username, "", role, email);
       nhanVienList.add(nhanVien);
     }
 
@@ -95,8 +96,15 @@ public class NhanVienDAL {
       throw new RuntimeException(e);
     }
   }
-  public boolean Delete(int id){
-    return true;
+  public boolean deleteNhanVien(int maNV) throws SQLException, ClassNotFoundException {
+    String sql = "DELETE FROM NhanVien WHERE maNV = ?";
+    try (Connection conn = DSUtils.DBConnect();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+      stmt.setInt(1, maNV);
+      int rowsAffected = stmt.executeUpdate();
+      return rowsAffected > 0; // Trả về true nếu xóa thành công
+    }
   }
 
   public boolean Login(String username, String hashedPassword) throws Exception {

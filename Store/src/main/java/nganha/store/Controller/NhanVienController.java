@@ -124,6 +124,29 @@ public class NhanVienController {
     }
   }
 
+  @FXML
+  private void handleDeleteNhanVien() {
+    NhanVien selectedNhanVien = tblEmployees.getSelectionModel().getSelectedItem();
+
+    if (selectedNhanVien != null) {
+      int maNV = selectedNhanVien.getMaNV();
+
+      boolean isDeleted = nhanVienBLL.deleteNhanVien(maNV);  // Gọi BLL để xóa nhân viên
+
+      if (isDeleted) {
+        // Nếu xóa thành công, cập nhật TableView và hiển thị thông báo
+        tblEmployees.getItems().remove(selectedNhanVien);
+        showAlert("Thông báo", "Xóa nhân viên thành công.");
+      } else {
+        // Nếu xóa không thành công
+        showAlert("Lỗi", "Xóa nhân viên không thành công.");
+      }
+    } else {
+      // Nếu không có nhân viên nào được chọn
+      showAlert("Cảnh báo", "Vui lòng chọn một nhân viên để xóa.");
+    }
+  }
+
 //  @FXML
 //  private void handleSaveNhanVien() {
 //    try {

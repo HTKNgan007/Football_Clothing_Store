@@ -48,7 +48,7 @@
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="XoaNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+            <Button fx:id="XoaNV" mnemonicParsing="false" onAction="#handleDeleteNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
