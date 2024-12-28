@@ -53,7 +53,7 @@ public class ActNhanVienController {
   public void setNhanVien(NhanVien nhanVien) {
     this.currentNhanVien = nhanVien;
     txtTenNV.setText(nhanVien.getTenNV());
-    txtSDT.setText(String.valueOf(nhanVien.getSDT()));
+    txtSDT.setText(nhanVien.getSDT());
     txtEmail.setText(nhanVien.getEmail());
     cbRole.setValue(nhanVien.getRole().name());
     txtTKNV.setText(nhanVien.getUsername());
@@ -66,7 +66,7 @@ public class ActNhanVienController {
     // Hiển thị thông tin chi tiết của nhân viên
     maNVLabel.setText(String.valueOf(nhanVien.getMaNV()));
     tenNVLabel.setText(nhanVien.getTenNV());
-    sdtLabel.setText(String.valueOf(nhanVien.getSDT()));
+    sdtLabel.setText(nhanVien.getSDT());
     emailLabel.setText(nhanVien.getEmail());
     roleLabel.setText(nhanVien.getRole().name());
     usernameLabel.setText(nhanVien.getUsername());
@@ -79,7 +79,7 @@ public class ActNhanVienController {
 
       // Cập nhật thông tin vào đối tượng nhân viên hiện tại
       currentNhanVien.setTenNV(txtTenNV.getText());
-      currentNhanVien.setSDT(Integer.parseInt(txtSDT.getText()));
+      currentNhanVien.setSDT(txtSDT.getText());
 
       // Kiểm tra email
       String email = txtEmail.getText();
@@ -141,7 +141,7 @@ public class ActNhanVienController {
     NhanVien.Role roleEnum = NhanVien.Role.valueOf(role.toUpperCase());
 
     // Tạo đối tượng NhanVien mới và gọi BLL để thêm nhân viên
-    NhanVien nhanVien = new NhanVien(0, tenNV, Integer.parseInt(sdt), taiKhoan, matKhau, roleEnum, email);
+    NhanVien nhanVien = new NhanVien(0, tenNV, sdt, taiKhoan, matKhau, roleEnum, email);
 
     try {
       nhanVienBLL.addNhanVien(nhanVien);
@@ -155,18 +155,6 @@ public class ActNhanVienController {
 
   @FXML
   private void handleHuy() {
-    // Xóa các trường nhập liệu
-    txtTenNV.clear();
-    txtSDT.clear();
-    txtEmail.clear();
-    cbRole.getSelectionModel().clearSelection();
-    txtTKNV.clear();
-    txtMK.clear();
-    FormUtils.closeForm(btnCancel);
-  }
-
-  @FXML
-  private void handleClose() {
     FormUtils.closeForm(btnCancel);
   }
 

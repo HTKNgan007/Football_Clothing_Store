@@ -3,36 +3,33 @@ package nganha.store.Model;
 import javafx.beans.property.*;
 
 public class SanPham {
-  private String maSP;
+  public enum Size {
+    S, M, L, XL, XXL
+  }
+  private int maSP;
   private String tenSP;
-  private String loaiSP;
   private Double giaBan;
   private Integer soLuong;
-  private String size;
+  private Size size;
   private String mauSac;
   private String moTa;
 
-  // Constructor
-
-
-  public SanPham(String maSP, String tenSP, String loaiSP, Double giaBan, Integer soLuong, String size, String mauSac, String moTa) {
+  public SanPham(int maSP, String tenSP, Double giaBan, Integer soLuong, Size size, String mauSac, String moTa) {
     this.maSP = maSP;
     this.tenSP = tenSP;
-    this.loaiSP = loaiSP;
     this.giaBan = giaBan;
     this.soLuong = soLuong;
     this.size = size;
     this.mauSac = mauSac;
     this.moTa = moTa;
   }
+  public SanPham() {}
 
-  // Getters và Setters cho các Property
-
-  public String getMaSP() {
+  public int getMaSP() {
     return maSP;
   }
 
-  public void setMaSP(String maSP) {
+  public void setMaSP(int maSP) {
     this.maSP = maSP;
   }
 
@@ -43,15 +40,6 @@ public class SanPham {
   public void setTenSP(String tenSP) {
     this.tenSP = tenSP;
   }
-
-  public String getLoaiSP() {
-    return loaiSP;
-  }
-
-  public void setLoaiSP(String loaiSP) {
-    this.loaiSP = loaiSP;
-  }
-
   public Double getGiaBan() {
     return giaBan;
   }
@@ -68,11 +56,11 @@ public class SanPham {
     this.soLuong = soLuong;
   }
 
-  public String getSize() {
+  public Size getSize() {
     return size;
   }
 
-  public void setSize(String size) {
+  public void setSize(Size size) {
     this.size = size;
   }
 

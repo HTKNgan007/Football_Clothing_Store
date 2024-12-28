@@ -22,7 +22,7 @@ public class NhanVienDAL {
     while (resultSet.next()) {
       int maNV = resultSet.getInt("maNV");
       String tenNV = resultSet.getString("tenNV");
-      int SDT = resultSet.getInt("SDT");
+      String SDT = resultSet.getString("SDT");
       String roleStr = resultSet.getString("role");
       NhanVien.Role role = NhanVien.Role.valueOf(roleStr.toUpperCase());  // Chuyển từ chuỗi sang enum
       String email = resultSet.getString("email");
@@ -48,7 +48,7 @@ public class NhanVienDAL {
       stmt.setString(2, nhanVien.getTenNV());
       stmt.setString(3, nhanVien.getUsername());
       stmt.setString(4, nhanVien.getPassword()); // Password đã được băm ở BLL
-      stmt.setInt(5, nhanVien.getSDT());
+      stmt.setString(5, nhanVien.getSDT());
       stmt.setString(6, nhanVien.getEmail());
       stmt.setString(7, nhanVien.getRole().name());
 
@@ -76,7 +76,7 @@ public class NhanVienDAL {
          PreparedStatement ps = conn.prepareStatement(query.toString())) {
 
       ps.setString(1, nhanVien.getTenNV());
-      ps.setInt(2, nhanVien.getSDT());
+      ps.setString(2, nhanVien.getSDT());
       ps.setString(3, nhanVien.getRole().name());
 
       int paramIndex = 4;

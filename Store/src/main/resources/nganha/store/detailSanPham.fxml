@@ -7,31 +7,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="640.0" prefWidth="740.0" spacing="15" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActNhanVienController">
-    <Label alignment="CENTER" prefHeight="60.0" prefWidth="740.0" text="Thông tin chi tiết">
+<VBox alignment="CENTER" prefHeight="640.0" prefWidth="740.0" spacing="15" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActSanPhamController">
+    <Label alignment="CENTER" prefHeight="40.0" prefWidth="740.0" text="Thông tin sản phẩm chi tiết">
         <font>
             <Font name="System Bold" size="20.0" />
         </font>
     </Label>
-   <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="740.0">
-      <children>
-         <Label prefWidth="110.0" text="Mã nhân viên:" />
-         <Label fx:id="maNVLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
-            <padding>
-               <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
-            </padding></Label>
-      </children>
-      <padding>
-         <Insets left="40.0" />
-      </padding>
-   </HBox>
     <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="740.0">
         <children>
-            <Label prefWidth="110.0" text="Tài khoản:" />
-         <Label fx:id="usernameLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
+            <Label prefWidth="110.0" text="Tên sản phẩm:" />
+         <Label fx:id="tenSPLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
             <padding>
                <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
-            </padding></Label>
+            </padding>
+         </Label>
+        </children>
+        <padding>
+            <Insets left="40.0" />
+        </padding>
+    </HBox>
+    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0">
+        <children>
+            <Label prefWidth="110.0" text="Giá bán:" />
+         <Label fx:id="giaLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
+            <padding>
+               <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
+            </padding>
+         </Label>
         </children>
         <padding>
             <Insets left="40.0" />
@@ -40,11 +42,12 @@
     <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="740.0">
         <children>
 
-            <Label prefWidth="110.0" text="Tên NV:" />
-         <Label fx:id="tenNVLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
+            <Label prefWidth="110.0" text="Số lượng:" />
+         <Label fx:id="soLuongLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
             <padding>
                <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
-            </padding></Label>
+            </padding>
+         </Label>
         </children>
         <padding>
             <Insets left="40.0" />
@@ -53,11 +56,12 @@
     <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0">
         <children>
 
-            <Label prefWidth="110.0" text="Chức vụ:" />
-         <Label fx:id="roleLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
+            <Label prefWidth="110.0" text="Kích cỡ" />
+         <Label fx:id="sizeLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
             <padding>
                <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
-            </padding></Label>
+            </padding>
+         </Label>
         </children>
         <padding>
             <Insets left="40.0" />
@@ -66,30 +70,32 @@
     <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0">
         <children>
 
-            <Label prefWidth="110.0" text="Số điện thoại:" />
-         <Label fx:id="sdtLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
+            <Label prefWidth="110.0" text="Màu sắc:" />
+         <Label fx:id="mauSacLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
             <padding>
                <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
-            </padding></Label>
+            </padding>
+         </Label>
         </children>
         <padding>
             <Insets left="40.0" />
         </padding>
     </HBox>
-    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0">
+    <HBox alignment="CENTER_LEFT" prefHeight="123.0" prefWidth="740.0">
         <children>
 
-            <Label prefWidth="110.0" text="Email:" />
-         <Label fx:id="emailLabel" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #2D764F;">
+            <Label prefWidth="110.0" text="Mô tả:" />
+         <Label fx:id="moTaLabel" prefHeight="110.0" prefWidth="300.0" style="-fx-border-color: #2D764F;" wrapText="true">
             <padding>
                <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
-            </padding></Label>
+            </padding>
+         </Label>
         </children>
         <padding>
             <Insets left="40.0" />
         </padding>
     </HBox>
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+    <HBox alignment="CENTER" prefHeight="20.0" prefWidth="740.0">
         <children>
             <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" text="Quay lại">
                 <HBox.margin>

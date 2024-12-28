@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" prefHeight="640.0" prefWidth="740.0" spacing="15" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActNhanVienController">
-   <Label text="Thêm nhân viên">
+   <Label alignment="CENTER" prefHeight="40.0" prefWidth="740.0" text="Thêm nhân viên">
       <font>
          <Font name="System Bold" size="20.0" />
       </font>
@@ -90,7 +90,7 @@
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </HBox.margin>
          </Button>
-         <Button fx:id="btnCancel" onAction="#handleHuy" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Huỷ">
+         <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" text="Huỷ">
             <HBox.margin>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </HBox.margin>

@@ -6,13 +6,13 @@ public class NhanVien {
   }
   private int maNV;
   private String tenNV;
-  private int SDT;
+  private String SDT;
   private String username;
   private String password;
   private Role role;
   private String email;
 
-  public NhanVien(int maNV, String tenNV, int SDT, String username, String password, Role role, String email) {
+  public NhanVien(int maNV, String tenNV, String SDT, String username, String password, Role role, String email) {
     this.maNV = maNV;
     this.tenNV = tenNV;
     this.SDT = SDT;
@@ -39,11 +39,11 @@ public class NhanVien {
     this.tenNV = tenNV;
   }
 
-  public int getSDT() {
+  public String getSDT() {
     return SDT;
   }
 
-  public void setSDT(int SDT) {
+  public void setSDT(String SDT) {
     this.SDT = SDT;
   }
 

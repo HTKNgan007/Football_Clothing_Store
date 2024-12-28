@@ -6,7 +6,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -19,33 +22,29 @@
       </Label>
 
          <!-- Table for Displaying Products -->
-         <TableView fx:id="tblSanPham" layoutX="17.0" layoutY="188.0" prefHeight="611.0" prefWidth="754.0">
+         <TableView fx:id="tblSanPham" layoutX="11.0" layoutY="176.0" prefHeight="646.0" prefWidth="757.0">
              <columns>
                  <TableColumn fx:id="colMaSP" text="Mã Sản Phẩm" />
-                 <TableColumn fx:id="colTenSP" text="Tên Sản Phẩm" />
-                 <TableColumn fx:id="colLoaiSP" text="Loại Sản Phẩm" />
-                 <TableColumn fx:id="colGiaBan" prefWidth="120.0" text="Giá" />
-                 <TableColumn fx:id="colSoLuong" prefWidth="120.0" text="Số Lượng Tồn" />
-                 <TableColumn fx:id="colSize" prefWidth="80.0" text="Size" />
-                 <TableColumn fx:id="colMauSac" prefWidth="100.0" text="Màu Sắc" />
-                 <TableColumn fx:id="colMoTa" prefWidth="150.0" text="Mô Tả" />
+                 <TableColumn fx:id="colTenSP" prefWidth="219.64817810058594" text="Tên Sản Phẩm" />
+                 <TableColumn fx:id="colGiaBan" prefWidth="127.35179138183594" text="Giá" />
+                 <TableColumn fx:id="colSoLuong" prefWidth="104.65341186523438" text="Số Lượng" />
+                 <TableColumn fx:id="colSize" prefWidth="82.98992919921875" text="Size" />
+                 <TableColumn fx:id="colMauSac" prefWidth="139.61056518554688" text="Màu Sắc" />
              </columns>
          </TableView>
-           <TextField fx:id="txtTimKiem" layoutX="156.0" layoutY="98.0" prefHeight="30.0" prefWidth="500.0" promptText="Nhập tên sản phẩm hoặc mã sản phẩm..." />
-           <Button fx:id="timKiemSanPham" layoutX="672.0" layoutY="99.0" prefHeight="26.0" prefWidth="61.0" text="Tìm" />
       <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
          <children>
-            <Button fx:id="ThemNV" mnemonicParsing="false" onAction="#handleAddNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
+            <Button fx:id="ThemNV" mnemonicParsing="false" onAction="#handleAddSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
                <VBox.margin>
                   <Insets bottom="15.0" top="200.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="SuaNV" mnemonicParsing="false" onAction="#handleEditNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+            <Button fx:id="SuaNV" mnemonicParsing="false" onAction="#handleEditSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="XoaNV" mnemonicParsing="false" onAction="#handleDeleteNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+            <Button fx:id="XoaNV" mnemonicParsing="false" onAction="#handleDeleteSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
@@ -57,5 +56,23 @@
             </Button>
          </children>
       </VBox>
+      <HBox alignment="CENTER" layoutY="82.0" prefHeight="88.0" prefWidth="782.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="txtFind" layoutX="-2.0" layoutY="25.0" prefHeight="37.0" prefWidth="513.0" promptText="Tìm kiếm sản phẩm theo tên..." style="-fx-border-radius: 100;" />
+                  <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="470.0" layoutY="29.0">
+                     <image>
+                        <Image url="@images/Search_alt3.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </AnchorPane>
+            <Button fx:id="btnFind" mnemonicParsing="false" onAction="#handleSearchSanPham" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

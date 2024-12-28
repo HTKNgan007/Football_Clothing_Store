@@ -224,42 +224,6 @@ public class NhanVienController {
       showAlert("Lỗi", "Có lỗi xảy ra khi tìm kiếm: " + e.getMessage());
     }
   }
-//  @FXML
-//  private void handleSaveNhanVien() {
-//    try {
-//      // Lấy dữ liệu từ form
-//      int maNV = Integer.parseInt(txtMaNV.getText());
-//      String tenNV = txtTenNV.getText();
-//      int sdt = Integer.parseInt(txtSDT.getText());
-//      String username = txtUsername.getText();
-//      String password = txtPassword.getText();
-//      // Sử dụng constructor đầy đủ tham số
-//      NhanVien nhanVien = new NhanVien(maNV, tenNV, sdt, username, password);
-//
-//      // Gửi tới BLL để xử lý và lưu vào DB
-//      nhanVienBLL.addNhanVien(nhanVien);
-//
-//      // Thông báo thành công
-//      showAlert(Alert.AlertType.INFORMATION, "Thành công", "Lưu thông tin nhân viên thành công!");
-//    } catch (NumberFormatException e) {
-//      showAlert(Alert.AlertType.ERROR, "Lỗi", "Mã NV và SĐT phải là số!");
-//    } catch (Exception e) {
-//      showAlert(Alert.AlertType.ERROR, "Lỗi", "Có lỗi xảy ra: " + e.getMessage());
-//      e.printStackTrace();
-//    }
-//  }
-
-
-//  @FXML
-//  private void handleDangKy(ActionEvent event) {
-//    try {
-//      // Tải file FXML mới
-//      loadFXML("/nganha/store/signup.fxml", event);
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//  }
-//
   private void showAlert(String title, String content) {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle(title);
