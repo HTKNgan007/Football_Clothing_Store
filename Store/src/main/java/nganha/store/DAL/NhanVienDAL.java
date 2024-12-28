@@ -67,8 +67,8 @@ public class NhanVienDAL {
       query.append(", username = ?");
     }
     // Kiểm tra password có cần update không
-    if (nhanVien.getPassword() != null && !nhanVien.getPassword().isEmpty()) {
-      query.append(", password = ?");
+    if (nhanVien.getPassword() != null) {
+      query.append(", pass = ?");
     }
     query.append(" WHERE maNV = ?");
 
@@ -100,10 +100,11 @@ public class NhanVienDAL {
     String sql = "DELETE FROM NhanVien WHERE maNV = ?";
     try (Connection conn = DSUtils.DBConnect();
          PreparedStatement stmt = conn.prepareStatement(sql)) {
-
       stmt.setInt(1, maNV);
-      int rowsAffected = stmt.executeUpdate();
-      return rowsAffected > 0; // Trả về true nếu xóa thành công
+      return stmt.executeUpdate() > 0;
+    } catch (SQLException | ClassNotFoundException e) {
+      e.printStackTrace();
+      return false;
     }
   }
 

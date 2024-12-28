@@ -50,6 +50,12 @@ public class NhanVienBLL {
       return false;
     }
 
+    // Nếu có trường password, băm trước khi cập nhật
+    if (nhanVien.getPassword() != null && !nhanVien.getPassword().isEmpty()) {
+      String hashedPassword = ComonUtils.hashPassword(nhanVien.getPassword());
+      nhanVien.setPassword(hashedPassword);
+    }
+
     // Gửi yêu cầu cập nhật xuống DAL
     return nhanVienDAL.updateNhanVien(nhanVien);
   }
@@ -72,10 +78,10 @@ public class NhanVienBLL {
 
   public boolean deleteNhanVien(int maNV) {
     try {
-      return nhanVienDAL.deleteNhanVien(maNV);  // Gọi phương thức trong DAL để xóa nhân viên
-    } catch (SQLException | ClassNotFoundException e) {
+      return nhanVienDAL.deleteNhanVien(maNV);
+    } catch (Exception e) {
       e.printStackTrace();
-      return false;  // Nếu có lỗi trong quá trình xóa, trả về false
+      return false;
     }
   }
 }

@@ -19,6 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class NhanVienController {
   @FXML
@@ -129,24 +130,63 @@ public class NhanVienController {
     NhanVien selectedNhanVien = tblEmployees.getSelectionModel().getSelectedItem();
 
     if (selectedNhanVien != null) {
-      int maNV = selectedNhanVien.getMaNV();
+      // Hiển thị hộp thoại xác nhận
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setTitle("Xác nhận xoá");
+      alert.setHeaderText("Bạn có chắc chắn muốn xoá nhân viên này?");
+      alert.setContentText("Tên nhân viên: " + selectedNhanVien.getTenNV() + "\nMã nhân viên: " + selectedNhanVien.getMaNV());
 
-      boolean isDeleted = nhanVienBLL.deleteNhanVien(maNV);  // Gọi BLL để xóa nhân viên
+      // Chờ người dùng chọn xác nhận hoặc huỷ
+      Optional<ButtonType> result = alert.showAndWait();
 
-      if (isDeleted) {
-        // Nếu xóa thành công, cập nhật TableView và hiển thị thông báo
-        tblEmployees.getItems().remove(selectedNhanVien);
-        showAlert("Thông báo", "Xóa nhân viên thành công.");
+      if (result.isPresent() && result.get() == ButtonType.OK) {
+        // Nếu người dùng nhấn "OK", tiến hành xoá
+        boolean success = nhanVienBLL.deleteNhanVien(selectedNhanVien.getMaNV());
+        if (success) {
+          tblEmployees.getItems().remove(selectedNhanVien);
+          showAlert("Thành công", "Xoá nhân viên thành công.");
+        } else {
+          showAlert("Lỗi", "Không thể xoá nhân viên. Vui lòng thử lại.");
+        }
       } else {
-        // Nếu xóa không thành công
-        showAlert("Lỗi", "Xóa nhân viên không thành công.");
+        // Nếu người dùng nhấn "Cancel", không làm gì
+        showAlert("Thông báo", "Nhân viên chưa bị xoá.");
       }
     } else {
-      // Nếu không có nhân viên nào được chọn
-      showAlert("Cảnh báo", "Vui lòng chọn một nhân viên để xóa.");
+      showAlert("Cảnh báo", "Vui lòng chọn một nhân viên để xoá.");
     }
   }
 
+  @FXML
+  private void handleViewDetail() {
+    // Lấy nhân viên được chọn từ TableView
+    NhanVien selectedNhanVien = tblEmployees.getSelectionModel().getSelectedItem();
+
+    if (selectedNhanVien != null) {
+      try {
+        // Tải FXML của form chi tiết
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/nganha/store/detailNhanVien.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Chi tiết nhân viên");
+
+        // Tạo scene và hiển thị cửa sổ
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        // Truyền đối tượng NhanVien vào form chi tiết
+        ActNhanVienController controller = loader.getController();
+        controller.setNhanVienDetail(selectedNhanVien);
+
+        // Hiển thị cửa sổ chi tiết
+        stage.show();
+      } catch (IOException e) {
+        e.printStackTrace();
+        showAlert("Lỗi", "Không thể mở cửa sổ chi tiết.");
+      }
+    } else {
+      showAlert("Cảnh báo", "Vui lòng chọn một nhân viên.");
+    }
+  }
 //  @FXML
 //  private void handleSaveNhanVien() {
 //    try {

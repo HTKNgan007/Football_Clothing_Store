@@ -1,16 +1,21 @@
 package nganha.store.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import nganha.store.BLL.NhanVienBLL;
 import nganha.store.Model.NhanVien;
 import nganha.store.Utils.FormUtils;
 
 public class ActNhanVienController {
+
+  @FXML private Label maNVLabel;
+  @FXML private Label tenNVLabel;
+  @FXML private Label sdtLabel;
+  @FXML private Label emailLabel;
+  @FXML private Label roleLabel;
+  @FXML private Label usernameLabel;
+
   @FXML
   private TextField txtTenNV;
 
@@ -55,6 +60,18 @@ public class ActNhanVienController {
     txtMK.setText(""); // Không hiển thị mật khẩu
   }
 
+  public void setNhanVienDetail(NhanVien nhanVien) {
+    this.currentNhanVien = nhanVien;
+
+    // Hiển thị thông tin chi tiết của nhân viên
+    maNVLabel.setText(String.valueOf(nhanVien.getMaNV()));
+    tenNVLabel.setText(nhanVien.getTenNV());
+    sdtLabel.setText(String.valueOf(nhanVien.getSDT()));
+    emailLabel.setText(nhanVien.getEmail());
+    roleLabel.setText(nhanVien.getRole().name());
+    usernameLabel.setText(nhanVien.getUsername());
+  }
+
   @FXML
   private void handleSave() {
     try {
@@ -83,8 +100,10 @@ public class ActNhanVienController {
 
       // Nếu mật khẩu không rỗng, cập nhật mật khẩu
       String matKhau = txtMK.getText();
-      if (!matKhau.isEmpty()) {
-        currentNhanVien.setPassword(matKhau);
+      if (matKhau.isEmpty()) {
+        currentNhanVien.setPassword(null); // Nếu không nhập, để giá trị null
+      } else {
+        currentNhanVien.setPassword(matKhau); // Gán mật khẩu mới
       }
 
       // Gửi thông tin cập nhật qua BLL để xử lý
@@ -144,8 +163,11 @@ public class ActNhanVienController {
     txtTKNV.clear();
     txtMK.clear();
     FormUtils.closeForm(btnCancel);
+  }
 
-
+  @FXML
+  private void handleClose() {
+    FormUtils.closeForm(btnCancel);
   }
 
   private boolean validateInput() {
