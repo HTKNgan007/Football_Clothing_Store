@@ -64,7 +64,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField layoutX="-2.0" layoutY="25.0" prefHeight="37.0" prefWidth="513.0" promptText="Tìm kiếm nhân viên theo tên..." style="-fx-border-radius: 100;" />
+                  <TextField fx:id="txtFind" layoutX="-2.0" layoutY="25.0" prefHeight="37.0" prefWidth="513.0" promptText="Tìm kiếm nhân viên theo tên..." style="-fx-border-radius: 100;" />
                   <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="470.0" layoutY="29.0">
                      <image>
                         <Image url="@images/Search_alt3.png" />
@@ -75,7 +75,7 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </AnchorPane>
-            <Button fx:id="TimNV" mnemonicParsing="false" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
+            <Button fx:id="btnFind" mnemonicParsing="false" onAction="#handleSearchNhanVien" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
          </children>
       </HBox>
    </children>

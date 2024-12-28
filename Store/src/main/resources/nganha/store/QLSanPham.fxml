@@ -7,48 +7,55 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.SanPhamController">
+<AnchorPane prefHeight="832.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.SanPhamController">
     <children>
-        <!-- Main layout -->
-        <VBox alignment="TOP_CENTER" prefHeight="790.0" prefWidth="790.0" spacing="10.0">
-            <!-- Title -->
-            <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Quản Lý Sản Phẩm" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ SẢN PHẨM" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
 
-            <!-- Search Box -->
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="790.0" spacing="10">
-                <children>
-                    <TextField fx:id="txtTimKiem" prefHeight="30.0" prefWidth="500.0" promptText="Nhập tên sản phẩm hoặc mã sản phẩm..." />
-                    <Button fx:id="timKiemSanPham" prefHeight="26.0" prefWidth="61.0" text="Tìm" />
-                </children>
-            </HBox>
-
-            <!-- Buttons -->
-            <HBox alignment="CENTER" spacing="10">
-                <Button fx:id="themSanPham" text="Thêm" />
-                <Button fx:id="capNhatSanPham" text="Sửa" />
-                <Button text="Xóa" fx:id="xoaSanPham" />
-                <Button fx:id="btnLamMoi" text="Làm Mới" />
-            </HBox>
-
-            <!-- Table for Displaying Products -->
-            <TableView fx:id="tblSanPham" prefHeight="625.0" prefWidth="790.0">
-                <columns>
-                    <TableColumn fx:id="colMaSP" text="Mã Sản Phẩm" />
-                    <TableColumn fx:id="colTenSP" text="Tên Sản Phẩm" />
-                    <TableColumn fx:id="colLoaiSP" text="Loại Sản Phẩm" />
-                    <TableColumn fx:id="colGiaBan" prefWidth="120.0" text="Giá" />
-                    <TableColumn fx:id="colSoLuong" prefWidth="120.0" text="Số Lượng Tồn" />
-                    <TableColumn fx:id="colSize" prefWidth="80.0" text="Size" />
-                    <TableColumn fx:id="colMauSac" prefWidth="100.0" text="Màu Sắc" />
-                    <TableColumn fx:id="colMoTa" prefWidth="150.0" text="Mô Tả" />
-                </columns>
-            </TableView>
-            <padding>
-                <Insets top="30.0" />
-            </padding>
-        </VBox>
+         <!-- Table for Displaying Products -->
+         <TableView fx:id="tblSanPham" layoutX="17.0" layoutY="188.0" prefHeight="611.0" prefWidth="754.0">
+             <columns>
+                 <TableColumn fx:id="colMaSP" text="Mã Sản Phẩm" />
+                 <TableColumn fx:id="colTenSP" text="Tên Sản Phẩm" />
+                 <TableColumn fx:id="colLoaiSP" text="Loại Sản Phẩm" />
+                 <TableColumn fx:id="colGiaBan" prefWidth="120.0" text="Giá" />
+                 <TableColumn fx:id="colSoLuong" prefWidth="120.0" text="Số Lượng Tồn" />
+                 <TableColumn fx:id="colSize" prefWidth="80.0" text="Size" />
+                 <TableColumn fx:id="colMauSac" prefWidth="100.0" text="Màu Sắc" />
+                 <TableColumn fx:id="colMoTa" prefWidth="150.0" text="Mô Tả" />
+             </columns>
+         </TableView>
+           <TextField fx:id="txtTimKiem" layoutX="156.0" layoutY="98.0" prefHeight="30.0" prefWidth="500.0" promptText="Nhập tên sản phẩm hoặc mã sản phẩm..." />
+           <Button fx:id="timKiemSanPham" layoutX="672.0" layoutY="99.0" prefHeight="26.0" prefWidth="61.0" text="Tìm" />
+      <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
+         <children>
+            <Button fx:id="ThemNV" mnemonicParsing="false" onAction="#handleAddNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="200.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="SuaNV" mnemonicParsing="false" onAction="#handleEditNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="XoaNV" mnemonicParsing="false" onAction="#handleDeleteNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="ChiTietNV" mnemonicParsing="false" onAction="#handleViewDetail" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xem chi tiết ">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

@@ -22,6 +22,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class NhanVienController {
+
+  @FXML
+  private Button btnFind;
+
+  @FXML
+  private TextField txtFind;
+
   @FXML
   private TableView<NhanVien> tblEmployees;
 
@@ -185,6 +192,36 @@ public class NhanVienController {
       }
     } else {
       showAlert("Cảnh báo", "Vui lòng chọn một nhân viên.");
+    }
+  }
+
+  @FXML
+  private void handleSearchNhanVien() {
+    // Lấy giá trị từ ô tìm kiếm
+    String keyword = txtFind.getText().trim().toLowerCase();
+
+    try {
+      // Lấy danh sách nhân viên từ BLL
+      List<NhanVien> listNhanVien = nhanVienBLL.getAllNhanVien();
+
+      // Lọc danh sách nếu có từ khóa tìm kiếm
+      if (!keyword.isEmpty()) {
+        listNhanVien = listNhanVien.stream()
+            .filter(nv -> nv.getTenNV().toLowerCase().contains(keyword))
+            .toList();
+      }
+
+      // Chuyển danh sách thành ObservableList và hiển thị trên bảng
+      ObservableList<NhanVien> nhanVienObservableList = FXCollections.observableArrayList(listNhanVien);
+      tblEmployees.setItems(nhanVienObservableList);
+
+      // Thông báo nếu không tìm thấy nhân viên nào
+      if (listNhanVien.isEmpty()) {
+        showAlert("Thông báo", "Không tìm thấy nhân viên nào phù hợp.");
+      }
+    } catch (SQLException | ClassNotFoundException e) {
+      e.printStackTrace();
+      showAlert("Lỗi", "Có lỗi xảy ra khi tìm kiếm: " + e.getMessage());
     }
   }
 //  @FXML
