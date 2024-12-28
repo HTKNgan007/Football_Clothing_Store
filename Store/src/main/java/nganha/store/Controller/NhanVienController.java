@@ -94,6 +94,36 @@ public class NhanVienController {
     }
   }
 
+  @FXML
+  private void handleEditNhanVien() {
+    NhanVien selectedNhanVien = tblEmployees.getSelectionModel().getSelectedItem();
+
+    if (selectedNhanVien == null) {
+      showAlert("Lỗi", "Vui lòng chọn một nhân viên để chỉnh sửa!");
+      return;
+    }
+
+    try {
+      // Tải file FXML của form chỉnh sửa
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/nganha/store/editNhanVien.fxml"));
+      Parent root = loader.load();
+
+      // Lấy controller của form chỉnh sửa
+      ActNhanVienController editNhanVien= loader.getController();
+      // Truyền nhân viên được chọn vào form chỉnh sửa
+      editNhanVien.setNhanVien(selectedNhanVien);
+
+      // Hiển thị form chỉnh sửa
+      Stage stage = new Stage();
+      stage.setTitle("Sửa Nhân Viên");
+      stage.setScene(new Scene(root));
+      stage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+      showAlert("Lỗi", "Không thể mở form chỉnh sửa!");
+    }
+  }
+
 //  @FXML
 //  private void handleSaveNhanVien() {
 //    try {
@@ -130,11 +160,11 @@ public class NhanVienController {
 //    }
 //  }
 //
-//  private void showAlert(Alert.AlertType alertType, String title, String message) {
-//    Alert alert = new Alert(alertType);
-//    alert.setTitle(title);
-//    alert.setHeaderText(null);
-//    alert.setContentText(message);
-//    alert.showAndWait();
-//  }
+  private void showAlert(String title, String content) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle(title);
+    alert.setHeaderText(null);
+    alert.setContentText(content);
+    alert.showAndWait();
+  }
 }

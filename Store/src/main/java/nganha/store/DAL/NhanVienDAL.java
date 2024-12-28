@@ -48,13 +48,52 @@ public class NhanVienDAL {
       stmt.setString(3, nhanVien.getUsername());
       stmt.setString(4, nhanVien.getPassword()); // Password đã được băm ở BLL
       stmt.setInt(5, nhanVien.getSDT());
-      stmt.setString(6, nhanVien.getEmail()); // Thêm email
-      stmt.setString(7, nhanVien.getRole().name()); // Thêm role (chức vụ)
+      stmt.setString(6, nhanVien.getEmail());
+      stmt.setString(7, nhanVien.getRole().name());
 
       stmt.executeUpdate();
       DSUtils.CloseConnect(conn);
     }
+  }
 
+  public boolean updateNhanVien(NhanVien nhanVien) {
+    StringBuilder query = new StringBuilder("UPDATE NhanVien SET tenNV = ?, SDT = ?, role = ?");
+
+    if (nhanVien.getEmail() != null) {
+      query.append(", email = ?");
+    }
+    if (nhanVien.getUsername() != null) {
+      query.append(", username = ?");
+    }
+    // Kiểm tra password có cần update không
+    if (nhanVien.getPassword() != null && !nhanVien.getPassword().isEmpty()) {
+      query.append(", password = ?");
+    }
+    query.append(" WHERE maNV = ?");
+
+    try (Connection conn = DSUtils.DBConnect();
+         PreparedStatement ps = conn.prepareStatement(query.toString())) {
+
+      ps.setString(1, nhanVien.getTenNV());
+      ps.setInt(2, nhanVien.getSDT());
+      ps.setString(3, nhanVien.getRole().name());
+
+      int paramIndex = 4;
+      if (nhanVien.getEmail() != null) {
+        ps.setString(paramIndex++, nhanVien.getEmail());
+      }
+      if (nhanVien.getUsername() != null) {
+        ps.setString(paramIndex++, nhanVien.getUsername());
+      }
+      if (nhanVien.getPassword() != null && !nhanVien.getPassword().isEmpty()) {
+        ps.setString(paramIndex++, nhanVien.getPassword());
+      }
+      ps.setInt(paramIndex, nhanVien.getMaNV());
+
+      return ps.executeUpdate() > 0;
+    } catch (SQLException | ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
   }
   public boolean Delete(int id){
     return true;

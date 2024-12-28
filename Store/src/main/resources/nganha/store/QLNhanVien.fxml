@@ -31,7 +31,7 @@
       </Label>
       <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
          <children>
-            <Button fx:id="ThemNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm" onAction="#handleAddNhanVien">
+            <Button fx:id="ThemNV" mnemonicParsing="false" onAction="#handleAddNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="32.0">
                         <image>
@@ -43,7 +43,7 @@
                   <Insets bottom="15.0" top="200.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="SuaNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+            <Button fx:id="SuaNV" mnemonicParsing="false" onAction="#handleEditNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>

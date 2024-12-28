@@ -12,7 +12,7 @@ public class NhanVienBLL {
 
   // Constructor không tham số
   public NhanVienBLL() {
-    this.nhanVienDAL = new NhanVienDAL(); // Khởi tạo DAL bên trong
+    this.nhanVienDAL = new NhanVienDAL();
   }
 
   public List<NhanVien> getAllNhanVien() throws SQLException, ClassNotFoundException {
@@ -31,9 +31,6 @@ public class NhanVienBLL {
     if (nhanVien.getPassword() == null || nhanVien.getPassword().isEmpty()) {
       throw new Exception("Mật khẩu không được để trống.");
     }
-    if (nhanVien.getEmail() == null || nhanVien.getEmail().isEmpty()) {
-      throw new Exception("Email không được để trống.");
-    }
     if (nhanVien.getRole() == null) {
       throw new Exception("Chức vụ không được để trống.");
     }
@@ -44,6 +41,17 @@ public class NhanVienBLL {
 
     // Gửi xuống DAL để lưu vào CSDL
     nhanVienDAL.addNhanVien(nhanVien);
+  }
+
+  public boolean updateNhanVien(NhanVien nhanVien) {
+    // Thực hiện kiểm tra logic nghiệp vụ nếu cần
+    if (nhanVien == null || nhanVien.getMaNV() == 0) {
+      System.out.println("Thông tin nhân viên không hợp lệ!");
+      return false;
+    }
+
+    // Gửi yêu cầu cập nhật xuống DAL
+    return nhanVienDAL.updateNhanVien(nhanVien);
   }
 
   public boolean checkLogin(String tenDN, String matKhau) throws Exception {
@@ -61,4 +69,6 @@ public class NhanVienBLL {
     // Gọi DAL để kiểm tra
     return nhanVienDAL.Login(tenDN, hashedPassword);
   }
+
+
 }
