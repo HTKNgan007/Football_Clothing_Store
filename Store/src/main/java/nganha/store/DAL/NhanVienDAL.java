@@ -1,6 +1,7 @@
 package nganha.store.DAL;
 
 import nganha.store.Model.NhanVien;
+import nganha.store.Model.Role;
 import nganha.store.Utils.DSUtils;
 
 import java.sql.*;
@@ -108,8 +109,8 @@ public class NhanVienDAL {
     }
   }
 
-  public boolean Login(String username, String hashedPassword) throws Exception {
-    String sql = "SELECT COUNT(*) FROM NhanVien WHERE Username = ? AND Pass = ?";
+  public NhanVien Login(String username, String hashedPassword) throws Exception {
+    String sql = "SELECT * FROM NhanVien WHERE Username = ? AND Pass = ?";
     try (Connection conn = DSUtils.DBConnect();
          PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -118,12 +119,21 @@ public class NhanVienDAL {
 
       try (ResultSet rs = stmt.executeQuery()) {
         if (rs.next()) {
-          return rs.getInt(1) > 0; // Trả về true nếu có ít nhất một bản ghi
+          // Tạo đối tượng NhanVien từ dữ liệu trả về
+          NhanVien nhanVien = new NhanVien();
+          nhanVien.setMaNV(rs.getInt("MaNV"));
+          nhanVien.setTenNV(rs.getString("TenNV"));
+          nhanVien.setSDT(rs.getString("SDT"));
+          nhanVien.setUsername(rs.getString("Username"));
+          nhanVien.setPassword(rs.getString("Pass")); // Có thể bỏ qua việc set password nếu không cần
+          nhanVien.setRole(Role.fromString(rs.getString("Role"))); // Sử dụng fromString
+          nhanVien.setEmail(rs.getString("Email"));
+          return nhanVien; // Trả về thông tin nhân viên
         }
       }
     } catch (Exception e) {
       throw new Exception("Lỗi khi kết nối cơ sở dữ liệu: " + e.getMessage());
     }
-    return false;
+    return null; // Trả về null nếu không tìm thấy
   }
 }

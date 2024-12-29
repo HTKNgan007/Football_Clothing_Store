@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import nganha.store.BLL.NhanVienBLL;
+import nganha.store.Model.NhanVien;
 
 import java.io.IOException;
 
@@ -36,14 +37,28 @@ public class LoginController {
     String password = txtPassword.getText();
 
     try {
-      boolean isLoggedIn = nhanVienBLL.checkLogin(username, password);
-      if (isLoggedIn) {
-        // Chuyển hướng sang giao diện chính
-        loadFXML("/nganha/store/TrangChu.fxml", event);
+      // Kiểm tra thông tin đăng nhập
+      NhanVien nhanVien = nhanVienBLL.checkLogin(username, password);
+
+      if (nhanVien != null) {
+        // Chuyển hướng sang giao diện chính, truyền đối tượng NhanVien
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/nganha/store/TrangChu.fxml"));
+        Parent root = loader.load();
+
+        // Lấy controller của TrangChu.fxml
+        TrangChuController controller = loader.getController();
+
+        // Truyền thông tin nhân viên đăng nhập vào TrangChuController
+        controller.setNhanVien(nhanVien);
+
+        // Chuyển cảnh
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setResizable(true);
+        stage.centerOnScreen();
+        stage.show();
+
         System.out.println("Đăng nhập thành công!");
-      } else {
-        errorMessage.setText("Tên đăng nhập hoặc mật khẩu không đúng!");
-        errorMessage.setVisible(true);
       }
     } catch (Exception e) {
       errorMessage.setText(e.getMessage());

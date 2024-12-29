@@ -8,8 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import nganha.store.Model.NhanVien;
 
 import java.awt.*;
 import java.io.IOException;
@@ -18,11 +20,25 @@ import java.util.Optional;
 public class TrangChuController {
 
   @FXML
+  private Label lblUsername;
+  private NhanVien nhanVien;
+
+  @FXML
   private StackPane contentPane;
 
   @FXML
   public void initialize() {
     loadContent("QLDonHang.fxml");
+  }
+
+  // Phương thức để truyền thông tin nhân viên
+  public void setNhanVien(NhanVien nhanVien) {
+    this.nhanVien = nhanVien;
+
+    // Cập nhật tên nhân viên vào Label
+    if (nhanVien != null) {
+      lblUsername.setText("Xin chào, " + nhanVien.getTenNV() + "!");
+    }
   }
 
   @FXML

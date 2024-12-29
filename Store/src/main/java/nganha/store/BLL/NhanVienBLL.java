@@ -60,7 +60,16 @@ public class NhanVienBLL {
     return nhanVienDAL.updateNhanVien(nhanVien);
   }
 
-  public boolean checkLogin(String tenDN, String matKhau) throws Exception {
+  public boolean deleteNhanVien(int maNV) {
+    try {
+      return nhanVienDAL.deleteNhanVien(maNV);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
+  public NhanVien checkLogin(String tenDN, String matKhau) throws Exception {
     // Kiểm tra dữ liệu đầu vào
     if (tenDN == null || tenDN.trim().isEmpty()) {
       throw new Exception("Tên đăng nhập không được để trống.");
@@ -73,15 +82,11 @@ public class NhanVienBLL {
     String hashedPassword = ComonUtils.hashPassword(matKhau);
 
     // Gọi DAL để kiểm tra
-    return nhanVienDAL.Login(tenDN, hashedPassword);
-  }
+    NhanVien nhanVien = nhanVienDAL.Login(tenDN, hashedPassword);
 
-  public boolean deleteNhanVien(int maNV) {
-    try {
-      return nhanVienDAL.deleteNhanVien(maNV);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return false;
+    if (nhanVien == null) {
+      throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng.");
     }
+    return nhanVien; // Trả về thông tin nhân viên
   }
 }

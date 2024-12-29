@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DSUtils {
   static public Connection DBConnect() throws ClassNotFoundException, SQLException {
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
     String strConn = "jdbc:mysql://localhost:3306/banquanao";
     Connection conn = DriverManager.getConnection(strConn, "root", "");
     return conn;
