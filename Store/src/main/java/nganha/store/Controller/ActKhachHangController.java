@@ -2,11 +2,8 @@ package nganha.store.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import nganha.store.BLL.NhanVienBLL;
-import nganha.store.BLL.SanPhamBLL;
+import nganha.store.BLL.KhachHangBLL;
 import nganha.store.Model.KhachHang;
-import nganha.store.Model.NhanVien;
-import nganha.store.Model.SanPham;
 import nganha.store.Utils.FormUtils;
 
 public class ActKhachHangController {
@@ -20,33 +17,19 @@ public class ActKhachHangController {
   @FXML private Button btnSave;
   @FXML private Button btnCancel;
 
-  private NhanVien currentNhanVien; // Nhân viên đang sửa
-  private final NhanVienBLL nhanVienBLL;
-  public ActNhanVienController() {
-    nhanVienBLL = new NhanVienBLL();
+  private KhachHang currentKhachHang;
+  private final KhachHangBLL khachHangBLL;
+  public ActKhachHangController() {
+    khachHangBLL = new KhachHangBLL();
   }
 
-  // Truyền dữ liệu nhân viên vào form
-  public void setNhanVien(NhanVien nhanVien) {
-    this.currentNhanVien = nhanVien;
-    txtTenNV.setText(nhanVien.getTenNV());
-    txtSDT.setText(nhanVien.getSDT());
-    txtEmail.setText(nhanVien.getEmail());
-    cbRole.setValue(nhanVien.getRole().name());
-    txtTKNV.setText(nhanVien.getUsername());
-    txtMK.setText(""); // Không hiển thị mật khẩu
-  }
-
-  public void setNhanVienDetail(NhanVien nhanVien) {
-    this.currentNhanVien = nhanVien;
-
-    // Hiển thị thông tin chi tiết của nhân viên
-    maNVLabel.setText(String.valueOf(nhanVien.getMaNV()));
-    tenNVLabel.setText(nhanVien.getTenNV());
-    sdtLabel.setText(nhanVien.getSDT());
-    emailLabel.setText(nhanVien.getEmail());
-    roleLabel.setText(nhanVien.getRole().name());
-    usernameLabel.setText(nhanVien.getUsername());
+  // Truyền dữ liệu khách hàng vào form
+  public void setKhachHang(KhachHang khachHang) {
+    this.currentKhachHang = khachHang;
+    txtTenKH.setText(khachHang.getTenKH());
+    txtSDT.setText(khachHang.getSDT());
+    txtEmail.setText(khachHang.getEmail());
+    txtDiaChi.setText(khachHang.getDiaChi());
   }
 
   @FXML
@@ -54,41 +37,30 @@ public class ActKhachHangController {
     try {
       if (!validateInput()) return;
 
-      // Cập nhật thông tin vào đối tượng nhân viên hiện tại
-      currentNhanVien.setTenNV(txtTenNV.getText());
-      currentNhanVien.setSDT(txtSDT.getText());
+      // Cập nhật thông tin vào đối tượng hiện tại
+      currentKhachHang.setTenKH(txtTenKH.getText());
+      currentKhachHang.setSDT(txtSDT.getText());
 
       // Kiểm tra email
       String email = txtEmail.getText();
-      if (email.isEmpty()) {
-        currentNhanVien.setEmail(null); // Nếu không nhập email, để giá trị là null
+      if (email == null || email.isEmpty()) {
+        currentKhachHang.setEmail(null); // Nếu không nhập email, để giá trị là null
       } else {
-        currentNhanVien.setEmail(email);
+        currentKhachHang.setEmail(email);
       }
-
-      // Cập nhật vai trò
-      currentNhanVien.setRole(NhanVien.Role.valueOf(cbRole.getValue().toUpperCase()));
-
-      // Nếu tài khoản không rỗng, cập nhật tài khoản
-      String username = txtTKNV.getText();
-      if (!username.isEmpty()) {
-        currentNhanVien.setUsername(username);
-      }
-
-      // Nếu mật khẩu không rỗng, cập nhật mật khẩu
-      String matKhau = txtMK.getText();
-      if (matKhau.isEmpty()) {
-        currentNhanVien.setPassword(null); // Nếu không nhập, để giá trị null
+      String diaChi = txtDiaChi.getText();
+      if (diaChi == null || diaChi.isEmpty()) {
+        currentKhachHang.setDiaChi(null); // Nếu không nhập địa chỉ, để giá trị là null
       } else {
-        currentNhanVien.setPassword(matKhau); // Gán mật khẩu mới
+        currentKhachHang.setDiaChi(diaChi);
       }
 
       // Gửi thông tin cập nhật qua BLL để xử lý
-      if (nhanVienBLL.updateNhanVien(currentNhanVien)) {
-        showAlert("Thành công", "Thông tin nhân viên đã được cập nhật!");
+      if (khachHangBLL.updateKhachHang(currentKhachHang)) {
+        showAlert("Thành công", "Thông tin khách hàng đã được cập nhật!");
         FormUtils.closeForm(btnSave);
       } else {
-        showAlert("Lỗi", "Không thể cập nhật thông tin nhân viên.");
+        showAlert("Lỗi", "Không thể cập nhật thông tin khách hàng.");
       }
 
     } catch (NumberFormatException e) {
@@ -100,29 +72,23 @@ public class ActKhachHangController {
   }
 
   @FXML
-  private void handleAddNhanVien() {
-    String tenNV = txtTenNV.getText();
+  private void handleAddKhachHang() {
+    String tenKH = txtTenKH.getText();
     String sdt = txtSDT.getText();
     String email = txtEmail.getText();
-    String role = cbRole.getValue();
-    String taiKhoan = txtTKNV.getText();
-    String matKhau = txtMK.getText();
+    String diaChi = txtDiaChi.getText();
 
     // Kiểm tra nếu các trường không trống
-    if (tenNV.isEmpty() || sdt.isEmpty() || role == null || taiKhoan.isEmpty() || matKhau.isEmpty()) {
-      showAlert("Lỗi", "Vui lòng điền đầy đủ thông tin.");
+    if (tenKH.isEmpty() || sdt.isEmpty()) {
+      showAlert("Lỗi", "Vui lòng điền đầy đủ thông tin tên khách hàng và SDT");
       return;
     }
 
-    // Chuyển role từ chuỗi thành Enum
-    NhanVien.Role roleEnum = NhanVien.Role.valueOf(role.toUpperCase());
-
-    // Tạo đối tượng NhanVien mới và gọi BLL để thêm nhân viên
-    NhanVien nhanVien = new NhanVien(0, tenNV, sdt, taiKhoan, matKhau, roleEnum, email);
-
+    // Tạo đối tượng KhachHang mới và gọi BLL để thêm nhân viên
+    KhachHang khachHang = new KhachHang(0, tenKH, sdt, diaChi, email);
     try {
-      nhanVienBLL.addNhanVien(nhanVien);
-      showAlert("Thành công", "Thêm nhân viên thành công.");
+      khachHangBLL.addKhachHang(khachHang);
+      showAlert("Thành công", "Thêm khách hàng thành công.");
       FormUtils.closeForm(btnAdd);
     } catch (Exception e) {
       showAlert("Lỗi", e.getMessage());
@@ -135,14 +101,11 @@ public class ActKhachHangController {
   }
 
   private boolean validateInput() {
-    String tenNV = txtTenNV.getText();
+    String tenKH = txtTenKH.getText();
     String sdt = txtSDT.getText();
     String email = txtEmail.getText();
-    String role = cbRole.getValue();
-    String taiKhoan = txtTKNV.getText();
-    String matKhau = txtMK.getText();
 
-    if (tenNV.isEmpty() || sdt.isEmpty() || role == null) {
+    if (tenKH.isEmpty() || sdt.isEmpty()) {
       showAlert("Lỗi", "Vui lòng điền đầy đủ thông tin.");
       return false;
     }
@@ -152,7 +115,7 @@ public class ActKhachHangController {
       return false;
     }
 
-    if (!email.isEmpty() && !email.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+    if (email != null && !email.isEmpty() && !email.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
       showAlert("Lỗi", "Email không hợp lệ.");
       return false;
     }

@@ -85,7 +85,7 @@
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
         <children>
 
-            <Button fx:id="btnSave" onAction="#handleSave" prefHeight="35.0" prefWidth="120.0" text="Xác Nhận">
+            <Button fx:id="btnSave" onAction="#handleSave" prefHeight="35.0" prefWidth="120.0" text="Sửa">
                 <HBox.margin>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </HBox.margin>

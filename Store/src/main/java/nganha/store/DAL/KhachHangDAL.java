@@ -52,16 +52,15 @@ public class KhachHangDAL {
   }
 
   public boolean updateKhachHang(KhachHang khachHang) {
-    String query = "UPDATE sanpham SET maKH = ?, tenKH = ?, sdt = ?, diaChi = ?, email = ? WHERE maKH = ?";
+    String query = "UPDATE khachhang SET tenKH = ?, SDT = ?, diaChi = ?, email = ? WHERE maKH = ?";
 
     try (Connection conn = DSUtils.DBConnect();
          PreparedStatement ps = conn.prepareStatement(query)) {
-
-      ps.setInt(1, khachHang.getMaKH());
-      ps.setString(2, khachHang.getTenKH());
-      ps.setString(3, khachHang.getSDT());
-      ps.setString(4, khachHang.getDiaChi());
-      ps.setString(5, khachHang.getEmail());
+      ps.setString(1, khachHang.getTenKH());
+      ps.setString(2, khachHang.getSDT());
+      ps.setString(3, khachHang.getDiaChi());
+      ps.setString(4, khachHang.getEmail());
+      ps.setInt(5, khachHang.getMaKH());
 
       return ps.executeUpdate() > 0;
     } catch (SQLException | ClassNotFoundException e) {

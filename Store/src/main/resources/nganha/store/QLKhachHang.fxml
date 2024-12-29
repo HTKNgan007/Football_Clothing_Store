@@ -17,11 +17,11 @@
     <children>
         <TableView fx:id="tblKhachHang" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
             <columns>
-                <TableColumn fx:id="colMaKH" prefWidth="73" text="Mã KH" />
-                <TableColumn fx:id="colTenKH" prefWidth="204" text="Tên khách hàng" />
-                <TableColumn fx:id="colPhone" prefWidth="132" text="Số điện thoại" />
-                <TableColumn fx:id="colAddress" prefWidth="131" text="Địa chỉ" />
-                <TableColumn fx:id="colEmail" prefWidth="218" text="Email" />
+                <TableColumn fx:id="colMaKH" prefWidth="61.505961418151855" text="Mã KH" />
+                <TableColumn fx:id="colTenKH" prefWidth="141.42710876464844" text="Tên khách hàng" />
+                <TableColumn fx:id="colPhone" prefWidth="130.3253936767578" text="Số điện thoại" />
+                <TableColumn fx:id="colAddress" prefWidth="238.67462158203125" text="Địa chỉ" />
+                <TableColumn fx:id="colEmail" prefWidth="187.3492431640625" text="Email" />
             </columns>
         </TableView>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ KHÁCH HÀNG" textFill="WHITE">
@@ -31,7 +31,7 @@
         </Label>
         <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
             <children>
-                <Button fx:id="ThemKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
+                <Button fx:id="ThemKH" mnemonicParsing="false" onAction="#handleAddKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0">
                             <image>
@@ -43,12 +43,12 @@
                         <Insets bottom="15.0" top="200.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="SuaKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+                <Button fx:id="SuaKH" mnemonicParsing="false" onAction="#handleEditKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
                     <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="XoaKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+                <Button fx:id="XoaKH" mnemonicParsing="false" onAction="#handleDeleteKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
                     <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                     </VBox.margin>
@@ -70,7 +70,7 @@
                         <Insets right="20.0" />
                     </HBox.margin>
                 </AnchorPane>
-                <Button fx:id="btnFind" mnemonicParsing="false" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
+                <Button fx:id="btnFind" mnemonicParsing="false" onAction="#handleSearchKhachHang" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
             </children>
         </HBox>
     </children>

@@ -2,7 +2,6 @@ package nganha.store.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import nganha.store.BLL.NhanVienBLL;
 import nganha.store.Model.NhanVien;
 import nganha.store.Utils.FormUtils;

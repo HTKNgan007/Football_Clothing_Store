@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" prefHeight="640.0" prefWidth="740.0" spacing="15" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActKhachHangController">
-    <Label alignment="CENTER" prefHeight="68.0" prefWidth="740.0" text="Thêm khách hàng">
+    <Label alignment="CENTER" prefHeight="68.0" prefWidth="740.0" text="Sửa thông tin khách hàng">
         <font>
             <Font name="System Bold" size="20.0" />
         </font>
@@ -55,7 +55,7 @@
     <HBox alignment="CENTER" prefHeight="91.0" prefWidth="740.0">
         <children>
 
-            <Button fx:id="btnAdd" prefHeight="35.0" prefWidth="120.0" text="Thêm">
+            <Button fx:id="btnSave" onAction="#handleSave" prefHeight="35.0" prefWidth="120.0" text="Sửa">
                 <HBox.margin>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </HBox.margin>

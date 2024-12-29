@@ -41,11 +41,11 @@ public class KhachHangController {
     // Cài đặt các cellValueFactory cho mỗi cột trong bảng
     colMaKH.setCellValueFactory(new PropertyValueFactory<>("maKH"));
     colTenKH.setCellValueFactory(new PropertyValueFactory<>("tenKH"));
-    colPhone.setCellValueFactory(new PropertyValueFactory<>("sdt"));
+    colPhone.setCellValueFactory(new PropertyValueFactory<>("SDT"));
     colAddress.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
     colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-    // Lấy danh sách sản phẩm từ BLL và hiển thị trên TableView
+    // Lấy danh sách khách hàng từ BLL và hiển thị trên TableView
     try {
       loadKhachHangData();
     } catch (SQLException | ClassNotFoundException e) {
@@ -78,7 +78,7 @@ public class KhachHangController {
   }
 
   @FXML
-  public void handleEditSanPham() {
+  public void handleEditKhachHang() {
     KhachHang selectedKhachHang = tblKhachHang.getSelectionModel().getSelectedItem();
 
     if (selectedKhachHang == null) {
@@ -92,7 +92,7 @@ public class KhachHangController {
 
       // Lấy controller của form chỉnh sửa
       ActKhachHangController editController = loader.getController();
-      editController.setSanPham(selectedSanPham);
+      editController.setKhachHang(selectedKhachHang);
 
       // Hiển thị form chỉnh sửa
       Stage stage = new Stage();
@@ -106,73 +106,49 @@ public class KhachHangController {
   }
 
   @FXML
-  public void handleDeleteSanPham() throws Exception {
-    SanPham selectedSanPham = tblSanPham.getSelectionModel().getSelectedItem();
+  public void handleDeleteKhachHang() throws Exception {
+    KhachHang selectedKhachHang = tblKhachHang.getSelectionModel().getSelectedItem();
 
-    if (selectedSanPham != null) {
+    if (selectedKhachHang != null) {
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setTitle("Xác nhận xoá");
-      alert.setHeaderText("Bạn có chắc chắn muốn xoá sản phẩm này?");
-      alert.setContentText("Tên sản phẩm: " + selectedSanPham.getTenSP() + "\nMã sản phẩm: " + selectedSanPham.getMaSP());
+      alert.setHeaderText("Bạn có chắc chắn muốn xoá khách hàng này?");
+      alert.setContentText("Tên khách hàng : " + selectedKhachHang.getTenKH() + "\nMã khách hàng: " + selectedKhachHang.getMaKH());
 
       Optional<ButtonType> result = alert.showAndWait();
 
       if (result.isPresent() && result.get() == ButtonType.OK) {
-        boolean success = sanPhamBLL.deleteSanPham(selectedSanPham.getMaSP());
+        boolean success = khachHangBLL.deleteKhachHang(selectedKhachHang.getMaKH());
         if (success) {
-          tblSanPham.getItems().remove(selectedSanPham);
-          showAlert("Thành công", "Xoá sản phẩm thành công.");
+          tblKhachHang.getItems().remove(selectedKhachHang);
+          showAlert("Thành công", "Xoá khách hàng thành công.");
         } else {
-          showAlert("Lỗi", "Không thể xoá sản phẩm. Vui lòng thử lại.");
+          showAlert("Lỗi", "Không thể xoá khách hàng. Vui lòng thử lại.");
         }
       }
     } else {
-      showAlert("Cảnh báo", "Vui lòng chọn một sản phẩm để xoá.");
+      showAlert("Cảnh báo", "Vui lòng chọn một khách hàng để xoá.");
     }
   }
 
   @FXML
-  public void handleViewDetail() {
-    SanPham selectedSanPham = tblSanPham.getSelectionModel().getSelectedItem();
-
-    if (selectedSanPham != null) {
-      try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/nganha/store/detailSanPham.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Chi tiết sản phẩm");
-        stage.setScene(new Scene(loader.load()));
-
-        ActSanPhamController controller = loader.getController();
-        controller.setSanPhamDetail(selectedSanPham);
-
-        stage.show();
-      } catch (IOException e) {
-        e.printStackTrace();
-        showAlert("Lỗi", "Không thể mở cửa sổ chi tiết.");
-      }
-    } else {
-      showAlert("Cảnh báo", "Vui lòng chọn một sản phẩm.");
-    }
-  }
-
-  @FXML
-  public void handleSearchSanPham() {
+  public void handleSearchKhachHang() {
     String keyword = txtFind.getText().trim().toLowerCase();
 
     try {
-      List<SanPham> sanPhamList = sanPhamBLL.getAllSanPham();
+      List<KhachHang> khachHangList = khachHangBLL.getAllKhachHang();
 
       if (!keyword.isEmpty()) {
-        sanPhamList = sanPhamList.stream()
-            .filter(sp -> sp.getTenSP().toLowerCase().contains(keyword))
+        khachHangList = khachHangList.stream()
+            .filter(sp -> sp.getTenKH().toLowerCase().contains(keyword))
             .toList();
       }
 
-      ObservableList<SanPham> sanPhamObservableList = FXCollections.observableArrayList(sanPhamList);
-      tblSanPham.setItems(sanPhamObservableList);
+      ObservableList<KhachHang> khachHangObservableList = FXCollections.observableArrayList(khachHangList);
+      tblKhachHang.setItems(khachHangObservableList);
 
-      if (sanPhamList.isEmpty()) {
-        showAlert("Thông báo", "Không tìm thấy sản phẩm nào phù hợp.");
+      if (khachHangList.isEmpty()) {
+        showAlert("Thông báo", "Không tìm thấy khách hàng nào phù hợp.");
       }
     } catch (SQLException | ClassNotFoundException e) {
       e.printStackTrace();

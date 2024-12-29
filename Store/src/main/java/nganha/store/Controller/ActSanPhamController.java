@@ -3,7 +3,6 @@ package nganha.store.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import nganha.store.BLL.SanPhamBLL;
-import nganha.store.Model.NhanVien;
 import nganha.store.Model.SanPham;
 import nganha.store.Utils.FormUtils;
 
@@ -137,8 +136,7 @@ public class ActSanPhamController {
       try {
         sanPhamBLL.addSanPham(sanPham);
         showAlert("Thành công", "Thêm sản phẩm thành công.");
-        // Xóa các trường nhập liệu sau khi thêm thành công
-        handleHuy();
+        FormUtils.closeForm(btnAdd);
       } catch (Exception e) {
         showAlert("Lỗi", "Đã có lỗi xảy ra khi thêm sản phẩm: " + e.getMessage());
       }
