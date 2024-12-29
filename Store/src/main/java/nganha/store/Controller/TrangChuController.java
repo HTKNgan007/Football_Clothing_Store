@@ -41,7 +41,7 @@ public class TrangChuController {
   }
   @FXML
   private void handleKhachHang() {
-    loadContent("TrangChu.fxml");
+    loadContent("QLKhachHang.fxml");
   }
 
   @FXML

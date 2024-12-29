@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.KhachHangController">
+    <children>
+        <TableView fx:id="tblKhachHang" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
+            <columns>
+                <TableColumn fx:id="colMaKH" prefWidth="73" text="Mã KH" />
+                <TableColumn fx:id="colTenKH" prefWidth="204" text="Tên khách hàng" />
+                <TableColumn fx:id="colPhone" prefWidth="132" text="Số điện thoại" />
+                <TableColumn fx:id="colAddress" prefWidth="131" text="Địa chỉ" />
+                <TableColumn fx:id="colEmail" prefWidth="218" text="Email" />
+            </columns>
+        </TableView>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ KHÁCH HÀNG" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Label>
+        <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
+            <children>
+                <Button fx:id="ThemKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="32.0">
+                            <image>
+                                <Image url="@images/User_fill_add3.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="200.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="SuaKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="XoaKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+        <HBox alignment="CENTER" layoutY="82.0" prefHeight="88.0" prefWidth="782.0">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="txtFind" layoutX="-2.0" layoutY="25.0" prefHeight="37.0" prefWidth="513.0" promptText="Tìm kiếm khách hàng theo tên..." style="-fx-border-radius: 100;" />
+                        <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="470.0" layoutY="29.0">
+                            <image>
+                                <Image url="@images/Search_alt3.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                    <HBox.margin>
+                        <Insets right="20.0" />
+                    </HBox.margin>
+                </AnchorPane>
+                <Button fx:id="btnFind" mnemonicParsing="false" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

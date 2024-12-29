@@ -2,46 +2,23 @@ package nganha.store.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import nganha.store.BLL.NhanVienBLL;
+import nganha.store.BLL.SanPhamBLL;
+import nganha.store.Model.KhachHang;
 import nganha.store.Model.NhanVien;
+import nganha.store.Model.SanPham;
 import nganha.store.Utils.FormUtils;
 
-public class ActNhanVienController {
+public class ActKhachHangController {
 
-  @FXML private Label maNVLabel;
-  @FXML private Label tenNVLabel;
-  @FXML private Label sdtLabel;
-  @FXML private Label emailLabel;
-  @FXML private Label roleLabel;
-  @FXML private Label usernameLabel;
+  @FXML private TextField txtTenKH;
+  @FXML private TextField txtSDT;
+  @FXML private TextField txtDiaChi;
+  @FXML private TextField txtEmail;
 
-  @FXML
-  private TextField txtTenNV;
-
-  @FXML
-  private TextField txtSDT;
-
-  @FXML
-  private TextField txtEmail;
-
-  @FXML
-  private ComboBox<String> cbRole;
-
-  @FXML
-  private TextField txtTKNV;
-
-  @FXML
-  private TextField txtMK;
-
-  @FXML
-  private Button btnAdd;
-
-  @FXML
-  private Button btnSave;
-
-  @FXML
-  private Button btnCancel;
+  @FXML private Button btnAdd;
+  @FXML private Button btnSave;
+  @FXML private Button btnCancel;
 
   private NhanVien currentNhanVien; // Nhân viên đang sửa
   private final NhanVienBLL nhanVienBLL;

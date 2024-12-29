@@ -24,7 +24,7 @@
                       <Button fx:id="btnManageOrders1" onAction="#handleQLDonHang" prefHeight="100.0" prefWidth="140" style="-fx-background-color: #1A5234;" text="Đơn Hàng" textFill="WHITE" />
                       <Button fx:id="btnManageProducts" onAction="#handleQLSanPham" prefHeight="100.0" prefWidth="140" text="Sản Phẩm" />
                       <Button fx:id="btnManageEmployee" onAction="#handleQLNhanVien" prefHeight="100.0" prefWidth="140" text="Nhân Viên" />
-                      <Button fx:id="btnManageCustomers" prefHeight="100.0" prefWidth="140" text="Khách Hàng" />
+                      <Button fx:id="btnManageCustomers" onAction="#handleKhachHang" prefHeight="100.0" prefWidth="140" text="Khách Hàng" />
                       <Button fx:id="btnExit" onAction="#handleDangXuat" prefWidth="140" style="-fx-background-color: #ff4d4d; -fx-text-fill: white;" text="Đăng xuất">
                      <VBox.margin>
                         <Insets top="70.0" />
