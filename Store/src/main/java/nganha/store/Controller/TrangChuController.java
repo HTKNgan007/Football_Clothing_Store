@@ -84,10 +84,18 @@ public class TrangChuController {
 
   private void loadContent(String fxmlFile) {
     try {
-      // Đảm bảo đường dẫn tương đối chính xác
       String fullPath = "/nganha/store/" + fxmlFile;
 
-      Node content = FXMLLoader.load(getClass().getResource(fullPath));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource(fullPath));
+      Node content = loader.load();
+
+      // Truyền thông tin nhân viên vào controller của FXML
+      if (fxmlFile.equals("HoaDon.fxml")) {
+        HoaDonController hoaDonController = loader.getController();
+        hoaDonController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
+      }
+
+      // Lặp lại tương tự cho các FXML khác nếu cần
       contentPane.getChildren().clear();
       contentPane.getChildren().add(content);
     } catch (IOException e) {

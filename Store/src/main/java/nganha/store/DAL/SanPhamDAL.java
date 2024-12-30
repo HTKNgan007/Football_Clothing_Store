@@ -154,4 +154,20 @@ public class SanPhamDAL {
     }
     return gia;
   }
+
+  public String getMaSPByTenSPMauSize(String tenSP, String mauSac, String size) throws SQLException, ClassNotFoundException {
+    String query = "SELECT MaSP FROM SanPham WHERE TenSP = ? AND MauSac = ? AND Size = ?";
+    try (Connection conn = DSUtils.DBConnect();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+      stmt.setString(1, tenSP);
+      stmt.setString(2, mauSac);
+      stmt.setString(3, size);
+
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        return rs.getString("MaSP");
+      }
+    }
+    return null; // Trả về null nếu không tìm thấy sản phẩm
+  }
 }

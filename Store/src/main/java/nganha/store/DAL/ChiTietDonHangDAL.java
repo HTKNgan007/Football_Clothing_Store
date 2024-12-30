@@ -1,6 +1,7 @@
 package nganha.store.DAL;
 
 import nganha.store.Model.ChiTietDonHang;
+import nganha.store.Model.ChiTietDonHangCSDL;
 import nganha.store.Utils.DSUtils;
 
 import java.sql.*;
@@ -38,4 +39,37 @@ public class ChiTietDonHangDAL {
     DSUtils.CloseConnect(connection);
     return chiTietList;
   }
+
+//  public void themChiTietDonHang(ChiTietDonHangCSDL chiTietDonHang) {
+//    String sql = "INSERT INTO ChiTietDonHang (maDH, maSP, soLuong, gia) VALUES (?, ?, ?, ?)";
+//    try (Connection conn = DSUtils.DBConnect();
+//         PreparedStatement ps = conn.prepareStatement(sql)) {
+//      ps.setInt(1, chiTietDonHang.getMaDH());
+//      ps.setInt(2, chiTietDonHang.getMaSP());
+//      ps.setInt(3, chiTietDonHang.getSoLuong());
+//      ps.setDouble(4, chiTietDonHang.getGia());
+//
+//      ps.executeUpdate();
+//    } catch (SQLException | ClassNotFoundException e) {
+//      e.printStackTrace();
+//    }
+//  }
+public void themChiTietDonHang(ChiTietDonHangCSDL chiTietDonHangCSDL) {
+  String sql = "INSERT INTO ChiTietDonHang (maDH, maSP, soLuong, gia) VALUES (?, ?, ?, ?)";
+  try (Connection connection = DSUtils.DBConnect();
+       PreparedStatement ps = connection.prepareStatement(sql)) {
+
+    ps.setInt(1, chiTietDonHangCSDL.getMaDH());
+    ps.setInt(2, chiTietDonHangCSDL.getMaSP());
+    ps.setInt(3, chiTietDonHangCSDL.getSoLuong());
+    ps.setDouble(4, chiTietDonHangCSDL.getGia());
+
+    int affectedRows = ps.executeUpdate();
+    if (affectedRows == 0) {
+      System.out.println("Không thể thêm chi tiết đơn hàng.");
+    }
+  } catch (SQLException | ClassNotFoundException e) {
+    e.printStackTrace();
+  }
+}
 }

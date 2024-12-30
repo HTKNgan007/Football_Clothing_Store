@@ -76,4 +76,12 @@ public class SanPhamBLL {
   public double getGiaByTenSPMauSize(String tenSP, String mauSac, String size) throws SQLException, ClassNotFoundException {
     return sanPhamDAL.getGiaByTenSPMauSize(tenSP, mauSac, size);
   }
+  public String getMaSPByTenSPMauSize(String tenSP, String mauSac, String size) {
+    try {
+      return sanPhamDAL.getMaSPByTenSPMauSize(tenSP, mauSac, size);
+    } catch (SQLException | ClassNotFoundException e) {
+      e.printStackTrace();
+      return null; // Trả về null nếu có lỗi
+    }
+  }
 }
