@@ -84,4 +84,55 @@ public class SanPhamDAL {
       return false;
     }
   }
+
+  // Làm việc với đơn hàng - thêm vào đơn hàng
+  public List<String> getTenSanPhamDistinct() throws SQLException, ClassNotFoundException {
+    List<String> tenSanPhamList = new ArrayList<>();
+    String query = "SELECT DISTINCT TenSP FROM SanPham";
+
+    try (Connection conn = DSUtils.DBConnect();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+
+      while (rs.next()) {
+        tenSanPhamList.add(rs.getString("TenSP"));
+      }
+    }
+    return tenSanPhamList;
+  }
+
+  public List<String> getMauSacByTenSP(String tenSP) throws SQLException, ClassNotFoundException {
+    List<String> mauSacList = new ArrayList<>();
+    String query = "SELECT DISTINCT MauSac FROM SanPham WHERE TenSP = ?";
+
+    try (Connection conn = DSUtils.DBConnect();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+      stmt.setString(1, tenSP);
+      ResultSet rs = stmt.executeQuery();
+
+      while (rs.next()) {
+        mauSacList.add(rs.getString("MauSac"));
+      }
+    }
+    return mauSacList;
+  }
+
+  public List<String> getSizeByTenSPAndMau(String tenSP, String mauSac) throws SQLException, ClassNotFoundException {
+    List<String> sizeList = new ArrayList<>();
+    String query = "SELECT DISTINCT Size FROM SanPham WHERE TenSP = ? AND MauSac = ?";
+
+    try (Connection conn = DSUtils.DBConnect();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+      stmt.setString(1, tenSP);
+      stmt.setString(2, mauSac);
+      ResultSet rs = stmt.executeQuery();
+
+      while (rs.next()) {
+        sizeList.add(rs.getString("Size"));
+      }
+    }
+    return sizeList;
+  }
 }

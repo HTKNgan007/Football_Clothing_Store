@@ -60,4 +60,17 @@ public class SanPhamBLL {
       return false;
     }
   }
+
+  //Làm việc với đơn hàng
+  public List<String> getTenSanPhamDistinct() throws SQLException, ClassNotFoundException {
+    return sanPhamDAL.getTenSanPhamDistinct();
+  }
+
+  public List<String> getMauSacByTenSP(String tenSP) throws SQLException, ClassNotFoundException {
+    return sanPhamDAL.getMauSacByTenSP(tenSP);
+  }
+
+  public List<String> getSizeByTenSPAndMau(String tenSP, String mauSac) throws SQLException, ClassNotFoundException {
+    return sanPhamDAL.getSizeByTenSPAndMau(tenSP, mauSac);
+  }
 }
