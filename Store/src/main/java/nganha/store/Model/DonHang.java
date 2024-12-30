@@ -1,4 +1,4 @@
-package nganha.store.DAL;
+package nganha.store.Model;
 
 import java.util.Date;
 

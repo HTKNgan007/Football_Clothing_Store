@@ -15,13 +15,13 @@
 
 <AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <TableView fx:id="tableDonHang" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
+        <TableView fx:id="tableDonHang" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="580.0">
             <columns>
                 <TableColumn prefWidth="61.505961418151855" text="Mã Đơn" />
                 <TableColumn prefWidth="161.8645782470703" text="Khách Hàng" />
                 <TableColumn prefWidth="174.13540649414062" text="Nhân Viên" />
-                <TableColumn prefWidth="175.36065673828125" text="Ngày Tạo" />
-                <TableColumn prefWidth="187.3492431640625" text="Tổng Tiền" />
+                <TableColumn prefWidth="180.2490234375" text="Ngày Tạo" />
+                <TableColumn prefWidth="183.2509765625" text="Tổng Tiền" />
             </columns>
         </TableView>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ ĐƠN HÀNG" textFill="WHITE">
@@ -29,31 +29,26 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-        <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
+        <VBox alignment="TOP_CENTER" layoutX="606.0" layoutY="82.0" prefHeight="752.0" prefWidth="374.0" style="-fx-background-color: #990606;">
             <children>
-                <Button fx:id="ThemKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
-                    <VBox.margin>
-                        <Insets bottom="15.0" top="200.0" />
-                    </VBox.margin>
-                </Button>
-                <Button fx:id="SuaKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
-                    <VBox.margin>
-                        <Insets bottom="15.0" top="15.0" />
-                    </VBox.margin>
-                </Button>
+            <TableView prefHeight="655.0" prefWidth="364.0">
+              <columns>
+                <TableColumn prefWidth="158.9300537109375" text="Tên sản phẩm" />
+                <TableColumn prefWidth="80.070068359375" text="Số lượng" />
+                  <TableColumn prefWidth="124.1328125" text="Giá" />
+              </columns>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </TableView>
                 <Button fx:id="XoaKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
                     <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                     </VBox.margin>
                 </Button>
-            <Button fx:id="ChiTietNV" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xem chi tiết ">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-            </Button>
             </children>
         </VBox>
-        <HBox alignment="CENTER" layoutY="82.0" prefHeight="88.0" prefWidth="782.0">
+        <HBox alignment="CENTER" layoutY="82.0" prefHeight="88.0" prefWidth="606.0">
             <children>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                     <children>

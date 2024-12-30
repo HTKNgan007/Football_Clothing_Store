@@ -28,7 +28,7 @@ public class TrangChuController {
 
   @FXML
   public void initialize() {
-    loadContent("QLDonHang.fxml");
+    loadContent("HoaDon.fxml");
   }
 
   // Phương thức để truyền thông tin nhân viên
@@ -41,6 +41,10 @@ public class TrangChuController {
     }
   }
 
+  @FXML
+  private void handleDonHang() {
+    loadContent("HoaDon.fxml");
+  }
   @FXML
   private void handleQLSanPham() {
     loadContent("QLSanPham.fxml");

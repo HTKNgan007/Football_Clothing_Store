@@ -22,10 +22,27 @@
                         <Image url="@images/logoCT_NHFootball.png" />
                      </image>
                   </ImageView>
-                      <Button fx:id="btnManageOrders1" onAction="#handleQLDonHang" prefHeight="100.0" prefWidth="140" style="-fx-background-color: #1A5234;" text="Đơn Hàng" textFill="WHITE" />
-                      <Button fx:id="btnManageProducts" onAction="#handleQLSanPham" prefHeight="100.0" prefWidth="140" text="Sản Phẩm" />
-                      <Button fx:id="btnManageEmployee" onAction="#handleQLNhanVien" prefHeight="100.0" prefWidth="140" text="Nhân Viên" />
-                      <Button fx:id="btnManageCustomers" onAction="#handleKhachHang" prefHeight="100.0" prefWidth="140" text="Khách Hàng" />
+                      <Button fx:id="btnManageOrders1" onAction="#handleDonHang" prefHeight="70.0" prefWidth="170.0" style="-fx-background-color: #1A5234;" text="Hoá đơn" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Button>
+                      <Button fx:id="btnManageProducts" onAction="#handleQLSanPham" prefHeight="70.0" prefWidth="170.0" text="Sản Phẩm">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Button>
+                      <Button fx:id="btnManageEmployee" onAction="#handleQLNhanVien" prefHeight="70.0" prefWidth="170.0" text="Nhân Viên">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Button>
+                      <Button fx:id="btnManageCustomers" onAction="#handleKhachHang" prefHeight="70.0" prefWidth="170.0" text="Khách Hàng">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="btnManageOrders" onAction="#handleQLDonHang" prefHeight="70.0" prefWidth="170.0" style="-fx-background-color: #1A5234;" text="Đơn Hàng" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
                   <Label fx:id="lblUsername" text="Tên nhân viên">
                      <VBox.margin>
                         <Insets top="60.0" />
