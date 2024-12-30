@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.QuanLyDonHangController">
     <children>
         <TableView fx:id="tableDonHang" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="580.0">
             <columns>
@@ -31,7 +31,7 @@
         </Label>
         <VBox alignment="TOP_CENTER" layoutX="606.0" layoutY="82.0" prefHeight="752.0" prefWidth="374.0" style="-fx-background-color: #990606;">
             <children>
-            <TableView prefHeight="655.0" prefWidth="364.0">
+            <TableView fx:id="tableChiTietDonHang" prefHeight="655.0" prefWidth="364.0">
               <columns>
                 <TableColumn prefWidth="158.9300537109375" text="Tên sản phẩm" />
                 <TableColumn prefWidth="80.070068359375" text="Số lượng" />

@@ -1,20 +1,20 @@
 package nganha.store.Model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class DonHang {
   private int maDH;
+  private int maKH;
   private int maNV;
-  private int maSP;
-  private Date ngayMua;
-  private int soLuong;
+  private Timestamp ngayTao;
+  private double tongTien;
 
-  public DonHang(int maDH, int maNV, int maSP, Date ngayMua, int soLuong) {
+  public DonHang(int maDH, int maKH, int maNV, Timestamp ngayTao, double tongTien) {
     this.maDH = maDH;
+    this.maKH = maKH;
     this.maNV = maNV;
-    this.maSP = maSP;
-    this.ngayMua = ngayMua;
-    this.soLuong = soLuong;
+    this.ngayTao = ngayTao;
+    this.tongTien = tongTien;
   }
 
   public int getMaDH() {
@@ -25,6 +25,14 @@ public class DonHang {
     this.maDH = maDH;
   }
 
+  public int getMaKH() {
+    return maKH;
+  }
+
+  public void setMaKH(int maKH) {
+    this.maKH = maKH;
+  }
+
   public int getMaNV() {
     return maNV;
   }
@@ -33,27 +41,19 @@ public class DonHang {
     this.maNV = maNV;
   }
 
-  public int getMaSP() {
-    return maSP;
+  public Timestamp getNgayTao() {
+    return ngayTao;
   }
 
-  public void setMaSP(int maSP) {
-    this.maSP = maSP;
+  public void setNgayTao(Timestamp ngayTao) {
+    this.ngayTao = ngayTao;
   }
 
-  public Date getNgayMua() {
-    return ngayMua;
+  public double getTongTien() {
+    return tongTien;
   }
 
-  public void setNgayMua(Date ngayMua) {
-    this.ngayMua = ngayMua;
-  }
-
-  public int getSoLuong() {
-    return soLuong;
-  }
-
-  public void setSoLuong(int soLuong) {
-    this.soLuong = soLuong;
+  public void setTongTien(int tongTien) {
+    this.tongTien = tongTien;
   }
 }
