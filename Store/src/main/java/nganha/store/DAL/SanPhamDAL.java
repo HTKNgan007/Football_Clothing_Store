@@ -135,4 +135,23 @@ public class SanPhamDAL {
     }
     return sizeList;
   }
+
+  public double getGiaByTenSPMauSize(String tenSP, String mauSac, String size) throws SQLException, ClassNotFoundException {
+    double gia = 0;
+    String query = "SELECT GiaBan FROM SanPham WHERE TenSP = ? AND MauSac = ? AND Size = ?";
+
+    try (Connection conn = DSUtils.DBConnect();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+      stmt.setString(1, tenSP);
+      stmt.setString(2, mauSac);
+      stmt.setString(3, size);
+      ResultSet rs = stmt.executeQuery();
+
+      if (rs.next()) {
+        gia = rs.getDouble("GiaBan");
+      }
+    }
+    return gia;
+  }
 }
