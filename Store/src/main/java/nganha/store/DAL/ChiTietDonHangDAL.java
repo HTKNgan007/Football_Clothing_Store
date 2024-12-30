@@ -10,7 +10,12 @@ import java.util.List;
 public class ChiTietDonHangDAL {
   public List<ChiTietDonHang> getChiTietDonHangByMaDH(int maDH) throws SQLException, ClassNotFoundException {
     List<ChiTietDonHang> chiTietList = new ArrayList<>();
-    String query = "SELECT * FROM ChiTietDonHang WHERE MaDH = ?";
+    String query = """
+            SELECT ctdh.MaCTDH, sp.TenSP, ctdh.SoLuong, ctdh.Gia
+            FROM ChiTietDonHang ctdh
+            JOIN SanPham sp ON ctdh.MaSP = sp.MaSP
+            WHERE ctdh.MaDH = ?
+        """;
 
     Connection connection = DSUtils.DBConnect();
     PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -21,8 +26,7 @@ public class ChiTietDonHangDAL {
     while (resultSet.next()) {
       ChiTietDonHang chiTiet = new ChiTietDonHang(
           resultSet.getInt("MaCTDH"),
-          resultSet.getInt("MaDH"),
-          resultSet.getInt("MaSP"),
+          resultSet.getString("TenSP"),
           resultSet.getInt("SoLuong"),
           resultSet.getDouble("Gia")
       );

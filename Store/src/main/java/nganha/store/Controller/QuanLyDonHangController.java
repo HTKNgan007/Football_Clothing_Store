@@ -27,13 +27,13 @@ public class QuanLyDonHangController {
   public void initialize() {
     // Cấu hình bảng DonHang
     tableDonHang.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("maDH"));
-    tableDonHang.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("maKH"));
-    tableDonHang.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("maNV"));
+    tableDonHang.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("tenKH"));
+    tableDonHang.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("tenNV"));
     tableDonHang.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("ngayTao"));
     tableDonHang.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("tongTien"));
 
     // Cấu hình bảng ChiTietDonHang
-    tableChiTietDonHang.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("maSP"));
+    tableChiTietDonHang.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("tenSP"));
     tableChiTietDonHang.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("soLuong"));
     tableChiTietDonHang.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("gia"));
 

@@ -2,15 +2,13 @@ package nganha.store.Model;
 
 public class ChiTietDonHang {
   private int maCTDH;
-  private int maDH;
-  private int maSP;
+  private String tenSP;
   private int soLuong;
   private double gia;
 
-  public ChiTietDonHang(int maCTDH, int maDH, int maSP, int soLuong, double gia) {
+  public ChiTietDonHang(int maCTDH, String tenSP, int soLuong, double gia) {
     this.maCTDH = maCTDH;
-    this.maDH = maDH;
-    this.maSP = maSP;
+    this.tenSP = tenSP;
     this.soLuong = soLuong;
     this.gia = gia;
   }
@@ -23,20 +21,12 @@ public class ChiTietDonHang {
     this.maCTDH = maCTDH;
   }
 
-  public int getMaDH() {
-    return maDH;
+  public String getTenSP() {
+    return tenSP;
   }
 
-  public void setMaDH(int maDH) {
-    this.maDH = maDH;
-  }
-
-  public int getMaSP() {
-    return maSP;
-  }
-
-  public void setMaSP(int maSP) {
-    this.maSP = maSP;
+  public void setTenSP(String tenSP) {
+    this.tenSP = tenSP;
   }
 
   public int getSoLuong() {

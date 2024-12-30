@@ -4,15 +4,15 @@ import java.sql.Timestamp;
 
 public class DonHang {
   private int maDH;
-  private int maKH;
-  private int maNV;
+  private String tenKH;
+  private String tenNV;
   private Timestamp ngayTao;
   private double tongTien;
 
-  public DonHang(int maDH, int maKH, int maNV, Timestamp ngayTao, double tongTien) {
+  public DonHang(int maDH, String tenKH, String tenNV, Timestamp ngayTao, double tongTien) {
     this.maDH = maDH;
-    this.maKH = maKH;
-    this.maNV = maNV;
+    this.tenKH = tenKH;
+    this.tenNV = tenNV;
     this.ngayTao = ngayTao;
     this.tongTien = tongTien;
   }
@@ -25,20 +25,20 @@ public class DonHang {
     this.maDH = maDH;
   }
 
-  public int getMaKH() {
-    return maKH;
+  public String getTenKH() {
+    return tenKH;
   }
 
-  public void setMaKH(int maKH) {
-    this.maKH = maKH;
+  public void setTenKH(String tenKH) {
+    this.tenKH = tenKH;
   }
 
-  public int getMaNV() {
-    return maNV;
+  public String getTenNV() {
+    return tenNV;
   }
 
-  public void setMaNV(int maNV) {
-    this.maNV = maNV;
+  public void setTenNV(String tenNV) {
+    this.tenNV = tenNV;
   }
 
   public Timestamp getNgayTao() {
@@ -53,7 +53,7 @@ public class DonHang {
     return tongTien;
   }
 
-  public void setTongTien(int tongTien) {
+  public void setTongTien(double tongTien) {
     this.tongTien = tongTien;
   }
 }
