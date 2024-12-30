@@ -17,11 +17,11 @@
     <children>
         <TableView fx:id="tableDonHang" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="580.0">
             <columns>
-                <TableColumn prefWidth="61.505961418151855" text="Mã Đơn" />
-                <TableColumn prefWidth="161.8645782470703" text="Khách Hàng" />
-                <TableColumn prefWidth="174.13540649414062" text="Nhân Viên" />
-                <TableColumn prefWidth="180.2490234375" text="Ngày Tạo" />
-                <TableColumn prefWidth="183.2509765625" text="Tổng Tiền" />
+                <TableColumn fx:id="colMaDH" prefWidth="61.505961418151855" text="Mã Đơn" />
+                <TableColumn fx:id="colTenKH" prefWidth="128.77570343017578" text="Khách Hàng" />
+                <TableColumn fx:id="colTenNV" prefWidth="123.7242431640625" text="Nhân Viên" />
+                <TableColumn fx:id="colNgayTao" prefWidth="131.44857788085938" text="Ngày Tạo" />
+                <TableColumn fx:id="colTongTien" prefWidth="134.4659423828125" text="Tổng Tiền" />
             </columns>
         </TableView>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ ĐƠN HÀNG" textFill="WHITE">
@@ -33,15 +33,17 @@
             <children>
             <TableView fx:id="tableChiTietDonHang" prefHeight="655.0" prefWidth="364.0">
               <columns>
-                <TableColumn prefWidth="158.9300537109375" text="Tên sản phẩm" />
-                <TableColumn prefWidth="80.070068359375" text="Số lượng" />
-                  <TableColumn prefWidth="124.1328125" text="Giá" />
+                <TableColumn fx:id="colTenSP" prefWidth="165.5" text="Tên sản phẩm" />
+                <TableColumn fx:id="colSoLuong" prefWidth="46.0" text="SL" />
+                  <TableColumn fx:id="colGia" minWidth="0.0" prefWidth="106.0" text="Giá" />
+                  <TableColumn fx:id="colSize" prefWidth="50.0" text="Size" />
+                  <TableColumn fx:id="colMau" prefWidth="100.0" text="Màu" />
               </columns>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </TableView>
-                <Button fx:id="XoaKH" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+                <Button fx:id="XoaDH" mnemonicParsing="false" onAction="#deleteDonHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
                     <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                     </VBox.margin>
@@ -63,7 +65,7 @@
                         <Insets right="20.0" />
                     </HBox.margin>
                 </AnchorPane>
-                <Button fx:id="btnFind" mnemonicParsing="false" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
+                <Button fx:id="btnFind" mnemonicParsing="false" onAction="#findDonHang" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
             </children>
         </HBox>
     </children>

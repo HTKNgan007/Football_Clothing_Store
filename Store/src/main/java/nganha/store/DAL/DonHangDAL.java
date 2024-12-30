@@ -11,7 +11,7 @@ public class DonHangDAL {
     String query = """
             SELECT dh.MaDH, kh.TenKH, nv.TenNV, dh.NgayTao, dh.TongTien
             FROM DonHang dh
-            JOIN KhachHang kh ON dh.MaKH = kh.MaKH
+            LEFT JOIN KhachHang kh ON dh.MaKH = kh.MaKH
             JOIN NhanVien nv ON dh.MaNV = nv.MaNV
         """;
 

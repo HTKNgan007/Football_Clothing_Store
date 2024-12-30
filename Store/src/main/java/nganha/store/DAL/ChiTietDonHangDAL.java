@@ -11,7 +11,7 @@ public class ChiTietDonHangDAL {
   public List<ChiTietDonHang> getChiTietDonHangByMaDH(int maDH) throws SQLException, ClassNotFoundException {
     List<ChiTietDonHang> chiTietList = new ArrayList<>();
     String query = """
-            SELECT ctdh.MaCTDH, sp.TenSP, ctdh.SoLuong, ctdh.Gia
+            SELECT ctdh.MaCTDH, sp.TenSP, ctdh.SoLuong, ctdh.Gia, sp.Size, sp.MauSac
             FROM ChiTietDonHang ctdh
             JOIN SanPham sp ON ctdh.MaSP = sp.MaSP
             WHERE ctdh.MaDH = ?
@@ -28,7 +28,9 @@ public class ChiTietDonHangDAL {
           resultSet.getInt("MaCTDH"),
           resultSet.getString("TenSP"),
           resultSet.getInt("SoLuong"),
-          resultSet.getDouble("Gia")
+          resultSet.getDouble("Gia"),
+          resultSet.getString("Size"),
+          resultSet.getString("MauSac")
       );
       chiTietList.add(chiTiet);
     }

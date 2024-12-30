@@ -5,12 +5,16 @@ public class ChiTietDonHang {
   private String tenSP;
   private int soLuong;
   private double gia;
+  private String size;
+  private String mauSac;
 
-  public ChiTietDonHang(int maCTDH, String tenSP, int soLuong, double gia) {
+  public ChiTietDonHang(int maCTDH, String tenSP, int soLuong, double gia, String size, String mauSac) {
     this.maCTDH = maCTDH;
     this.tenSP = tenSP;
     this.soLuong = soLuong;
     this.gia = gia;
+    this.size = size;
+    this.mauSac = mauSac;
   }
 
   public int getMaCTDH() {
@@ -43,5 +47,21 @@ public class ChiTietDonHang {
 
   public void setGia(double gia) {
     this.gia = gia;
+  }
+
+  public String getSize() {
+    return size;
+  }
+
+  public void setSize(String size) {
+    this.size = size;
+  }
+
+  public String getMauSac() {
+    return mauSac;
+  }
+
+  public void setMauSac(String mauSac) {
+    this.mauSac = mauSac;
   }
 }
