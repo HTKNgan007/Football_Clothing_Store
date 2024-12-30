@@ -36,10 +36,11 @@
                 </Label>
                 <TableView fx:id="tableViewCTHD" layoutX="15.0" layoutY="45.0" prefHeight="581.0" prefWidth="639.0">
                     <columns>
-                        <TableColumn fx:id="colTenSP" prefWidth="231.73160362243652" text="Tên sản phẩm" />
-                        <TableColumn fx:id="colDonGia" minWidth="0.0" prefWidth="129.7683868408203" text="Đơn giá" />
-                        <TableColumn fx:id="colSoLuong" minWidth="0.0" prefWidth="152.83453369140625" text="Số lượng" />
-                        <TableColumn fx:id="colThanhTien" prefWidth="133.3751220703125" text="Giá" />
+                        <TableColumn fx:id="colTenSP" prefWidth="225.60391235351562" text="Tên sản phẩm" />
+                        <TableColumn fx:id="colMauSac" prefWidth="124.89610290527344" text="Màu sắc" />
+                        <TableColumn fx:id="colSize" prefWidth="97.67953491210938" text="Size" />
+                        <TableColumn fx:id="colSoLuong" prefWidth="65.5550537109375" text="Số lượng" />
+                        <TableColumn fx:id="colGia" prefWidth="125.09414672851562" text="Giá" />
                     </columns>
                 </TableView>
                 <Button layoutX="414.0" layoutY="645.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" text="Thanh toán">
@@ -135,12 +136,12 @@
                                     <Font name="System Bold" size="14.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="llblGiaSP" prefHeight="23.0" prefWidth="154.0" style="-fx-background-color: #ffeeee;" text="Label" />
+                            <Label fx:id="llblGiaSP" prefHeight="23.0" prefWidth="154.0" style="-fx-background-color: #ffeeee;" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                            <Button fx:id="btnThem" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Thêm">
+                            <Button fx:id="btnThem" mnemonicParsing="false" onAction="#handleBtnThem" prefHeight="36.0" prefWidth="97.0" text="Thêm">
                                 <font>
                                     <Font name="System Bold" size="14.0" />
                                 </font>
@@ -148,7 +149,7 @@
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                             </Button>
-                            <Button fx:id="btnXoa" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Xoá">
+                            <Button fx:id="btnXoa" mnemonicParsing="false" onAction="#handleBtnXoa" prefHeight="36.0" prefWidth="97.0" text="Xoá">
                                 <font>
                                     <Font name="System Bold" size="14.0" />
                                 </font>
