@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="640.0" prefWidth="740.0" spacing="15" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActSanPhamController">
-    <Label alignment="CENTER" prefHeight="40.0" prefWidth="740.0" text="Thông tin sản phẩm chi tiết">
+<VBox alignment="CENTER" prefHeight="640.0" prefWidth="580.0" spacing="15" style="-fx-background-color: E3FAE0;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActSanPhamController">
+    <Label alignment="CENTER" prefHeight="51.0" prefWidth="580.0" text="Thông tin sản phẩm chi tiết">
         <font>
             <Font name="System Bold" size="20.0" />
         </font>
@@ -95,11 +95,11 @@
             <Insets left="40.0" />
         </padding>
     </HBox>
-    <HBox alignment="CENTER" prefHeight="20.0" prefWidth="740.0">
+    <HBox alignment="CENTER" prefHeight="62.0" prefWidth="580.0">
         <children>
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" text="Quay lại">
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" styleClass="act-button" text="Quay lại">
                 <HBox.margin>
-                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </HBox.margin>
             </Button>
         </children>

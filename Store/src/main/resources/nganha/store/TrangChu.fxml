@@ -58,7 +58,7 @@
          </AnchorPane>
 
             <!-- Right Panel to Display Content -->
-            <StackPane fx:id="contentPane" prefHeight="832.0" prefWidth="980.0" style="-fx-background-color: #0000ff;" />
+            <StackPane fx:id="contentPane" prefHeight="832.0" prefWidth="980.0" style="-fx-background-color: E3FAE0;" />
         </HBox>
     </children>
 </AnchorPane>

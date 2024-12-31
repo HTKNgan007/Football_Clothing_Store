@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.KhachHangController">
+<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.KhachHangController">
     <children>
         <TableView fx:id="tblKhachHang" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
             <columns>
@@ -29,26 +29,26 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-        <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
+        <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: D0FAFF;">
             <children>
-                <Button fx:id="ThemKH" mnemonicParsing="false" onAction="#handleAddKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
-                    <graphic>
+                <Button fx:id="ThemKH" mnemonicParsing="false" onAction="#handleAddKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Thêm">
+                    <VBox.margin>
+                        <Insets bottom="15.0" top="200.0" />
+                    </VBox.margin>
+               <graphic>
                         <ImageView fitHeight="30.0" fitWidth="32.0">
                             <image>
                                 <Image url="@images/User_fill_add3.png" />
                             </image>
                         </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets bottom="15.0" top="200.0" />
-                    </VBox.margin>
+               </graphic>
                 </Button>
-                <Button fx:id="SuaKH" mnemonicParsing="false" onAction="#handleEditKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+                <Button fx:id="SuaKH" mnemonicParsing="false" onAction="#handleEditKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Sửa">
                     <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="XoaKH" mnemonicParsing="false" onAction="#handleDeleteKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+                <Button fx:id="XoaKH" mnemonicParsing="false" onAction="#handleDeleteKhachHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xoá">
                     <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                     </VBox.margin>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="640.0" prefWidth="740.0" spacing="15" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActNhanVienController">
+<VBox alignment="CENTER" prefHeight="640.0" prefWidth="580.0" spacing="15" style="-fx-background-color: E3FAE0;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActNhanVienController">
    <Label alignment="CENTER" prefHeight="40.0" prefWidth="740.0" text="Thêm nhân viên">
       <font>
          <Font name="System Bold" size="20.0" />
@@ -20,7 +20,7 @@
    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="740.0">
       <children>
          <Label prefWidth="110.0" text="Tài khoản" />
-         <TextField fx:id="txtTKNV" prefHeight="40.0" prefWidth="300.0" />
+         <TextField fx:id="txtTKNV" prefHeight="40.0" prefWidth="300.0" styleClass="text-input" />
       </children>
       <padding>
          <Insets left="40.0" />
@@ -29,7 +29,11 @@
    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0">
       <children>
          <Label prefWidth="110.0" text="Mật khẩu" />
-         <TextField fx:id="txtMK" prefHeight="40.0" prefWidth="300.0" />
+         <TextField fx:id="txtMK" prefHeight="40.0" prefWidth="300.0">
+            <styleClass>
+               <String fx:value="custom-textfield" />
+               <String fx:value="text-input" />
+            </styleClass></TextField>
       </children>
       <padding>
          <Insets left="40.0" />
@@ -39,7 +43,7 @@
       <children>
       
           <Label prefWidth="110.0" text="Tên NV:" />
-          <TextField fx:id="txtTenNV" prefHeight="40.0" prefWidth="300.0" />
+          <TextField fx:id="txtTenNV" prefHeight="40.0" prefWidth="300.0" styleClass="custom-textfield" />
       </children>
       <padding>
          <Insets left="40.0" />
@@ -66,7 +70,7 @@
       <children>
       
           <Label prefWidth="110.0" text="Số điện thoại:" />
-          <TextField fx:id="txtSDT" prefHeight="40.0" prefWidth="300.0" />
+          <TextField fx:id="txtSDT" prefHeight="40.0" prefWidth="300.0" styleClass="custom-textfield" />
       </children>
       <padding>
          <Insets left="40.0" />
@@ -76,7 +80,7 @@
       <children>
       
           <Label prefWidth="110.0" text="Email:" />
-          <TextField fx:id="txtEmail" prefHeight="40.0" prefWidth="300.0" />
+          <TextField fx:id="txtEmail" prefHeight="40.0" prefWidth="300.0" styleClass="custom-textfield" />
       </children>
       <padding>
          <Insets left="40.0" />
@@ -85,12 +89,12 @@
    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
       
-          <Button fx:id="btnAdd" onAction="#handleAddNhanVien" prefHeight="35.0" prefWidth="120.0" text="Thêm">
+          <Button fx:id="btnAdd" onAction="#handleAddNhanVien" prefHeight="35.0" prefWidth="120.0" styleClass="act-button" text="Thêm">
             <HBox.margin>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </HBox.margin>
          </Button>
-         <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" text="Huỷ">
+         <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" styleClass="act-button" text="Huỷ">
             <HBox.margin>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </HBox.margin>

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.QuanLyDonHangController">
+<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.QuanLyDonHangController">
     <children>
         <TableView fx:id="tableDonHang" layoutX="7.0" layoutY="178.0" prefHeight="646.0" prefWidth="593.0">
             <columns>
@@ -22,7 +22,7 @@
                 <TableColumn fx:id="colTenKH" prefWidth="128.77570343017578" text="Khách Hàng" />
                 <TableColumn fx:id="colTenNV" prefWidth="123.7242431640625" text="Nhân Viên" />
                 <TableColumn fx:id="colNgayTao" prefWidth="131.44857788085938" text="Ngày Tạo" />
-                <TableColumn fx:id="colTongTien" prefWidth="134.4659423828125" text="Tổng Tiền" />
+                <TableColumn fx:id="colTongTien" prefWidth="145.49996948242188" text="Tổng Tiền" />
             </columns>
         </TableView>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="980.0" style="-fx-background-color: #2D764F;" text="QUẢN LÝ ĐƠN HÀNG" textFill="WHITE">
@@ -30,7 +30,7 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-        <VBox alignment="TOP_CENTER" layoutX="606.0" layoutY="82.0" prefHeight="752.0" prefWidth="374.0" style="-fx-background-color: #990606;">
+        <VBox alignment="TOP_CENTER" layoutX="606.0" layoutY="82.0" prefHeight="752.0" prefWidth="374.0" style="-fx-background-color: D0FAFF;">
             <children>
             <TableView fx:id="tableChiTietDonHang" prefHeight="655.0" prefWidth="364.0">
               <columns>
@@ -46,12 +46,12 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                      <Button fx:id="btnReload" mnemonicParsing="false" onAction="#reloadAllData" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Tải lại">
+                      <Button fx:id="btnReload" mnemonicParsing="false" onAction="#reloadAllData" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Tải lại">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                       </Button>
-                  <Button fx:id="XoaDH1" mnemonicParsing="false" onAction="#deleteDonHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+                  <Button fx:id="XoaDH1" mnemonicParsing="false" onAction="#deleteDonHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xoá">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -65,7 +65,7 @@
                 <AnchorPane prefHeight="88.0" prefWidth="602.0">
                     <children>
                         <TextField fx:id="txtFind" layoutX="18.0" layoutY="8.0" prefHeight="37.0" prefWidth="513.0" promptText="Tìm kiếm đơn hàng theo tên khách hàng hoặc tên nhân viên..." style="-fx-border-radius: 100;" />
-                        <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="470.0" layoutY="11.0">
+                        <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="494.0" layoutY="11.0">
                             <image>
                                 <Image url="@images/Search_alt3.png" />
                             </image>
@@ -83,7 +83,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="lblTongHD" prefHeight="17.0" prefWidth="50.0" style="-fx-background-color: #ffeeee;" text="Label">
+                        <Label fx:id="lblTongHD" prefHeight="17.0" prefWidth="50.0" styleClass="custom-label">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
@@ -93,7 +93,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="lblDoanhThu" prefHeight="17.0" prefWidth="129.0" style="-fx-background-color: #ffeeee;" text="Label">
+                        <Label fx:id="lblDoanhThu" prefHeight="17.0" prefWidth="129.0" styleClass="custom-label">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

@@ -1,12 +1,57 @@
 .act-button{
-    -fx-border-radius: 20%;
+    -fx-border-radius: 20px;
     -fx-background-color: #2D764F;
     -fx-text-fill: white;
     -fx-font-size: 17px;
 }
-.find-button{
-    -fx-border-radius: 20%;
-    -fx-background-color: #2D764F;
-    -fx-text-fill: white;
-    -fx-font-size: 13px;
+.custom-textfield {
+    -fx-background-color: white;               /* Màu nền trắng */
+    -fx-border-color: #7f8c8d;                 /* Màu viền xám */
+    -fx-border-radius: 5px;                    /* Góc viền bo tròn */
+    -fx-border-width: 2px;                     /* Độ dày viền */
+    -fx-padding: 10px 15px;                    /* Padding bên trong */
+    -fx-font-size: 14px;                       /* Kích thước chữ */
+    -fx-text-fill: #2c3e50;                    /* Màu chữ */
+}
+
+/* Hiệu ứng khi người dùng focus vào TextField */
+.custom-textfield:focused {
+    -fx-border-color: #2D764F;                 /* Màu viền khi focus */
+    -fx-background-color: #ecf0f1;             /* Màu nền khi focus */
+}
+
+/* Hiệu ứng khi người dùng nhập vào TextField */
+.custom-textfield:disabled {
+    -fx-background-color: #ecf0f1;             /* Màu nền khi vô hiệu hóa */
+    -fx-border-color: #2D764F;                 /* Màu viền khi vô hiệu hóa */
+    -fx-text-fill: #95a5a6;                    /* Màu chữ khi vô hiệu hóa */
+}
+
+/* Label mặc định */
+.custom-label {
+    -fx-font-size: 16px;               /* Kích thước chữ */
+    -fx-text-fill: #2c3e50;            /* Màu chữ */
+    -fx-font-weight: bold;             /* Chữ đậm */
+    -fx-font-family: "Arial";          /* Font chữ */
+    -fx-background-color: transparent; /* Màu nền trong suốt */
+    -fx-padding: 5px 10px;             /* Padding xung quanh chữ */
+    -fx-border-color: transparent;    /* Viền trong suốt */
+}
+
+/* Label khi hover (di chuột lên) */
+.custom-label:hover {
+    -fx-text-fill: #3498db;            /* Màu chữ khi hover */
+    -fx-cursor: hand;                  /* Con trỏ thành tay */
+}
+
+/* Label với hiệu ứng khi được nhấn (pressed) */
+.custom-label:pressed {
+    -fx-text-fill: #2980b9;            /* Màu chữ khi nhấn */
+}
+
+/* Label với viền và nền khi focus */
+.custom-label:focused {
+    -fx-border-color: #3498db;         /* Viền màu xanh dương */
+    -fx-background-color: #ecf0f1;     /* Nền sáng */
+    -fx-text-fill: #2980b9;            /* Màu chữ khi focus */
 }

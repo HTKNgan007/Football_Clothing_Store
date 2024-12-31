@@ -59,7 +59,7 @@ public class HoaDonController {
   @FXML
   private TableColumn<ChiTietDonHang, Double> colGia;
   @FXML
-  private Text textThanhTien;
+  private Label lblThanhTien;
 
   // Giá của sản phẩm khi thêm sp right
   private double currentPrice = 0;
@@ -254,7 +254,7 @@ public class HoaDonController {
 
     // Hiển thị tổng tiền với định dạng 3 chữ số
     DecimalFormat formatter = new DecimalFormat("#,###");
-    textThanhTien.setText(formatter.format(tongTien) + " VNĐ");
+    lblThanhTien.setText(formatter.format(tongTien) + " VNĐ");
   }
 
   @FXML
@@ -358,7 +358,7 @@ public class HoaDonController {
     textFieldSDT.clear();
     lblMaKH.setText("N/A");
     lblTenKH.setText("Khách mới");
-    textThanhTien.setText("0 VNĐ");
+    lblThanhTien.setText("0 VNĐ");
 
     // Xóa danh sách sản phẩm trong TableView
     cthdList.clear();

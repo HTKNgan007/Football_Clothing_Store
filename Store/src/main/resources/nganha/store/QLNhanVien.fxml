@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.NhanVienController">
+<AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.NhanVienController">
    <children>
        <TableView fx:id="tblNhanVien" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
            <columns>
@@ -29,9 +29,9 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: #990606;">
+      <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: D0FAFF;">
          <children>
-            <Button fx:id="ThemNV" mnemonicParsing="false" onAction="#handleAddNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Thêm">
+            <Button fx:id="ThemNV" mnemonicParsing="false" onAction="#handleAddNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Thêm">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="32.0">
                         <image>
@@ -43,17 +43,17 @@
                   <Insets bottom="15.0" top="200.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="SuaNV" mnemonicParsing="false" onAction="#handleEditNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Sửa">
+            <Button fx:id="SuaNV" mnemonicParsing="false" onAction="#handleEditNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Sửa">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="XoaNV" mnemonicParsing="false" onAction="#handleDeleteNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xoá">
+            <Button fx:id="XoaNV" mnemonicParsing="false" onAction="#handleDeleteNhanVien" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xoá">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="ChiTietNV" mnemonicParsing="false" onAction="#handleViewDetail" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" stylesheets="@style.css" text="Xem chi tiết ">
+            <Button fx:id="ChiTietNV" mnemonicParsing="false" onAction="#handleViewDetail" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xem chi tiết ">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
