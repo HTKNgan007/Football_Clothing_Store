@@ -13,6 +13,7 @@ import nganha.store.Utils.DSUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -138,7 +139,9 @@ public class QuanLyDonHangController {
 
       tableDonHang.setItems(filteredList);
       lblTongHD.setText(String.valueOf(filteredList.size()));
-      lblDoanhThu.setText(String.format("%.2f", filteredList.stream().mapToDouble(DonHang::getTongTien).sum()));
+
+      DecimalFormat formatter = new DecimalFormat("#,###");
+      lblDoanhThu.setText(formatter.format(filteredList.stream().mapToDouble(DonHang::getTongTien).sum()));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -161,7 +164,9 @@ public class QuanLyDonHangController {
     // Cập nhật bảng và các nhãn
     tableDonHang.setItems(filteredList);
     lblTongHD.setText(String.valueOf(filteredList.size()));
-    lblDoanhThu.setText(String.format("%.2f", totalRevenue));
+    // Sử dụng DecimalFormat để định dạng giá tiền
+    DecimalFormat formatter = new DecimalFormat("#,###");
+    lblDoanhThu.setText(formatter.format(totalRevenue));
   }
 
   @FXML
