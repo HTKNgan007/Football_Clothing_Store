@@ -170,4 +170,18 @@ public class SanPhamDAL {
     }
     return null; // Trả về null nếu không tìm thấy sản phẩm
   }
+  // Cập nhật số lượng của sản phẩm khi thêm đơn hàng
+  public void capNhatSoLuong(int maSP, int soLuongBan) throws Exception {
+    Connection conn = DSUtils.DBConnect();
+    String sql = "UPDATE SanPham SET SoLuong = SoLuong - ? WHERE MaSP = ?";
+    PreparedStatement stmt = conn.prepareStatement(sql);
+    stmt.setInt(1, soLuongBan); // Số lượng cần giảm
+    stmt.setInt(2, maSP); // Mã sản phẩm
+    int rowsAffected = stmt.executeUpdate();
+    if (rowsAffected == 0) {
+      throw new Exception("Không tìm thấy sản phẩm với mã: " + maSP);
+    }
+    stmt.close();
+    conn.close();
+  }
 }

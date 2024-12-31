@@ -201,7 +201,7 @@ public class HoaDonController {
       updateTongTien();
 
     } catch (Exception e) {
-      showAlert(Alert.AlertType.ERROR, "Lỗi", "Lỗi khi thêm sản phẩm", e.getMessage());
+      showAlert(Alert.AlertType.ERROR, "Lỗi", "Lỗi khi thêm sản phẩm","Điền đầy đủ thông tin trước khi thêm");
     }
   }
 
@@ -328,6 +328,18 @@ public class HoaDonController {
     // Sử dụng BLL để thêm đơn hàng và chi tiết đơn hàng
     donHangBLL.themDonHang(donHang, cthdList);
 
+    // Cập nhật số lượng sản phẩm trong CSDL
+    for (ChiTietDonHang chiTiet : cthdList) {
+      int maSP = chiTiet.getMaSP();
+      int soLuongBan = chiTiet.getSoLuong();
+      try {
+        sanPhamBLL.capNhatSoLuong(maSP, soLuongBan);  // Cập nhật số lượng trong CSDL
+      } catch (Exception e) {
+        showAlert(Alert.AlertType.ERROR, "Lỗi", "Cập nhật số lượng sản phẩm thất bại", "Vui lòng kiểm tra lại hệ thống.");
+        return;  // Dừng lại nếu cập nhật thất bại
+      }
+    }
+
     cthdList.clear();
     tableViewCTHD.refresh();
 
@@ -340,7 +352,7 @@ public class HoaDonController {
     comboBoxTenSP.setValue(null);
     comboBoxMau.setValue(null);
     comboBoxSize.setValue(null);
-    textFieldSoluong.setText("1");
+    textFieldSoluong.clear();
     lblMaSP.setText("N/A");
     lblGiaSP.setText("0 VNĐ");
     textFieldSDT.clear();

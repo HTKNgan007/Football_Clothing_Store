@@ -19,6 +19,14 @@ public class ChiTietDonHang {
     this.mauSac = mauSac;
   }
 
+  public ChiTietDonHang(int maCTDH, int maDH, int maSP, int soLuong, double gia) {
+    this.maCTDH = maCTDH;
+    this.soLuong = soLuong;
+    this.gia = gia;
+    this.maDH = maDH;
+    this.maSP = maSP;
+  }
+
   public ChiTietDonHang(int maCTDH, String tenSP, int soLuong, double gia, String size, String mauSac, int maDH, int maSP) {
     this.maCTDH = maCTDH;
     this.tenSP = tenSP;

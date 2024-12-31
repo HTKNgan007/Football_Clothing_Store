@@ -84,4 +84,11 @@ public class SanPhamBLL {
       return null; // Trả về null nếu có lỗi
     }
   }
+
+  public void capNhatSoLuong(int maSP, int soLuongBan) throws Exception {
+    if (soLuongBan <= 0) {
+      throw new IllegalArgumentException("Số lượng bán phải lớn hơn 0");
+    }
+    sanPhamDAL.capNhatSoLuong(maSP, soLuongBan);
+  }
 }

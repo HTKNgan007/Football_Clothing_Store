@@ -22,14 +22,14 @@ public class DonHangBLL {
     if (maDH != -1) {
       // Thêm chi tiết đơn hàng
       for (ChiTietDonHang cthd : cthdList) {
-        ChiTietDonHangCSDL chiTietDonHangCSDL = new ChiTietDonHangCSDL(
+        ChiTietDonHang chiTietDonHang = new ChiTietDonHang(
             0, // Mã chi tiết đơn hàng tự động tăng
             maDH, // Mã đơn hàng
             cthd.getMaSP(), // Mã sản phẩm
             cthd.getSoLuong(), // Số lượng
             cthd.getGia() // Giá
         );
-        chiTietDonHangDAL.themChiTietDonHang(chiTietDonHangCSDL); // Thêm vào CSDL
+        chiTietDonHangDAL.themChiTietDonHang(chiTietDonHang); // Thêm vào CSDL
       }
     }
     return maDH;

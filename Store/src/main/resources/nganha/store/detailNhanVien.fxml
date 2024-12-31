@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="640.0" prefWidth="740.0" spacing="15" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActNhanVienController">
+<VBox alignment="CENTER" prefHeight="640.0" prefWidth="580.0" spacing="15" style="-fx-background-color: E3FAE0;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.ActNhanVienController">
     <Label alignment="CENTER" prefHeight="60.0" prefWidth="740.0" text="Thông tin chi tiết">
         <font>
             <Font name="System Bold" size="20.0" />
@@ -91,10 +91,13 @@
     </HBox>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
         <children>
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" text="Quay lại">
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleHuy" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #2D764F;" text="Quay lại" textFill="WHITE">
                 <HBox.margin>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </HBox.margin>
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
             </Button>
         </children>
     </HBox>

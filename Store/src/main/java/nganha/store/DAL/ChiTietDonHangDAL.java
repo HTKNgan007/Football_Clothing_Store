@@ -1,7 +1,6 @@
 package nganha.store.DAL;
 
 import nganha.store.Model.ChiTietDonHang;
-import nganha.store.Model.ChiTietDonHangCSDL;
 import nganha.store.Utils.DSUtils;
 
 import java.sql.*;
@@ -54,7 +53,7 @@ public class ChiTietDonHangDAL {
 //      e.printStackTrace();
 //    }
 //  }
-public void themChiTietDonHang(ChiTietDonHangCSDL chiTietDonHangCSDL) {
+public void themChiTietDonHang(ChiTietDonHang chiTietDonHangCSDL) {
   String sql = "INSERT INTO ChiTietDonHang (maDH, maSP, soLuong, gia) VALUES (?, ?, ?, ?)";
   try (Connection connection = DSUtils.DBConnect();
        PreparedStatement ps = connection.prepareStatement(sql)) {
