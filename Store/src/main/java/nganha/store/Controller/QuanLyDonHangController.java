@@ -13,7 +13,9 @@ import nganha.store.Utils.DSUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuanLyDonHangController {
 
@@ -48,16 +50,26 @@ public class QuanLyDonHangController {
 
 
   private ObservableList<DonHang> donHangList = FXCollections.observableArrayList();
+  // Danh sách tạm sau khi lọc
+  private ObservableList<DonHang> filteredList = FXCollections.observableArrayList();
   private ObservableList<ChiTietDonHang> chiTietDonHangList = FXCollections.observableArrayList();
 
   private DonHangBLL donHangBLL = new DonHangBLL();
   private ChiTietDonHangBLL chiTietDonHangBLL = new ChiTietDonHangBLL();
 
-  @FXML
-  private TextField txtFind;
+  private LocalDate selectedDate = null; // Biến để lưu ngày được chọn
+  private String searchKeyword = ""; // Biến để lưu từ khóa tìm kiếm
 
   @FXML
+  private TextField txtFind;
+  @FXML
   private Button btnFind;
+  @FXML
+  private DatePicker DPickerThongKe; // DatePicker để chọn ngày
+  @FXML
+  private Label lblTongHD; // Hiển thị tổng số hóa đơn
+  @FXML
+  private Label lblDoanhThu; // Hiển thị tổng doanh thu
 
 
   @FXML
@@ -77,22 +89,19 @@ public class QuanLyDonHangController {
     colMau.setCellValueFactory(new PropertyValueFactory<>("mauSac"));
 
     // Load dữ liệu
-    try {
-      List<DonHang> donHangData = donHangBLL.getAllDonHang();
+    loadAllDonHang();
 
-      // Thay thế tên khách hàng null bằng một giá trị mặc định
-      for (DonHang donHang : donHangData) {
-        if (donHang.getTenKH() == null || donHang.getTenKH().trim().isEmpty()) {
-          donHang.setTenKH("Admin");
-        }
-      }
+    // Lắng nghe sự kiện chọn ngày
+    DPickerThongKe.valueProperty().addListener((obs, oldDate, newDate) -> {
+      selectedDate = newDate;
+      applyFilters();
+    });
 
-      // Thêm các đơn hàng vào danh sách hiển thị
-      donHangList.addAll(donHangData);
-      tableDonHang.setItems(donHangList);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    // Lắng nghe sự kiện tìm kiếm
+    txtFind.textProperty().addListener((obs, oldText, newText) -> {
+      searchKeyword = newText.toLowerCase().trim();
+      applyFilters();
+    });
 
     // Lắng nghe sự kiện chọn dòng trong bảng DonHang
     tableDonHang.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -109,23 +118,52 @@ public class QuanLyDonHangController {
   }
 
   @FXML
-  private void findDonHang() {
-    String keyword = txtFind.getText().toLowerCase().trim();
+  private void loadAllDonHang() {
+    // Xóa bộ lọc và load lại toàn bộ dữ liệu
+    try {
+      donHangList.clear();
+      filteredList.clear();
+      selectedDate = null;
+      searchKeyword = "";
 
-    if (keyword.isEmpty()) {
-      // Nếu từ khoá trống, hiển thị lại tất cả đơn hàng
-      tableDonHang.setItems(donHangList);
-    } else {
-      // Lọc danh sách dựa trên tên khách hàng hoặc nhân viên
-      ObservableList<DonHang> filteredList = FXCollections.observableArrayList();
-      for (DonHang donHang : donHangList) {
-        if (donHang.getTenKH().toLowerCase().contains(keyword) ||
-            donHang.getTenNV().toLowerCase().contains(keyword)) {
-          filteredList.add(donHang);
+      List<DonHang> donHangData = donHangBLL.getAllDonHang();
+
+      // Thay thế tên khách hàng null bằng giá trị mặc định
+      for (DonHang donHang : donHangData) {
+        if (donHang.getTenKH() == null || donHang.getTenKH().trim().isEmpty()) {
+          donHang.setTenKH("Admin");
         }
       }
+
+      donHangList.addAll(donHangData);
+      filteredList.addAll(donHangData);
+
       tableDonHang.setItems(filteredList);
+      lblTongHD.setText(String.valueOf(filteredList.size()));
+      lblDoanhThu.setText(String.format("%.2f", filteredList.stream().mapToDouble(DonHang::getTongTien).sum()));
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
+
+  private void applyFilters() {
+    filteredList.clear();
+    double totalRevenue = 0.0;
+
+    // Áp dụng lọc
+    List<DonHang> result = donHangList.stream()
+        .filter(donHang -> (selectedDate == null || donHang.getNgayTao().toLocalDateTime().toLocalDate().equals(selectedDate)) &&
+            (searchKeyword.isEmpty() || donHang.getTenKH().toLowerCase().contains(searchKeyword) ||
+                donHang.getTenNV().toLowerCase().contains(searchKeyword)))
+        .collect(Collectors.toList());
+
+    filteredList.addAll(result);
+    totalRevenue = result.stream().mapToDouble(DonHang::getTongTien).sum();
+
+    // Cập nhật bảng và các nhãn
+    tableDonHang.setItems(filteredList);
+    lblTongHD.setText(String.valueOf(filteredList.size()));
+    lblDoanhThu.setText(String.format("%.2f", totalRevenue));
   }
 
   @FXML
@@ -184,5 +222,12 @@ public class QuanLyDonHangController {
         }
       });
     }
+  }
+
+  @FXML
+  private void reloadAllData() {
+    loadAllDonHang(); // Gọi lại phương thức load toàn bộ dữ liệu
+    DPickerThongKe.setValue(null); // Xóa ngày đã chọn trong DatePicker
+    txtFind.clear(); // Xóa nội dung tìm kiếm
   }
 }
