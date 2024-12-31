@@ -125,7 +125,7 @@
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
                 </Label>
-                <Button layoutX="20.0" layoutY="643.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="260.0" text="Huỷ">
+                <Button fx:id="btnHuy" layoutX="20.0" layoutY="643.0" mnemonicParsing="false" onAction="#handleBtnHuy" prefHeight="54.0" prefWidth="260.0" text="Huỷ">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Button>

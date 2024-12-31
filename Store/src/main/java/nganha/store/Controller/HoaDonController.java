@@ -8,8 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import nganha.store.BLL.DonHangBLL;
 import nganha.store.BLL.SanPhamBLL;
-import nganha.store.DAL.ChiTietDonHangDAL;
-import nganha.store.DAL.DonHangDAL;
 import nganha.store.Model.*;
 
 import java.sql.Timestamp;
@@ -203,7 +201,7 @@ public class HoaDonController {
       updateTongTien();
 
     } catch (Exception e) {
-      System.out.println("Lỗi khi thêm sản phẩm: " + e.getMessage());
+      showAlert(Alert.AlertType.ERROR, "Lỗi", "Lỗi khi thêm sản phẩm", e.getMessage());
     }
   }
 
@@ -214,7 +212,7 @@ public class HoaDonController {
       cthdList.remove(selectedCTHD);
       updateTongTien();
     } else {
-      System.out.println("Không có sản phẩm nào được chọn để xóa!");
+      showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Không có sản phẩm được chọn", "Vui lòng chọn một sản phẩm để xóa.");
     }
   }
 
@@ -282,21 +280,19 @@ public class HoaDonController {
   @FXML
   private void handleThanhToan() {
     if (cthdList.isEmpty()) {
-      Alert alert = new Alert(Alert.AlertType.WARNING);
-      alert.setTitle("Cảnh báo");
-      alert.setHeaderText("Chưa có sản phẩm nào trong hóa đơn");
-      alert.setContentText("Vui lòng thêm sản phẩm trước khi thanh toán.");
-      alert.showAndWait();
+      showAlert(Alert.AlertType.WARNING,
+          "Cảnh báo",
+          "Chưa có sản phẩm nào trong hóa đơn",
+          "Vui lòng thêm sản phẩm trước khi thanh toán.");
       return;
     }
 
     // Kiểm tra nếu currentNhanVien là null
     if (currentNhanVien == null) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Lỗi");
-      alert.setHeaderText("Chưa đăng nhập");
-      alert.setContentText("Vui lòng đăng nhập để thực hiện thanh toán.");
-      alert.showAndWait();
+      showAlert(Alert.AlertType.ERROR,
+          "Lỗi",
+          "Chưa đăng nhập",
+          "Vui lòng đăng nhập để thực hiện thanh toán.");
       return;
     }
 
@@ -307,7 +303,7 @@ public class HoaDonController {
       try {
         maKH = Integer.parseInt(maKHText);  // Chuyển đổi thành int
       } catch (NumberFormatException e) {
-        System.out.println("Mã khách hàng không hợp lệ!");
+        showAlert(Alert.AlertType.ERROR, "Lỗi", "Mã khách hàng không hợp lệ", "Vui lòng kiểm tra lại mã khách hàng.");
         return;  // Nếu mã khách hàng không hợp lệ, dừng lại
       }
     }
@@ -325,7 +321,7 @@ public class HoaDonController {
     if (maKH != -1) {
       donHang.setMaKH(maKH);
     } else {
-      System.out.println("Không có mã khách hàng hợp lệ.");
+      showAlert(Alert.AlertType.WARNING, "Cảnh báo", "Không có mã khách hàng hợp lệ", "Vui lòng kiểm tra thông tin khách hàng trước khi thanh toán.");
       return;
     }
 
@@ -335,11 +331,33 @@ public class HoaDonController {
     cthdList.clear();
     tableViewCTHD.refresh();
 
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Thanh toán thành công");
-    alert.setHeaderText(null);
-    alert.setContentText("Hóa đơn đã được tạo thành công!");
-    alert.showAndWait();
+    showAlert(Alert.AlertType.INFORMATION,"Thanh toán thành công","","Hóa đơn đã được tạo thành công!");
   }
 
+  @FXML
+  private void handleBtnHuy() {
+    // Đặt lại tất cả các ComboBox, TextField, Label và danh sách TableView
+    comboBoxTenSP.setValue(null);
+    comboBoxMau.setValue(null);
+    comboBoxSize.setValue(null);
+    textFieldSoluong.setText("1");
+    lblMaSP.setText("N/A");
+    lblGiaSP.setText("0 VNĐ");
+    textFieldSDT.clear();
+    lblMaKH.setText("N/A");
+    lblTenKH.setText("Khách mới");
+    textThanhTien.setText("0 VNĐ");
+
+    // Xóa danh sách sản phẩm trong TableView
+    cthdList.clear();
+    tableViewCTHD.refresh();
+  }
+
+  private void showAlert(Alert.AlertType alertType, String title, String header, String content) {
+    Alert alert = new Alert(alertType);
+    alert.setTitle(title);
+    alert.setHeaderText(header);
+    alert.setContentText(content);
+    alert.showAndWait();
+  }
 }
