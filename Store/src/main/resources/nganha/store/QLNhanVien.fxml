@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="832.0" prefWidth="980.0" stylesheets="style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.NhanVienController">
    <children>
-       <TableView fx:id="tblEmployees" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
+       <TableView fx:id="tblNhanVien" layoutX="11.0" layoutY="176.0" prefHeight="642.0" prefWidth="759.0">
            <columns>
                <TableColumn fx:id="colMaNV" prefWidth="73" text="Mã NV" />
                <TableColumn fx:id="colTenNV" prefWidth="204" text="Tên NV" />
@@ -75,7 +75,6 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </AnchorPane>
-            <Button fx:id="btnFind" mnemonicParsing="false" onAction="#handleSearchNhanVien" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
          </children>
       </HBox>
    </children>

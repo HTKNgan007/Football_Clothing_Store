@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class KhachHangController {
   @FXML
@@ -32,7 +33,10 @@ public class KhachHangController {
   private TableColumn<KhachHang, String> colEmail;
 
   @FXML
-  TextField txtFind;
+  private TextField txtFind;
+  private String searchKeyword = "";
+  private ObservableList<KhachHang> khachHangList = FXCollections.observableArrayList();
+  private ObservableList<KhachHang> filteredList = FXCollections.observableArrayList();
 
   private final KhachHangBLL khachHangBLL = new KhachHangBLL();
 
@@ -45,21 +49,35 @@ public class KhachHangController {
     colAddress.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
     colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-    // Lấy danh sách khách hàng từ BLL và hiển thị trên TableView
+    // Load dữ liệu khách hàng
     try {
-      loadKhachHangData();
+      loadAllKhachHang();
     } catch (SQLException | ClassNotFoundException e) {
       e.printStackTrace();
     }
+
+    // Lắng nghe sự thay đổi trong TextField tìm kiếm
+    txtFind.textProperty().addListener((observable, oldValue, newValue) -> {
+      searchKeyword = newValue.toLowerCase().trim();
+      applyFilters(); // Gọi hàm áp dụng bộ lọc
+    });
   }
-  private void loadKhachHangData() throws SQLException, ClassNotFoundException {
-    List<KhachHang> khachHangList = khachHangBLL.getAllKhachHang();
-    if (khachHangList != null) {
-      ObservableList<KhachHang> khachHangObservableList = FXCollections.observableArrayList(khachHangList);
-      tblKhachHang.setItems(khachHangObservableList);
-    } else {
-      System.out.println("Không thể lấy dữ liệu khách hàng!");
+  private void loadAllKhachHang() throws SQLException, ClassNotFoundException {
+    // Lấy toàn bộ danh sách khách hàng từ BLL
+    List<KhachHang> khachHangData = khachHangBLL.getAllKhachHang();
+    khachHangList.clear();
+    filteredList.clear();
+
+    // Kiểm tra và xử lý dữ liệu null hoặc trống
+    for (KhachHang kh : khachHangData) {
+      if (kh.getTenKH() == null || kh.getTenKH().trim().isEmpty()) {
+        kh.setTenKH("Không xác định");
+      }
     }
+
+    khachHangList.addAll(khachHangData);
+    filteredList.addAll(khachHangData);
+    tblKhachHang.setItems(filteredList);
   }
 
   @FXML
@@ -76,6 +94,19 @@ public class KhachHangController {
       e.printStackTrace();
     }
   }
+  private void applyFilters() {
+    filteredList.clear();
+
+    // Áp dụng bộ lọc theo từ khóa tìm kiếm
+    List<KhachHang> result = khachHangList.stream()
+        .filter(sp -> (sp.getTenKH() != null && sp.getTenKH().toLowerCase().contains(searchKeyword)) ||
+            (String.valueOf(sp.getMaKH()).contains(searchKeyword))) // Convert int to String
+        .collect(Collectors.toList());
+
+    filteredList.addAll(result);
+    tblKhachHang.setItems(filteredList);
+  }
+
 
   @FXML
   public void handleEditKhachHang() {
@@ -131,30 +162,32 @@ public class KhachHangController {
     }
   }
 
-  @FXML
-  public void handleSearchKhachHang() {
-    String keyword = txtFind.getText().trim().toLowerCase();
-
-    try {
-      List<KhachHang> khachHangList = khachHangBLL.getAllKhachHang();
-
-      if (!keyword.isEmpty()) {
-        khachHangList = khachHangList.stream()
-            .filter(sp -> sp.getTenKH().toLowerCase().contains(keyword))
-            .toList();
-      }
-
-      ObservableList<KhachHang> khachHangObservableList = FXCollections.observableArrayList(khachHangList);
-      tblKhachHang.setItems(khachHangObservableList);
-
-      if (khachHangList.isEmpty()) {
-        showAlert("Thông báo", "Không tìm thấy khách hàng nào phù hợp.");
-      }
-    } catch (SQLException | ClassNotFoundException e) {
-      e.printStackTrace();
-      showAlert("Lỗi", "Có lỗi xảy ra khi tìm kiếm: " + e.getMessage());
-    }
-  }
+//  private void SearchKhachHang(String keyword) {
+//    keyword = keyword.trim().toLowerCase();
+//
+//    try {
+//      List<KhachHang> khachHangList = khachHangBLL.getAllKhachHang();
+//      if (khachHangList == null || khachHangList.isEmpty()) {
+//        System.out.println("Danh sách khách hàng rỗng hoặc null");
+//        tblKhachHang.setItems(FXCollections.observableArrayList()); // Xóa dữ liệu trên bảng nếu không có dữ liệu
+//        return;
+//      }
+//
+//      // Áp dụng lọc
+//      List<KhachHang> filteredList = khachHangList.stream()
+//          .filter(sp -> (sp.getTenKH() != null && sp.getTenKH().toLowerCase().contains(keyword)) ||
+//              (sp.getMaKH() != null && sp.getMaKH().toLowerCase().contains(keyword)))
+//          .collect(Collectors.toList());
+//
+//      // Hiển thị kết quả
+//      ObservableList<KhachHang> khachHangObservableList = FXCollections.observableArrayList(filteredList);
+//      tblKhachHang.setItems(khachHangObservableList);
+//
+//    } catch (SQLException | ClassNotFoundException e) {
+//      e.printStackTrace();
+//      showAlert("Lỗi", "Có lỗi xảy ra khi tìm kiếm: " + e.getMessage());
+//    }
+//  }
 
   private void showAlert(String title, String content) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);

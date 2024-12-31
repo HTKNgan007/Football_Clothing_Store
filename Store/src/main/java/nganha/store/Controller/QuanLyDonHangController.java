@@ -63,8 +63,6 @@ public class QuanLyDonHangController {
   @FXML
   private TextField txtFind;
   @FXML
-  private Button btnFind;
-  @FXML
   private DatePicker DPickerThongKe; // DatePicker để chọn ngày
   @FXML
   private Label lblTongHD; // Hiển thị tổng số hóa đơn

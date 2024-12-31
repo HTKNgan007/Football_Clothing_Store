@@ -11,12 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import nganha.store.BLL.NhanVienBLL;
 import nganha.store.Model.NhanVien;
-import nganha.store.Utils.DSUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class NhanVienController {
 
@@ -27,7 +27,7 @@ public class NhanVienController {
   private TextField txtFind;
 
   @FXML
-  private TableView<NhanVien> tblEmployees;
+  private TableView<NhanVien> tblNhanVien;
 
   @FXML
   private TableColumn<NhanVien, Integer> colMaNV;
@@ -44,6 +44,9 @@ public class NhanVienController {
   @FXML
   private TableColumn<NhanVien, String> colEmail;
 
+  private String searchKeyword = "";
+  private ObservableList<NhanVien> nhanVienList = FXCollections.observableArrayList();
+  private ObservableList<NhanVien> filteredList = FXCollections.observableArrayList();
   private final NhanVienBLL nhanVienBLL;
 
   public NhanVienController() {
@@ -59,27 +62,49 @@ public class NhanVienController {
     colPhone.setCellValueFactory(new PropertyValueFactory<>("SDT"));
     colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-    // Lấy dữ liệu từ BLL và hiển thị lên bảng
+    // Load dữ liệu nhân viên
     try {
-      loadNhanVienData();
-    } catch (SQLException e) {
+      loadAllNhanVien();
+    } catch (SQLException | ClassNotFoundException e) {
       e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
     }
+
+    // Lắng nghe sự thay đổi trong TextField tìm kiếm
+    txtFind.textProperty().addListener((observable, oldValue, newValue) -> {
+      searchKeyword = newValue.toLowerCase().trim();
+      applyFilters(); // Gọi hàm áp dụng bộ lọc
+    });
   }
 
-  private void loadNhanVienData() throws SQLException, ClassNotFoundException {
-    // Lấy danh sách nhân viên từ BLL
-    List<NhanVien> listNhanVien = nhanVienBLL.getAllNhanVien();
+  private void loadAllNhanVien() throws SQLException, ClassNotFoundException {
+    // Lấy toàn bộ danh sách nhân viên từ BLL
+    List<NhanVien> nhanVienData = nhanVienBLL.getAllNhanVien();
+    nhanVienList.clear();
+    filteredList.clear();
 
-    // Kiểm tra danh sách không null và tạo ObservableList
-    if (listNhanVien != null) {
-      ObservableList<NhanVien> nhanVienObservableList = FXCollections.observableArrayList(listNhanVien);
-      tblEmployees.setItems(nhanVienObservableList);
-    } else {
-      System.out.println("Không thể lấy dữ liệu nhân viên!");
+    // Kiểm tra và xử lý dữ liệu null hoặc trống
+    for (NhanVien nv : nhanVienData) {
+      if (nv.getTenNV() == null || nv.getTenNV().trim().isEmpty()) {
+        nv.setTenNV("Không xác định");
+      }
     }
+
+    nhanVienList.addAll(nhanVienData);
+    filteredList.addAll(nhanVienData);
+    tblNhanVien.setItems(filteredList);
+  }
+
+  private void applyFilters() {
+    filteredList.clear();
+
+    // Áp dụng bộ lọc theo từ khóa tìm kiếm
+    List<NhanVien> result = nhanVienList.stream()
+        .filter(nv -> (nv.getTenNV() != null && nv.getTenNV().toLowerCase().contains(searchKeyword)) ||
+            (String.valueOf(nv.getMaNV()).contains(searchKeyword)))
+        .collect(Collectors.toList());
+
+    filteredList.addAll(result);
+    tblNhanVien.setItems(filteredList);
   }
 
   @FXML
@@ -101,7 +126,7 @@ public class NhanVienController {
 
   @FXML
   private void handleEditNhanVien() {
-    NhanVien selectedNhanVien = tblEmployees.getSelectionModel().getSelectedItem();
+    NhanVien selectedNhanVien = tblNhanVien.getSelectionModel().getSelectedItem();
 
     if (selectedNhanVien == null) {
       showAlert("Lỗi", "Vui lòng chọn một nhân viên để chỉnh sửa!");
@@ -131,7 +156,7 @@ public class NhanVienController {
 
   @FXML
   private void handleDeleteNhanVien() {
-    NhanVien selectedNhanVien = tblEmployees.getSelectionModel().getSelectedItem();
+    NhanVien selectedNhanVien = tblNhanVien.getSelectionModel().getSelectedItem();
 
     if (selectedNhanVien != null) {
       // Hiển thị hộp thoại xác nhận
@@ -147,7 +172,7 @@ public class NhanVienController {
         // Nếu người dùng nhấn "OK", tiến hành xoá
         boolean success = nhanVienBLL.deleteNhanVien(selectedNhanVien.getMaNV());
         if (success) {
-          tblEmployees.getItems().remove(selectedNhanVien);
+          tblNhanVien.getItems().remove(selectedNhanVien);
           showAlert("Thành công", "Xoá nhân viên thành công.");
         } else {
           showAlert("Lỗi", "Không thể xoá nhân viên. Vui lòng thử lại.");
@@ -164,7 +189,7 @@ public class NhanVienController {
   @FXML
   private void handleViewDetail() {
     // Lấy nhân viên được chọn từ TableView
-    NhanVien selectedNhanVien = tblEmployees.getSelectionModel().getSelectedItem();
+    NhanVien selectedNhanVien = tblNhanVien.getSelectionModel().getSelectedItem();
 
     if (selectedNhanVien != null) {
       try {
@@ -189,36 +214,6 @@ public class NhanVienController {
       }
     } else {
       showAlert("Cảnh báo", "Vui lòng chọn một nhân viên.");
-    }
-  }
-
-  @FXML
-  private void handleSearchNhanVien() {
-    // Lấy giá trị từ ô tìm kiếm
-    String keyword = txtFind.getText().trim().toLowerCase();
-
-    try {
-      // Lấy danh sách nhân viên từ BLL
-      List<NhanVien> listNhanVien = nhanVienBLL.getAllNhanVien();
-
-      // Lọc danh sách nếu có từ khóa tìm kiếm
-      if (!keyword.isEmpty()) {
-        listNhanVien = listNhanVien.stream()
-            .filter(nv -> nv.getTenNV().toLowerCase().contains(keyword))
-            .toList();
-      }
-
-      // Chuyển danh sách thành ObservableList và hiển thị trên bảng
-      ObservableList<NhanVien> nhanVienObservableList = FXCollections.observableArrayList(listNhanVien);
-      tblEmployees.setItems(nhanVienObservableList);
-
-      // Thông báo nếu không tìm thấy nhân viên nào
-      if (listNhanVien.isEmpty()) {
-        showAlert("Thông báo", "Không tìm thấy nhân viên nào phù hợp.");
-      }
-    } catch (SQLException | ClassNotFoundException e) {
-      e.printStackTrace();
-      showAlert("Lỗi", "Có lỗi xảy ra khi tìm kiếm: " + e.getMessage());
     }
   }
   private void showAlert(String title, String content) {

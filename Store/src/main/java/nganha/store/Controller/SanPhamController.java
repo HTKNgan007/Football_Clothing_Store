@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class SanPhamController {
   @FXML
@@ -34,6 +35,9 @@ public class SanPhamController {
   private TableColumn<SanPham, String> colMauSac;
 
   @FXML TextField txtFind;
+  private String searchKeyword = "";
+  private ObservableList<SanPham> sanPhamList = FXCollections.observableArrayList();
+  private ObservableList<SanPham> filteredList = FXCollections.observableArrayList();
 
   private final SanPhamBLL sanPhamBLL = new SanPhamBLL();
 
@@ -47,21 +51,48 @@ public class SanPhamController {
     colSize.setCellValueFactory(new PropertyValueFactory<>("size"));
     colMauSac.setCellValueFactory(new PropertyValueFactory<>("mauSac"));
 
-    // Lấy danh sách sản phẩm từ BLL và hiển thị trên TableView
+    // Load dữ liệu sản phẩm
     try {
-      loadSanPhamData();
+      loadAllSanPham();
     } catch (SQLException | ClassNotFoundException e) {
       e.printStackTrace();
     }
+
+    // Lắng nghe sự thay đổi trong TextField tìm kiếm
+    txtFind.textProperty().addListener((observable, oldValue, newValue) -> {
+      searchKeyword = newValue.toLowerCase().trim();
+      applyFilters(); // Gọi hàm áp dụng bộ lọc
+    });
   }
-  private void loadSanPhamData() throws SQLException, ClassNotFoundException {
-    List<SanPham> sanPhamList = sanPhamBLL.getAllSanPham();
-    if (sanPhamList != null) {
-      ObservableList<SanPham> sanPhamObservableList = FXCollections.observableArrayList(sanPhamList);
-      tblSanPham.setItems(sanPhamObservableList);
-    } else {
-      System.out.println("Không thể lấy dữ liệu sản phẩm!");
+  private void loadAllSanPham() throws SQLException, ClassNotFoundException {
+    // Lấy toàn bộ danh sách sản phẩm từ BLL
+    List<SanPham> sanPhamData = sanPhamBLL.getAllSanPham();
+    sanPhamList.clear();
+    filteredList.clear();
+
+    // Kiểm tra và xử lý dữ liệu null hoặc trống
+    for (SanPham sp : sanPhamData) {
+      if (sp.getTenSP() == null || sp.getTenSP().trim().isEmpty()) {
+        sp.setTenSP("Không xác định");
+      }
     }
+
+    sanPhamList.addAll(sanPhamData);
+    filteredList.addAll(sanPhamData);
+    tblSanPham.setItems(filteredList);
+  }
+
+  private void applyFilters() {
+    filteredList.clear();
+
+    // Áp dụng bộ lọc theo từ khóa tìm kiếm
+    List<SanPham> result = sanPhamList.stream()
+        .filter(sp -> (sp.getTenSP() != null && sp.getTenSP().toLowerCase().contains(searchKeyword)) ||
+            (String.valueOf(sp.getMaSP()).contains(searchKeyword))) // Convert int to String
+        .collect(Collectors.toList());
+
+    filteredList.addAll(result);
+    tblSanPham.setItems(filteredList);
   }
 
   @FXML

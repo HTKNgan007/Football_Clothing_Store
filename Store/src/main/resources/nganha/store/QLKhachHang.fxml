@@ -70,7 +70,6 @@
                         <Insets right="20.0" />
                     </HBox.margin>
                 </AnchorPane>
-                <Button fx:id="btnFind" mnemonicParsing="false" onAction="#handleSearchKhachHang" styleClass="find-button" stylesheets="@style.css" text="Tìm" />
             </children>
         </HBox>
     </children>
