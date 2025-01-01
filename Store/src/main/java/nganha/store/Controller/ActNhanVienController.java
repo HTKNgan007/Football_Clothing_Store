@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import nganha.store.BLL.NhanVienBLL;
 import nganha.store.Model.NhanVien;
+import nganha.store.Model.Role;
 import nganha.store.Utils.FormUtils;
 
 public class ActNhanVienController {
@@ -89,7 +90,7 @@ public class ActNhanVienController {
       }
 
       // Cập nhật vai trò
-      currentNhanVien.setRole(NhanVien.Role.valueOf(cbRole.getValue().toUpperCase()));
+      currentNhanVien.setRole(Role.valueOf(cbRole.getValue().toUpperCase()));
 
       // Nếu tài khoản không rỗng, cập nhật tài khoản
       String username = txtTKNV.getText();
@@ -137,7 +138,7 @@ public class ActNhanVienController {
     }
 
     // Chuyển role từ chuỗi thành Enum
-    NhanVien.Role roleEnum = NhanVien.Role.valueOf(role.toUpperCase());
+    Role roleEnum = Role.valueOf(role.toUpperCase());
 
     // Tạo đối tượng NhanVien mới và gọi BLL để thêm nhân viên
     NhanVien nhanVien = new NhanVien(0, tenNV, sdt, taiKhoan, matKhau, roleEnum, email);

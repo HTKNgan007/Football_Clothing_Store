@@ -51,7 +51,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                       </Button>
-                  <Button fx:id="XoaDH1" mnemonicParsing="false" onAction="#deleteDonHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xoá">
+                  <Button fx:id="btnXoaHD" mnemonicParsing="false" onAction="#deleteDonHang" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xoá">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

@@ -1,12 +1,6 @@
 package nganha.store.Model;
 
 public class NhanVien {
-  public void setRole(nganha.store.Model.Role role) {
-  }
-
-  public enum Role {
-    ADMIN, STAFF
-  }
   private int maNV;
   private String tenNV;
   private String SDT;

@@ -34,22 +34,22 @@
          </TableView>
       <VBox alignment="TOP_CENTER" layoutX="782.0" layoutY="82.0" prefHeight="752.0" prefWidth="198.0" style="-fx-background-color: D0FAFF;">
          <children>
-            <Button fx:id="ThemNV" mnemonicParsing="false" onAction="#handleAddSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Thêm">
+            <Button fx:id="btnThemSP" mnemonicParsing="false" onAction="#handleAddSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Thêm">
                <VBox.margin>
                   <Insets bottom="15.0" top="200.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="SuaNV" mnemonicParsing="false" onAction="#handleEditSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Sửa">
+            <Button fx:id="btnSuaSP" mnemonicParsing="false" onAction="#handleEditSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Sửa">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="XoaNV" mnemonicParsing="false" onAction="#handleDeleteSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xoá">
+            <Button fx:id="btnXoaSP" mnemonicParsing="false" onAction="#handleDeleteSanPham" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xoá">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="ChiTietNV" mnemonicParsing="false" onAction="#handleViewDetail" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xem chi tiết ">
+            <Button fx:id="ChiTietSP" mnemonicParsing="false" onAction="#handleViewDetail" prefHeight="42.0" prefWidth="160.0" styleClass="act-button" text="Xem chi tiết ">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>

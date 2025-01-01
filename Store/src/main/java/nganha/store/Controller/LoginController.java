@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 import nganha.store.BLL.NhanVienBLL;
 import nganha.store.Model.NhanVien;
 
-import java.io.IOException;
-
 public class LoginController {
   @FXML
   private TextField txtUsername;
@@ -57,7 +55,6 @@ public class LoginController {
         stage.setResizable(true);
         stage.centerOnScreen();
         stage.show();
-
         System.out.println("Đăng nhập thành công!");
       }
     } catch (Exception e) {
@@ -65,19 +62,4 @@ public class LoginController {
       errorMessage.setVisible(true);
     }
   }
-
-  private void loadFXML(String fxmlPath, ActionEvent event) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
-    Parent root = fxmlLoader.load();
-
-    // Lấy Stage hiện tại từ sự kiện
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-    // Chuyển sang Scene mới
-    stage.setScene(new Scene(root));
-    stage.setResizable(true);
-    stage.centerOnScreen();
-    stage.show();
-  }
-
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import nganha.store.Model.NhanVien;
+import nganha.store.Model.Role;
 
 
 import java.io.IOException;
@@ -52,9 +53,14 @@ public class TrangChuController {
   public void setNhanVien(NhanVien nhanVien) {
     this.nhanVien = nhanVien;
 
-    // Cập nhật tên nhân viên vào Label
     if (nhanVien != null) {
       lblUsername.setText("Xin chào, " + nhanVien.getTenNV() + "!");
+
+      // Kiểm tra nếu role không phải null và so sánh với STAFF
+      if (nhanVien.getRole() != null && nhanVien.getRole().equals(Role.STAFF)) {
+        btnQLNhanVien.setDisable(true);
+        btnQLNhanVien.setStyle("-fx-opacity: 0.5;");
+      }
     }
   }
 
@@ -115,6 +121,14 @@ public class TrangChuController {
       if (fxmlFile.equals("HoaDon.fxml")) {
         HoaDonController hoaDonController = loader.getController();
         hoaDonController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
+      }
+      if (fxmlFile.equals("QLSanPham.fxml")) {
+        SanPhamController sanPhamController = loader.getController();
+        sanPhamController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
+      }
+      if (fxmlFile.equals("QLDonHang.fxml")) {
+        QuanLyDonHangController quanLyDonHangController = loader.getController();
+        quanLyDonHangController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
       }
 
       // Lặp lại tương tự cho các FXML khác nếu cần

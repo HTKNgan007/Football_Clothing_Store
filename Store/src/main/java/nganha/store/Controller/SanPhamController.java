@@ -9,6 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nganha.store.BLL.SanPhamBLL;
+import nganha.store.Model.NhanVien;
+import nganha.store.Model.Role;
 import nganha.store.Model.SanPham;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,6 +43,9 @@ public class SanPhamController {
   private ObservableList<SanPham> filteredList = FXCollections.observableArrayList();
 
   private final SanPhamBLL sanPhamBLL = new SanPhamBLL();
+  private NhanVien nhanVien;
+  @FXML
+  private Button btnThemSP, btnSuaSP, btnXoaSP;
 
   @FXML
   public void initialize() {
@@ -64,6 +69,21 @@ public class SanPhamController {
       searchKeyword = newValue.toLowerCase().trim();
       applyFilters(); // Gọi hàm áp dụng bộ lọc
     });
+  }
+
+  public void setNhanVien(NhanVien nhanVien) {
+    this.nhanVien = nhanVien;
+
+    if (nhanVien != null) {
+      if (nhanVien.getRole() != null && nhanVien.getRole().equals(Role.STAFF)) {
+        btnThemSP.setDisable(true);
+        btnSuaSP.setDisable(true);
+        btnXoaSP.setDisable(true);
+        btnThemSP.setStyle("-fx-opacity: 0.5;");
+        btnSuaSP.setStyle("-fx-opacity: 0.5;");
+        btnXoaSP.setStyle("-fx-opacity: 0.5;");
+      }
+    }
   }
   private void loadAllSanPham() throws SQLException, ClassNotFoundException {
     // Lấy toàn bộ danh sách sản phẩm từ BLL

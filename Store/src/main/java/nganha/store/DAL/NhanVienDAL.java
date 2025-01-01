@@ -25,7 +25,7 @@ public class NhanVienDAL {
       String tenNV = resultSet.getString("tenNV");
       String SDT = resultSet.getString("SDT");
       String roleStr = resultSet.getString("role");
-      NhanVien.Role role = NhanVien.Role.valueOf(roleStr.toUpperCase());  // Chuyển từ chuỗi sang enum
+      Role role = Role.valueOf(roleStr.toUpperCase());  // Chuyển từ chuỗi sang enum
       String email = resultSet.getString("email");
       String username = resultSet.getString("username");
 

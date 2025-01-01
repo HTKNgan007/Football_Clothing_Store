@@ -9,6 +9,8 @@ import nganha.store.BLL.ChiTietDonHangBLL;
 import nganha.store.BLL.DonHangBLL;
 import nganha.store.Model.ChiTietDonHang;
 import nganha.store.Model.DonHang;
+import nganha.store.Model.NhanVien;
+import nganha.store.Model.Role;
 import nganha.store.Utils.DSUtils;
 
 import java.sql.Connection;
@@ -21,7 +23,8 @@ import java.util.stream.Collectors;
 public class QuanLyDonHangController {
 
   @FXML
-  private Button XoaDH;
+  private Button btnXoaHD;
+  private NhanVien nhanVien;
 
   @FXML
   private TableView<DonHang> tableDonHang;
@@ -114,6 +117,17 @@ public class QuanLyDonHangController {
         tableChiTietDonHang.setItems(chiTietDonHangList);
       }
     });
+  }
+
+  public void setNhanVien(NhanVien nhanVien) {
+    this.nhanVien = nhanVien;
+
+    if (nhanVien != null) {
+      if (nhanVien.getRole() != null && nhanVien.getRole().equals(Role.STAFF)) {
+        btnXoaHD.setDisable(true);
+        btnXoaHD.setStyle("-fx-opacity: 0.5;");
+      }
+    }
   }
 
   @FXML
