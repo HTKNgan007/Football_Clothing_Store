@@ -1,9 +1,24 @@
 .act-button{
     -fx-border-radius: 20px;
+    -fx-background-radius: 10px;
     -fx-background-color: #2D764F;
     -fx-text-fill: white;
     -fx-font-size: 17px;
 }
+/* Màu mặc định cho button */
+.button-menu {
+    -fx-background-color: #1A5234;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Khi button được nhấn (active) */
+.button-menu:focused {
+    -fx-background-color: #E3FAE0;
+    -fx-text-fill: black;
+}
+
 .custom-textfield {
     -fx-background-color: white;               /* Màu nền trắng */
     -fx-border-color: #7f8c8d;                 /* Màu viền xám */

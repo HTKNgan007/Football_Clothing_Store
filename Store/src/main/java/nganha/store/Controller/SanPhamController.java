@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import nganha.store.BLL.SanPhamBLL;
 import nganha.store.Model.SanPham;
 import javafx.fxml.FXML;
@@ -102,7 +103,7 @@ public class SanPhamController {
       Parent root = loader.load();
 
       Stage stage = new Stage();
-      stage.setTitle("Thêm Sản Phẩm");
+      stage.initStyle(StageStyle.UNDECORATED);
       stage.setScene(new Scene(root));
       stage.show();
     } catch (IOException e) {
@@ -129,7 +130,7 @@ public class SanPhamController {
 
       // Hiển thị form chỉnh sửa
       Stage stage = new Stage();
-      stage.setTitle("Sửa Sản Phẩm");
+      stage.initStyle(StageStyle.UNDECORATED);
       stage.setScene(new Scene(root));
       stage.show();
     } catch (IOException e) {
@@ -172,7 +173,7 @@ public class SanPhamController {
       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/nganha/store/detailSanPham.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Chi tiết sản phẩm");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(loader.load()));
 
         ActSanPhamController controller = loader.getController();
@@ -185,31 +186,6 @@ public class SanPhamController {
       }
     } else {
       showAlert("Cảnh báo", "Vui lòng chọn một sản phẩm.");
-    }
-  }
-
-  @FXML
-  public void handleSearchSanPham() {
-    String keyword = txtFind.getText().trim().toLowerCase();
-
-    try {
-      List<SanPham> sanPhamList = sanPhamBLL.getAllSanPham();
-
-      if (!keyword.isEmpty()) {
-        sanPhamList = sanPhamList.stream()
-            .filter(sp -> sp.getTenSP().toLowerCase().contains(keyword))
-            .toList();
-      }
-
-      ObservableList<SanPham> sanPhamObservableList = FXCollections.observableArrayList(sanPhamList);
-      tblSanPham.setItems(sanPhamObservableList);
-
-      if (sanPhamList.isEmpty()) {
-        showAlert("Thông báo", "Không tìm thấy sản phẩm nào phù hợp.");
-      }
-    } catch (SQLException | ClassNotFoundException e) {
-      e.printStackTrace();
-      showAlert("Lỗi", "Có lỗi xảy ra khi tìm kiếm: " + e.getMessage());
     }
   }
 

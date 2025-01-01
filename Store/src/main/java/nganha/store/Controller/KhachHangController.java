@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import nganha.store.BLL.KhachHangBLL;
 import nganha.store.Model.KhachHang;
 
@@ -87,7 +88,7 @@ public class KhachHangController {
       Parent root = loader.load();
 
       Stage stage = new Stage();
-      stage.setTitle("Thêm Khách Hàng");
+      stage.initStyle(StageStyle.UNDECORATED);
       stage.setScene(new Scene(root));
       stage.show();
     } catch (IOException e) {
@@ -127,7 +128,7 @@ public class KhachHangController {
 
       // Hiển thị form chỉnh sửa
       Stage stage = new Stage();
-      stage.setTitle("Sửa Sản Phẩm");
+      stage.initStyle(StageStyle.UNDECORATED);
       stage.setScene(new Scene(root));
       stage.show();
     } catch (IOException e) {
@@ -161,34 +162,6 @@ public class KhachHangController {
       showAlert("Cảnh báo", "Vui lòng chọn một khách hàng để xoá.");
     }
   }
-
-//  private void SearchKhachHang(String keyword) {
-//    keyword = keyword.trim().toLowerCase();
-//
-//    try {
-//      List<KhachHang> khachHangList = khachHangBLL.getAllKhachHang();
-//      if (khachHangList == null || khachHangList.isEmpty()) {
-//        System.out.println("Danh sách khách hàng rỗng hoặc null");
-//        tblKhachHang.setItems(FXCollections.observableArrayList()); // Xóa dữ liệu trên bảng nếu không có dữ liệu
-//        return;
-//      }
-//
-//      // Áp dụng lọc
-//      List<KhachHang> filteredList = khachHangList.stream()
-//          .filter(sp -> (sp.getTenKH() != null && sp.getTenKH().toLowerCase().contains(keyword)) ||
-//              (sp.getMaKH() != null && sp.getMaKH().toLowerCase().contains(keyword)))
-//          .collect(Collectors.toList());
-//
-//      // Hiển thị kết quả
-//      ObservableList<KhachHang> khachHangObservableList = FXCollections.observableArrayList(filteredList);
-//      tblKhachHang.setItems(khachHangObservableList);
-//
-//    } catch (SQLException | ClassNotFoundException e) {
-//      e.printStackTrace();
-//      showAlert("Lỗi", "Có lỗi xảy ra khi tìm kiếm: " + e.getMessage());
-//    }
-//  }
-
   private void showAlert(String title, String content) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle(title);

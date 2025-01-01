@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import nganha.store.BLL.NhanVienBLL;
 import nganha.store.Model.NhanVien;
 
@@ -116,7 +117,7 @@ public class NhanVienController {
 
       // Tạo và hiển thị cửa sổ mới
       Stage stage = new Stage();
-      stage.setTitle("Thêm Nhân Viên");
+      stage.initStyle(StageStyle.UNDECORATED);
       stage.setScene(new Scene(root));
       stage.show();
     } catch (IOException e) {
@@ -145,7 +146,7 @@ public class NhanVienController {
 
       // Hiển thị form chỉnh sửa
       Stage stage = new Stage();
-      stage.setTitle("Sửa Nhân Viên");
+      stage.initStyle(StageStyle.UNDECORATED);
       stage.setScene(new Scene(root));
       stage.show();
     } catch (IOException e) {
@@ -195,12 +196,11 @@ public class NhanVienController {
       try {
         // Tải FXML của form chi tiết
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/nganha/store/detailNhanVien.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Chi tiết nhân viên");
+        Parent root = loader.load();
 
-        // Tạo scene và hiển thị cửa sổ
-        Scene scene = new Scene(loader.load());
-        stage.setScene(scene);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root));
 
         // Truyền đối tượng NhanVien vào form chi tiết
         ActNhanVienController controller = loader.getController();

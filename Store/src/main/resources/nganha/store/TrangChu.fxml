@@ -10,37 +10,37 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="832.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.TrangChuController">
+<AnchorPane prefHeight="832.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.TrangChuController">
     <children>
         <HBox layoutX="-1.0" layoutY="-1.0" prefHeight="832.0" prefWidth="1280.0">
          <AnchorPane prefHeight="832.0" prefWidth="300.0">
             <children>
                   <!-- Left Panel with Buttons -->
-                  <VBox alignment="CENTER" prefHeight="835.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #2D764F;">
+                  <VBox alignment="CENTER" prefHeight="835.0" prefWidth="300.0" style="-fx-background-color: #2D764F;">
                   <ImageView fitHeight="200.0" fitWidth="253.0">
                      <image>
                         <Image url="@images/logoCT_NHFootball.png" />
                      </image>
                   </ImageView>
-                      <Button fx:id="btnManageOrders1" onAction="#handleDonHang" prefHeight="70.0" prefWidth="170.0" style="-fx-background-color: #1A5234;" text="Hoá đơn" textFill="WHITE">
+                      <Button fx:id="btnDonHang" onAction="#handleDonHang" prefHeight="95.0" prefWidth="300.0" styleClass="button-menu" text="Hoá đơn" textFill="WHITE">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin></Button>
-                      <Button fx:id="btnManageProducts" onAction="#handleQLSanPham" prefHeight="70.0" prefWidth="170.0" text="Sản Phẩm">
+                      <Button fx:id="btnQLSanPham" onAction="#handleQLSanPham" prefHeight="95.0" prefWidth="300.0" styleClass="button-menu" text="Sản Phẩm">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin></Button>
-                      <Button fx:id="btnManageEmployee" onAction="#handleQLNhanVien" prefHeight="70.0" prefWidth="170.0" text="Nhân Viên">
+                      <Button fx:id="btnQLNhanVien" onAction="#handleQLNhanVien" prefHeight="95.0" prefWidth="300.0" styleClass="button-menu" text="Nhân Viên">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin></Button>
-                      <Button fx:id="btnManageCustomers" onAction="#handleKhachHang" prefHeight="70.0" prefWidth="170.0" text="Khách Hàng">
+                      <Button fx:id="btnQLKhachHang" onAction="#handleKhachHang" prefHeight="95.0" prefWidth="300.0" styleClass="button-menu" text="Khách Hàng">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin></Button>
-                  <Button fx:id="btnManageOrders" onAction="#handleQLDonHang" prefHeight="70.0" prefWidth="170.0" style="-fx-background-color: #1A5234;" text="Đơn Hàng" textFill="WHITE">
+                  <Button fx:id="btnQLDonHang" onAction="#handleQLDonHang" prefHeight="95.0" prefWidth="300.0" styleClass="button-menu" text="Đơn Hàng">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Button>
                   <Label fx:id="lblUsername" text="Tên nhân viên">
