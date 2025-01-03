@@ -12,10 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="503.0" prefWidth="678.0" style="-fx-background-color: #254336;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.LoginController">
-    <HBox prefHeight="506.0" prefWidth="679.0">
+<AnchorPane prefHeight="380.0" prefWidth="672.0" style="-fx-background-color: #254336;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nganha.store.Controller.LoginController">
+    <HBox prefHeight="380.0" prefWidth="679.0">
         <children>
-            <VBox alignment="CENTER" prefHeight="508.0" prefWidth="379.0" spacing="20">
+            <VBox alignment="CENTER" prefHeight="456.0" prefWidth="383.0" spacing="20">
                 <Label alignment="CENTER" prefHeight="30.0" prefWidth="375.0" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;" text="Đăng nhập">
                <VBox.margin>
                   <Insets top="30.0" />
@@ -40,7 +40,7 @@
                 </VBox>
 
                 <Button onAction="#handleDangNhap" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: White; -fx-text-fill: #1b2b34; -fx-font-weight: bold;" text="Đăng nhập" />
-                <Label fx:id="errorMessage" maxWidth="339.0" prefHeight="135.0" prefWidth="339.0" textFill="red" visible="false" wrapText="true">
+                <Label fx:id="errorMessage" maxWidth="339.0" prefHeight="50.0" prefWidth="339.0" textFill="red" visible="false" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin></Label>
@@ -48,7 +48,7 @@
                <Insets top="20.0" />
             </padding>
             </VBox>
-            <ImageView fitHeight="508.0" fitWidth="304.0">
+            <ImageView fitHeight="380.0" fitWidth="320.0">
                 <image>
                     <Image url="@images/logo_NHFootball.png" />
                 </image>

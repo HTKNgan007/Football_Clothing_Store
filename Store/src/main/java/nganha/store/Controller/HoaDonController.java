@@ -71,11 +71,6 @@ public class HoaDonController {
 
   private NhanVien currentNhanVien;  // Biến lưu thông tin nhân viên
 
-  // Phương thức này dùng để truyền thông tin nhân viên vào controller
-  public void setNhanVien(NhanVien nhanVien) {
-    this.currentNhanVien = nhanVien;
-  }
-
   @FXML
   public void initialize() {
     try {
@@ -169,6 +164,11 @@ public class HoaDonController {
     colGia.setCellValueFactory(new PropertyValueFactory<>("gia"));
 
     tableViewCTHD.setItems(cthdList);
+  }
+
+  // Phương thức này dùng để truyền thông tin nhân viên vào controller
+  public void setNhanVien(NhanVien nhanVien) {
+    this.currentNhanVien = nhanVien;
   }
 
   @FXML

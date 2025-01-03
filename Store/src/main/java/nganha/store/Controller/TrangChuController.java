@@ -45,7 +45,6 @@ public class TrangChuController {
 
   @FXML
   public void initialize() {
-    loadContent("HoaDon.fxml");
     menuButtons = Arrays.asList(btnDonHang, btnQLSanPham, btnQLNhanVien, btnQLKhachHang, btnQLDonHang);
   }
 
@@ -61,7 +60,10 @@ public class TrangChuController {
         btnQLNhanVien.setDisable(true);
         btnQLNhanVien.setStyle("-fx-opacity: 0.5;");
       }
+      // Load nội dung mặc định khi đã có thông tin nhân viên
+      loadContent("HoaDon.fxml");
     }
+
   }
 
   @FXML
@@ -111,6 +113,33 @@ public class TrangChuController {
   }
 
   private void loadContent(String fxmlFile) {
+//    try {
+//      String fullPath = "/nganha/store/" + fxmlFile;
+//
+//      FXMLLoader loader = new FXMLLoader(getClass().getResource(fullPath));
+//      Node content = loader.load();
+//
+//      // Truyền thông tin nhân viên vào controller của FXML
+//      if (fxmlFile.equals("HoaDon.fxml")) {
+//        HoaDonController hoaDonController = loader.getController();
+//        hoaDonController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
+//      }
+//      if (fxmlFile.equals("QLSanPham.fxml")) {
+//        SanPhamController sanPhamController = loader.getController();
+//        sanPhamController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
+//      }
+//      if (fxmlFile.equals("QLDonHang.fxml")) {
+//        QuanLyDonHangController quanLyDonHangController = loader.getController();
+//        quanLyDonHangController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
+//      }
+//
+//      // Lặp lại tương tự cho các FXML khác nếu cần
+//      contentPane.getChildren().clear();
+//      contentPane.getChildren().add(content);
+//    } catch (IOException e) {
+//      System.err.println("Could not load FXML file: " + fxmlFile);
+//      e.printStackTrace();
+//    }
     try {
       String fullPath = "/nganha/store/" + fxmlFile;
 
@@ -120,22 +149,30 @@ public class TrangChuController {
       // Truyền thông tin nhân viên vào controller của FXML
       if (fxmlFile.equals("HoaDon.fxml")) {
         HoaDonController hoaDonController = loader.getController();
-        hoaDonController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
-      }
-      if (fxmlFile.equals("QLSanPham.fxml")) {
-        SanPhamController sanPhamController = loader.getController();
-        sanPhamController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
-      }
-      if (fxmlFile.equals("QLDonHang.fxml")) {
-        QuanLyDonHangController quanLyDonHangController = loader.getController();
-        quanLyDonHangController.setNhanVien(nhanVien);  // Chuyển thông tin nhân viên vào
+        if (hoaDonController != null) {
+          hoaDonController.setNhanVien(nhanVien);
+        }
       }
 
-      // Lặp lại tương tự cho các FXML khác nếu cần
+      if (fxmlFile.equals("QLSanPham.fxml")) {
+        SanPhamController sanPhamController = loader.getController();
+        if (sanPhamController != null) {
+          sanPhamController.setNhanVien(nhanVien);
+        }
+      }
+
+      if (fxmlFile.equals("QLDonHang.fxml")) {
+        QuanLyDonHangController quanLyDonHangController = loader.getController();
+        if (quanLyDonHangController != null) {
+          quanLyDonHangController.setNhanVien(nhanVien);
+        }
+      }
+
+      // Hiển thị nội dung mới
       contentPane.getChildren().clear();
       contentPane.getChildren().add(content);
     } catch (IOException e) {
-      System.err.println("Could not load FXML file: " + fxmlFile);
+      System.err.println("Không thể load file FXML: " + fxmlFile);
       e.printStackTrace();
     }
   }
